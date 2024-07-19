@@ -1,0 +1,3 @@
+.Container {
+  @apply max-w-6xl mx-auto flex items-center justify-between ;
+}

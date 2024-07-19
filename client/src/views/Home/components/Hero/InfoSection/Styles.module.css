@@ -1,0 +1,22 @@
+.InfoSection {
+  @apply relative col-span-2 row-span-2 ;
+}
+
+.Title {
+  @apply font-extrabold w-fit mb-6  text-slate-800;
+  .SubTitle1 {
+    @apply block text-[5rem] -mb-7 w-full;
+  }
+  .SubTitle2 {
+    @apply text-[2.60rem];
+  }
+  .SubTitle2 > :first-child {
+    @apply text-primary-color;
+  }
+}
+.Paragraph {
+  @apply text-3xl font-bold leading-10 font-sans tracking-wider mb-5;
+}
+.Button {
+  @apply rounded-full bg-[#ff6000] w-fit py-3 px-5 text-lg text-white;
+}
