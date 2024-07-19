@@ -1,0 +1,34 @@
+/* Styles for the WorksBox container */
+.WorksBox {
+  @apply col-span-1 row-span-1 bg-orange-400/90;
+  @apply flex flex-col items-start justify-between rounded-3xl p-4 overflow-hidden;
+
+  /* Head section inside WorksBox */
+  .Head {
+    @apply w-full flex justify-between items-center;
+
+    /* LinkButton inside Head */
+    .Portflio {
+      @apply bg-white font-bold py-3 px-5 rounded-full;
+    }
+    .LinkButton {
+        @apply bg-white text-gray-800 rounded-full p-2 w-12 h-12 flex justify-center items-center;
+        @apply hover:text-primary-color hover:opacity-80
+    }
+  }
+
+  /* Base section inside WorksBox */
+  .Base {
+    @apply flex flex-col justify-start;
+
+    /* Title inside Base */
+    .Title {
+      @apply text-xl font-semibold;
+    }
+
+    /* Paragraph inside Base */
+    .Paragraph {
+      @apply flex flex-col text-xl text-slate-200;
+    }
+  }
+}

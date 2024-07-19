@@ -1,0 +1,5 @@
+.Container {
+  @apply sm:grid gap-5 grid-cols-4 grid-rows-2;
+  @apply max-w-6xl mx-auto min-h-[90vh];
+  @apply p-6 bg-[#ced3ed] rounded-b-xl;
+}

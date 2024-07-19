@@ -1,0 +1,3 @@
+.Button {
+    @apply w-fit py-3 px-4 text-sm bg-cyan-500 rounded-full text-slate-50;
+  }
