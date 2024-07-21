@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import { ScrollProvider } from "./scrollContext";
 
+import Wrapper from "./Wrapper";
 function Index() {
   return (
-    <div>Why us</div>
-  )
+ 
+      <ScrollProvider>
+        <Wrapper />
+      </ScrollProvider>
+  );
 }
 
-export default Index
+export default Index;

@@ -1,8 +1,11 @@
 import React from 'react'
+import styles from "./Styles.module.css"
+
 
 function Index() {
   return (
-    <div>about us</div>
+    <div className={styles.div}>
+    </div>
   )
 }
 

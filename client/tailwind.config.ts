@@ -13,7 +13,12 @@ const config: Config = {
     extend: {
       colors: {
         "primary-color": "var(--primary-color)",
-        "secondary-color": "var(--secondary-color)"
+        "secondary-color": "var(--secondary-color)",
+        "black-color" : "var(--black-color)",
+        "white-color" :  "var(--white-color)"
+      },
+      boxShadow: {
+        't-xl': '3px 1px 20px -12px #101010',
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

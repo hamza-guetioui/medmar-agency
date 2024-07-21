@@ -2,12 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-
-/* #D26539 */
+/* --primary-color :  #ff6000;
+--secondary-color : #00a6e2; */
 
  :root {
-  --primary-color :  #ff6000;
-  --secondary-color : #00a6e2;
+  --primary-color :  #ff740f;
+  --secondary-color : #0f9aff;
+  --black-color : #111318;
+  --white-color : #f0f0f0;
 
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

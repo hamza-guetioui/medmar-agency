@@ -1,0 +1,44 @@
+.Content {
+    @apply col-span-5 flex flex-col justify-center p-4 ml-20; 
+
+        .Title {
+          @apply text-6xl text-secondary-color font-extrabold mb-4 ;
+          animation: fadeIn 0.3s ease-in forwards;
+        }
+        .Paragraph {
+          @apply flex flex-col text-xl text-slate-700 mb-5 ;
+          animation: fadeIn 0.3s ease-in forwards;
+          animation-delay: 250ms;
+        }
+        .Button {
+          @apply py-3 px-6 ml-1 rounded-full bg-secondary-color text-white ;
+          animation: showIn 1s ease-in-out forwards;
+    animation-delay: 560ms;
+        }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-8px);
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes showIn {
+  0% {
+    opacity: 0;
+    /* transform: scale(0.8); */
+  }
+
+  100% {
+    opacity: 1;
+    /* transform: scale(1); */
+  }
+}

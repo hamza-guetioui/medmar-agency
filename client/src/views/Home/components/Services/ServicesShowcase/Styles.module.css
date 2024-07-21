@@ -1,0 +1,29 @@
+.Container {
+  @apply flex flex-col  min-h-[80vh] max-w-full bg-[#ced3ed]/40 rounded-lg 
+  m-8 overflow-hidden  shadow-t-xl;
+
+}
+
+.ServiceTitle::before {
+  position: absolute;
+  left: 100%;
+  bottom: 0;
+  content: "";
+  display: block;
+  background-color: #ced3ed;
+  opacity: 0.4;
+  height: 15px;
+  width: 15px;
+}
+
+.ServiceTitle::after {
+  content: "";
+  position: absolute;
+  left: 100%;
+  bottom: 0;
+  display: block;
+  height: 15px;
+  width: 15px;
+  background: rgb(226 232 240);
+  border-bottom-left-radius: 100%;
+}

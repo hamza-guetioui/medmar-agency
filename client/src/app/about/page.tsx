@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import AboutUs from "@/views/AboutUs";
 
 function About() {
-  return (
-    <div>About</div>
-  )
+  return <AboutUs />;
 }
 
-export default About
+export default About;

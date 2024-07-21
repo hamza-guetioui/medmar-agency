@@ -1,6 +1,6 @@
 /* Styles for the ReviewsBox container */
 .ReviewsBox {
-  @apply col-span-1 row-span-1 bg-cyan-400/30;
+  @apply col-span-1 row-span-1 bg-[#26798b82];
   @apply flex flex-col items-start justify-between p-4 rounded-3xl overflow-hidden;
 
   /* Head section inside ReviewsBox */

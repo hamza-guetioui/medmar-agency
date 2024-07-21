@@ -1,0 +1,19 @@
+.Header {
+  @apply flex justify-between items-center;
+  .Title {
+    @apply text-[3.6rem] text-black-color font-extrabold  ml-2;
+  }
+  .Paragraph {
+    @apply text-lg  text-gray-700 ml-3;
+  }
+  .VisitButton {
+    @apply  text-slate-500  mr-2 font-bold py-4 px-6 rounded-full -mt-3
+    hover:text-primary-color;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.37);
+    box-shadow: 0 4px 30px rgba(145, 145, 145, 0.1);
+    backdrop-filter: blur(12.1px);
+    -webkit-backdrop-filter: blur(12.1px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
