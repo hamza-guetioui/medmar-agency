@@ -13,8 +13,8 @@ function Index() {
       <Hero />
       <Services />
       <WhyUs />
-      <Reviews />
-      <OurClient />
+       <Reviews />
+      <OurClient /> 
       <AboutUs />
     </main>
   );

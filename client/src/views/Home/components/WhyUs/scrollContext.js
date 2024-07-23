@@ -1,19 +1,13 @@
 "use client";
 import React, { createContext, useContext, useEffect, useRef, useState } from "react";
+import { reasons } from './data'
 
+// Create a Context for scroll information
 const ScrollContext = createContext();
 
-const reasons = [
-  { id: 1, title: "Experienced Professionals" },
-  { id: 2, title: "Customized Solutions" },
-  { id: 3, title: "Proven Track Record" },
-  { id: 4, title: "Affordable Pricing" },
-  { id: 5, title: "Excellent Customer Support" },
-];
 
 export const ScrollProvider = ({ children }) => {
-    const [scrollPositionY, setScrollPositionY] = useState(0);
-    const [activeValue, setActiveValue] = useState("");
+    const [activeValue, setActiveValue] = useState(0);
     const targetRef = useRef(null);
 
     useEffect(() => {
@@ -22,8 +16,14 @@ export const ScrollProvider = ({ children }) => {
 
         const handleScroll = () => {
             if (targetRef.current) {
+
+                // Get the top position of the target element relative to the viewport
                 const targetTop = targetRef.current.getBoundingClientRect().top;
+
+                // Calculate the current scroll position offset, centering the target element
                 const currentScrollY = -targetTop + window.innerHeight / 2;
+
+                // Clamp the scroll position within bounds, adjusting for page length and viewport height
                 const clampedScrollY = Math.max(
                     0,
                     Math.min(
@@ -31,32 +31,31 @@ export const ScrollProvider = ({ children }) => {
                         Math.floor(currentScrollY / window.innerHeight) * 100
                     )
                 );
-                setScrollPositionY(clampedScrollY);
 
                 // Calculate active index based on scroll position
                 const activeIndex = Math.floor(clampedScrollY / 100);
                 if (activeIndex >= 0 && activeIndex < reasons.length) {
-                    setActiveValue(reasons[activeIndex].title);
+                    setActiveValue(reasons[activeIndex].id);
                 }
             }
         };
 
         // Add scroll event listener
         window.addEventListener("scroll", handleScroll);
-
-        // Cleanup on unmount
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
+
     }, [setActiveValue]);
 
     return (
-        <ScrollContext.Provider value={{ scrollPositionY, activeValue, setActiveValue, targetRef }}>
+        <ScrollContext.Provider value={{ activeValue, setActiveValue, targetRef }}>
             {children}
         </ScrollContext.Provider>
     );
 };
 
+// Custom hook to use ScrollContext
 export const useScrollContext = () => {
     return useContext(ScrollContext);
 };

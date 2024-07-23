@@ -4,10 +4,9 @@ import { ScrollProvider } from "./scrollContext";
 import Wrapper from "./Wrapper";
 function Index() {
   return (
- 
-      <ScrollProvider>
-        <Wrapper />
-      </ScrollProvider>
+    <ScrollProvider>
+      <Wrapper />
+    </ScrollProvider>
   );
 }
 
