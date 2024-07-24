@@ -1,3 +1,15 @@
 .Container {
-    @apply col-span-4 flex justify-center p-11; 
+  @apply col-span-4 flex justify-center p-11;
+  animation: showUp 0.1s linear;
+}
+
+@keyframes showUp {
+  0% {
+    opacity: 0;
+    transition: scale(0.4);
+  }
+  100% {
+    opacity: 1;
+    transition: scale(1);
+  }
 }

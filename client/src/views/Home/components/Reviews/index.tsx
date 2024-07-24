@@ -1,23 +1,20 @@
 import React from "react";
-import Card from "./Card";
+import Content from "./Content";
+import Header from "./Header";
+import styles from "./Styles.module.css";
+import { ScrollProvider } from "./scrollContext";
 
-function Index() {
+function index() {
   return (
-    <div className="p-4 bg-slate-400/30 ">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-6xl font-extrabold text-center p-6">Client Reviews</h1>
-        <div className="flex gap-7 items-center justify-between">
-          <Card/>
-          <div className="scale-105">
-
-          <Card/>
-          </div>
-          <Card/>
-
+    <ScrollProvider>
+      <div className={styles.Container}>
+        <div className="max-w-6xl mx-auto ">
+          <Header />
+          <Content />
         </div>
       </div>
-    </div>
+    </ScrollProvider>
   );
 }
 
-export default Index;
+export default index;

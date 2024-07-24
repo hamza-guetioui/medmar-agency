@@ -1,1 +1,5 @@
 
+.Container {
+    @apply max-w-6xl mx-auto py-6 px-12 flex flex-col items-center mb-24
+    ;
+}
