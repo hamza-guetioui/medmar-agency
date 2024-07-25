@@ -2,6 +2,6 @@
   @apply flex items-center gap-6 font-semibold;
   
   .Link {
-    @apply py-6;
+    @apply py-4;
   }
 }

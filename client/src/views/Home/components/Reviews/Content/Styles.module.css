@@ -1,9 +1,18 @@
 .Container {
-  @apply grid grid-flow-col select-none snap-x snap-mandatory scroll-smooth
-  overflow-x-scroll pb-8 overflow-y-hidden auto-cols-[25%] gap-6;
+  @apply flex flex-nowrap overflow-y-hidden  gap-4  overflow-x-scroll;
+  @apply select-none snap-x snap-mandatory scroll-smooth ;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* Internet Explorer and Edge */
 }
+
+/* .Container {
+  @apply grid grid-flow-col select-none snap-x snap-mandatory scroll-smooth
+  overflow-x-scroll pb-8 overflow-y-hidden auto-cols-[25%] gap-4;
+  scrollbar-width: none; /* Firefox 
+  -ms-overflow-style: none;  Internet Explorer and Edge 
+}
+   */
+
 .Container::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
 }

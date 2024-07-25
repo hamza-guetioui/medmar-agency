@@ -1,5 +1,5 @@
-.Container::-webkit-scrollbar {
-   @apply p-8 bg-slate-400/30;
+.Container {
+   @apply p-8 max-w-7xl m-auto;
   }
 
   
@@ -9,7 +9,7 @@
   height: 100%;
   width: 90%;
   background-color: #ced3ed;
-  box-shadow: inset 0 0 0 1000px rgba(182, 203, 209, 0.342);
+  box-shadow: inset 0 0 0 1000px rgba(224, 234, 236, 0.247);
   -webkit-filter: blur(5px);
   z-index: -10;
   filter: blur(122px);

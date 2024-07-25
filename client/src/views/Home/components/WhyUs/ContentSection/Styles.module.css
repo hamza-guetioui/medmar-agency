@@ -1,5 +1,5 @@
 .Container {
-  @apply col-span-4 flex justify-center p-11;
+  @apply col-span-4 flex justify-center p-11 mt-12;
   animation: showUp 0.1s linear;
 }
 

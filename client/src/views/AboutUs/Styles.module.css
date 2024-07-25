@@ -1,0 +1,19 @@
+.Slider {
+  @apply relative border-black border-2 w-4/5 mx-auto  h-12 overflow-hidden ;
+}
+.SliderItems {
+  @apply absolute w-full flex left-full justify-around ;
+  animation: slide 10s linear infinite;
+}
+.SliderItems:last-child {
+  animation-delay: 5s;
+}
+.SliderItem {
+  @apply w-24 h-12 bg-slate-500 rounded-2xl;
+  
+}
+@keyframes slide {
+    to {
+        left: -100%;
+    }
+}

@@ -1,3 +1,11 @@
 .Container {
   @apply max-w-6xl mx-auto flex items-center justify-between ;
+ 
+}
+
+.Wrapper {
+@apply sticky top-0  z-40 bg-slate-200/20 border-b-2 border-white;
+  -webkit-backdrop-filter: blur(28px);
+  backdrop-filter: blur(28px);
+  border: 1px solid rgba(255,255,255,0.325);
 }

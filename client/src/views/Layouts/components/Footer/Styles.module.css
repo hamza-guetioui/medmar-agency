@@ -1,5 +1,5 @@
 .Container {
-  @apply max-w-5xl mx-auto py-10 grid grid-cols-9 gap-8;
+  @apply max-w-5xl mx-auto py-10 grid grid-cols-9 gap-8 ;
 
   .Info {
     @apply col-span-3 text-sm leading-5 pr-4;

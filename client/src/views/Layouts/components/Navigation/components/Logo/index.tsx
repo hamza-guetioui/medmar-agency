@@ -4,7 +4,7 @@ import Image from "next/image";
 
 function Index() {
   return (
-    <div>
+    <div className="-mt-2">
       <Link href="/">
         <Image
           src="/assets/medmar.png"
