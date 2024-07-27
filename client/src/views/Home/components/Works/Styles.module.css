@@ -23,7 +23,7 @@
 }
 
 .Item {
-  @apply min-w-52 h-40 rounded-xl brightness-50 opacity-90  shadow-sm;
+  @apply min-w-52 h-40 rounded-xl  opacity-90  shadow-sm flex items-end p-3 ;
 }
 
 @keyframes rightSlideIn {

@@ -1,8 +1,9 @@
 import React from 'react'
+import WorksPage from "@/views/Works"
 
 function Works() {
   return (
-    <div>Works</div>
+    <WorksPage/>
   )
 }
 

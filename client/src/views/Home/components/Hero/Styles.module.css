@@ -1,7 +1,7 @@
 .Container {
-  @apply sm:grid gap-9 grid-cols-4 grid-rows-2;
-  @apply max-w-[1230px] mx-auto min-h-[92vh];
-  @apply p-6  rounded-b-xl;
+  @apply grid grid-cols-1  gap-9;
+  @apply max-w-[1230px] mx-auto p-6;
+  @apply sm:grid-cols-4 lg:grid-rows-2 ;
 }
 
 .Container::before{

@@ -13,11 +13,11 @@ function Index() {
     <main>
       <Hero />
       <Services />
-      <Works/>
-      <WhyUs />
-       <Reviews />
+     {/*  <Works/> */}
+      {/* <WhyUs /> */}
+       {/* <Reviews />
       <OurClient /> 
-      <AboutUs />
+      <AboutUs /> */}
     </main>
   );
 }

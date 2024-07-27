@@ -1,22 +1,30 @@
 .InfoSection {
-  @apply relative col-span-2 row-span-2 ;
+  @apply relative mt-6 flex flex-col justify-between  items-center;
+  @apply sm:col-span-4 lg:col-span-2 lg:row-span-2 lg:p-8;
 }
 
 .Title {
-  @apply font-extrabold w-fit mb-6  text-slate-800;
+  @apply font-extrabold w-fit  text-slate-800;
+  @apply mb-6 lg:mb-9;
+
   .SubTitle1 {
-    @apply block text-[5rem] -mb-7 w-full;
+    @apply block  max-w-full;
+    @apply text-6xl lg:text-[5rem] ;
   }
   .SubTitle2 {
-    @apply text-[2.60rem];
+    @apply text-4xl lg:text-[2.75rem];
   }
   .SubTitle2 > :first-child {
     @apply text-primary-color;
   }
 }
+
 .Paragraph {
-  @apply text-2xl font-bold leading-10 font-sans  mb-5;
+  @apply  font-semibold leading-7 font-sans ;
+  @apply text-lg lg:text-3xl mb-5 lg:mb-8;
 }
+
 .Button {
-  @apply rounded-full bg-[#ff6000] w-fit py-3 px-5 text-lg text-white;
+  @apply rounded-full bg-[#ff6000] py-3 px-5 text-white mb-8;
+  @apply lg:text-lg
 }

@@ -4,15 +4,14 @@ import React, { useEffect, useState, useRef } from "react";
 import styles from "./Styles.module.css";
 import Item from "./Item";
 import useMouseHandler from "./useMouseHandler";
-
 const colors = [
-  "#FF5733",
-  "#33FF57",
-  "#3357FF",
-  "#F3FF33",
-  "#FF33F6",
-  "#33FFF3",
-  "#F633FF",
+  "#FF7F50", // Coral
+  "#FF8C00", // Dark Orange
+  "#4682B4", // Steel Blue
+  "#5F9EA0", // Cadet Blue
+  "#FFD700", // Gold
+  "#87CEEB", // Sky Blue
+  "#B0C4DE", // Light Steel Blue
 ];
 
 const Showcase: React.FC = () => {
