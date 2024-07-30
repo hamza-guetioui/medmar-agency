@@ -1,5 +1,5 @@
 .YoutubeBox {
-  @apply flex flex-col items-start justify-between p-4  bg-sky-600/30 min-h-72
+  @apply flex flex-col items-start justify-between p-4  bg-sky-600/30 min-h-64
       rounded-3xl overflow-hidden;
   @apply sm:col-span-4 lg:col-span-2;
 
@@ -10,13 +10,13 @@
     .Paragraph {
       /* Styles for the title paragraph */
       @apply  text-white font-semibold;
-      @apply text-[1.45rem] sm:text-3xl lg:text-2xl
+      @apply text-xl sm:text-3xl lg:text-2xl
     }
   }
 
   .WatchVideo {
     /* Flex container for button alignment */
-    @apply w-full flex justify-between items-center;
+    @apply min-w-full flex justify-between items-center;
 
     .BaseParagraph {
       /* Styles for the paragraph in the video section */
@@ -25,7 +25,7 @@
     }
 
     .PlayVideo {
-      @apply bg-white text-gray-800 rounded-full  min-w-12 min-h-12 w-fit flex justify-center items-center;
+      @apply bg-white text-gray-800 rounded-full min-w-12 min-h-12 w-fit flex justify-center items-center;
       @apply hover:text-primary-color hover:brightness-110;
       @apply p-2 lg:p-4;
     }

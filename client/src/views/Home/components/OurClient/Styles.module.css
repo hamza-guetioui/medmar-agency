@@ -1,4 +1,10 @@
-.Wrapper {
+.Container {
+  @apply grid m-20 bg-slate-300 mx-auto overflow-hidden;
+  @apply md:grid-cols-9 ;
+}
+
+
+.Showcase {
   @apply col-span-5 -rotate-[63deg] p-10  bg-black/60 flex flex-col justify-evenly overflow-hidden opacity-55;
   -webkit-mask: linear-gradient(90deg, transparent ,white 90% , transparent);
   mask: linear-gradient(90deg, transparent ,white 90% , transparent)

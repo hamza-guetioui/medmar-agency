@@ -1,15 +1,16 @@
 import React from "react";
-import Title from "./Title";
+import Header from "./Header"
 import Showcase from "./Showcase";
+import styles from './Styles.module.css'
+
 
 function Index() {
   return (
-    <div className="">
-      <Title />
+    <div className={styles.Container}>
+      <Header />
       <div className=" rotate-3 my-8 ">
         <Showcase />
         <Showcase />
-  
       </div>
     </div>
   );

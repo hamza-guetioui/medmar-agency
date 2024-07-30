@@ -11,13 +11,14 @@ import Works from "./components/Works";
 function Index() {
   return (
     <main>
-      <Hero />
-      <Services />
-     {/*  <Works/> */}
+      {/* <Hero /> */}
+
+      {/* <Services />
+       <Works/> */}
       {/* <WhyUs /> */}
-       {/* <Reviews />
+      {/* <Reviews /> */}
       <OurClient /> 
-      <AboutUs /> */}
+      {/* <AboutUs />  */}
     </main>
   );
 }

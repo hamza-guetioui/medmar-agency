@@ -1,16 +1,17 @@
 import React from "react";
 import Navigation from "./Navigation";
-import OurServices from "./OurServices";
+import Service from "./Service";
+
 import styles from "./Styles.module.css";
 
-import HandleClickProvider from "./context";
+import HandleClickProvider from "./context/handleClickContext";
 
 function Index() {
   return (
     <HandleClickProvider>
       <div className={styles.Container}>
         <Navigation />
-        <OurServices />
+        <Service />
       </div>
     </HandleClickProvider>
   );

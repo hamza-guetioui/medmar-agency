@@ -1,29 +1,21 @@
 .Container {
-  @apply flex flex-col  min-h-[80vh] max-w-full bg-[#ced3ed]/40 rounded-lg 
-  m-8 overflow-hidden  shadow-t-xl;
+  @apply flex flex-col min-w-full mb-8 relative ;
+  @apply lg:m-8 lg:min-h-[80vh] lg:rounded-lg lg:overflow-hidden lg:shadow-t-xl;
 
 }
 
-.ServiceTitle::before {
-  position: absolute;
-  left: 100%;
-  bottom: 0;
+
+
+.Container::before{
   content: "";
-  display: block;
+  position: absolute;
+  top: 8rem;
+  min-height: 90%;
+  max-width: 80%;
+  min-width: 80%;
   background-color: #ced3ed;
-  opacity: 0.4;
-  height: 15px;
-  width: 15px;
-}
-
-.ServiceTitle::after {
-  content: "";
-  position: absolute;
-  left: 100%;
-  bottom: 0;
-  display: block;
-  height: 15px;
-  width: 15px;
-  background: rgb(226 232 240);
-  border-bottom-left-radius: 100%;
+  box-shadow: inset 0 0 0 1000px rgba(147, 215, 235, 0.767);
+  -webkit-filter: blur(5px);
+  z-index: -10;
+  filter: blur(122px);
 }

@@ -1,6 +1,6 @@
 /* Styles for the ReviewsBox container */
 .ReviewsBox {
-  @apply  flex flex-col items-start justify-between p-4 rounded-3xl min-h-72 overflow-hidden bg-[#26798b82];
+  @apply  flex flex-col items-start justify-between p-4 rounded-3xl min-h-64 overflow-hidden bg-[#26798b82];
 
   @apply sm:col-span-2 lg:col-span-1;
 }
@@ -21,8 +21,8 @@
   @apply flex flex-col justify-start;
 
   .BaseNumber {
-    @apply font-bold text-8xl font-sans;
-    @apply lg:text-7xl;
+    @apply font-bold  font-sans;
+    @apply text-7xl;
   }
 
   .BaseText {

@@ -1,0 +1,11 @@
+.Container {
+    @apply font-bold p-4 md:text-center;
+}
+.Title {
+    @apply text-5xl font-extrabold;
+    @apply max-sm:text-5xl ;
+}
+
+.Paraggraph {
+    @apply text-xl;
+}

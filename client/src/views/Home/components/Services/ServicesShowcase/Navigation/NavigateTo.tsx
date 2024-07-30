@@ -1,24 +1,26 @@
-"use client"
+"use client";
 import React, { useMemo } from "react";
 import styles from "./Styles.module.css";
-import { useHandleClick } from "../context";
+import { useHandleClick } from "../context/handleClickContext";
 
 interface NavigateToProps {
-  service: string;
+  id: number;
+  children: React.ReactNode;
 }
 
-const NavigateTo: React.FC<NavigateToProps> = ({ service }) => {
+const NavigateTo: React.FC<NavigateToProps> = ({ id, children }) => {
   const { activeValue, setActiveValue } = useHandleClick();
-  const active = useMemo(() => service === activeValue, [service, activeValue]);
+
+  const active = useMemo(() => {
+    return id === activeValue;
+  }, [id, activeValue]);
 
   return (
     <button
-      className={`${styles.NavigateButton} ${active ? styles.active : ''}`}
-      onClick={() => setActiveValue(service)}
+      className={`${styles.Button} ${active ? styles.btnActive : ""}`}
+      onClick={() => setActiveValue(id)}
     >
-      {service}
-      <span className={styles.leftShape}></span>
-      <span className={styles.rightShape}></span>
+      {children}
     </button>
   );
 };

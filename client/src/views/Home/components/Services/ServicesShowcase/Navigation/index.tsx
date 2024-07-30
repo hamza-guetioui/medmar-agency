@@ -1,38 +1,33 @@
 import React from "react";
 import styles from "./Styles.module.css";
+
 import NavigateTo from "./NavigateTo";
 
-const Services = [
-  {
-    id:1,
-    name: "Digital Marketing",
-  },
-  {
-    id:2,
-    name: "Graphic Design",
-  },
-  {
-    id:3,
-    name: "Photography",
-  },
-  {
-    id:4,
-    name: "Video Editing",
-  },
-  {
-    id:5,
-    name: "Web Development",
-  },
-];
+import { services } from "../data";
+
+
+
+interface ServiceTypes {
+  id: number;
+  title: string;
+  description: string;
+  image1: string;
+  image2: string;
+  video: string;
+}
 
 function Index() {
 
 
+
   return (
     <div className={styles.Navigation}>
-      {Services.map((service) => {
-        // const active = service.name =
-        return <NavigateTo key={service.id} service={service.name}  />;
+      {services.map((service: ServiceTypes) => {
+        return (
+          <NavigateTo key={service.id} id={service.id} >
+            {service.title}
+          </NavigateTo>
+        );
       })}
     </div>
   );

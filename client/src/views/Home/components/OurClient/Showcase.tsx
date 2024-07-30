@@ -3,7 +3,7 @@ import styles from "./Styles.module.css";
 import Slider from "./Slider";
 function Showcase() {
   return (
-    <div className={styles.Wrapper}>
+    <div className={styles.Showcase}>
       <Slider />
       <Slider />
       <Slider />
