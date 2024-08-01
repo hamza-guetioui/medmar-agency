@@ -1,7 +1,0 @@
-.Wrapper {
-  @apply h-[500vh];
-  .Container {
-    @apply sticky min-h-screen max-w-[70rem] mx-auto  top-0;
-    @apply grid grid-cols-9 gap-10 p-4;
-  }
-}

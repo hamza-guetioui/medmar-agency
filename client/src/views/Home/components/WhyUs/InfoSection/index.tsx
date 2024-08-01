@@ -1,13 +1,18 @@
 import React from "react";
 import Title from "./Title";
 import styles from "./Styles.module.css";
-import NavigationList from "./NavigationList";
+import Paragraph from "./Paragraph";
 
-function Index() {
+type Props = {
+  children?: React.ReactNode;
+};
+
+function Index({ children }: Props) {
   return (
     <div className={styles.Container}>
       <Title />
-      <NavigationList />
+      <Paragraph />
+      {children}
     </div>
   );
 }

@@ -11,11 +11,11 @@
 
 .Showcase.Visible:first-child {
   opacity: 1;
-  animation: rightSlideIn 1s ease-in ;
+  animation: rightSlideIn 1s ease-in forwards;
 }
 .Showcase.Visible:last-child {
   opacity: 1;
-  animation: leftSlideIn 1s ease-in -.25s;
+  animation: leftSlideIn 1s ease-in -.25s forwards;
 }
 
 .Showcase::-webkit-scrollbar {

@@ -1,0 +1,6 @@
+.Container {
+    @apply grid md:grid-cols-12 min-h-screen;
+}
+.Content {
+    @apply md:col-span-8 p-4
+}

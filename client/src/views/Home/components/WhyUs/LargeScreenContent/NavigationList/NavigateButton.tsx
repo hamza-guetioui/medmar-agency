@@ -1,7 +1,7 @@
 "use client";
 import React, { useMemo } from "react";
 import styles from "./Styles.module.css";
-import { useScrollContext } from "../../scrollContext";
+import { useScrollContext } from "../context/scrollContext";
 
 interface NavigateToProps {
   id: number;

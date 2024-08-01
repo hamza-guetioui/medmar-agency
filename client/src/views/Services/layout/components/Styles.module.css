@@ -1,0 +1,3 @@
+.Navigation {
+    @apply md:col-span-4 p-4
+}

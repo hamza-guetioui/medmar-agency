@@ -1,0 +1,12 @@
+.Review {
+    @apply snap-center min-w-72 p-6  bg-slate-100 border-2 
+    shadow-md rounded-xl  overflow-hidden relative pt-20;
+}
+
+.Stars{
+   @apply flex gap-1 justify-end text-xl text-yellow-400 mb-2;
+}
+
+.Text {
+    @apply my-5 font-semibold;
+}

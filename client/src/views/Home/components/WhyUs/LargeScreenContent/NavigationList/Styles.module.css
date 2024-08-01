@@ -1,11 +1,11 @@
 /* Navigation List Container */
 .NavigationList {
-  @apply ml-12;
+  @apply md:ml-12 ;
 }
 
 /* Style for paragraph elements within NavigationList */
 .Paragraph {
-  @apply flex flex-col text-lg font-semibold mb-4;
+  @apply flex flex-col text-lg font-semibold mb-4 max-sm:hidden;
 }
 
 /* Style for list elements within NavigationList */

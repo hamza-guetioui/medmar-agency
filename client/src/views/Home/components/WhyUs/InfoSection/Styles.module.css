@@ -1,14 +1,19 @@
 .Container {
-  @apply col-span-5 flex flex-col justify-center p-8;
-
+  @apply mb-8  md:col-span-5   md:p-8;
+}
   .Title {
-    @apply  font-extrabold flex flex-col text-slate-900/80 mb-10;
+    @apply  font-extrabold flex flex-col text-slate-900/80 mb-2;
+
     .SubTitle1 {
-      @apply text-6xl ;
+      @apply text-5xl md:text-6xl  ;
+
     }
     .SubTitle2 {
-      @apply text-4xl ml-4;
+      @apply text-3xl md:text-4xl ml-2;
     }
   }
 
+.Paragraph {
+  @apply flex flex-col font-semibold ml-4 mb-10 text-lg;
 }
+

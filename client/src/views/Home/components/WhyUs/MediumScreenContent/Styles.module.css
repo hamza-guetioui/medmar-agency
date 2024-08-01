@@ -1,0 +1,7 @@
+.Container {
+  @apply p-6
+}
+
+.Content {
+  @apply  md:mt-12 max-w-full;
+}

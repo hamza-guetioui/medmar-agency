@@ -1,0 +1,3 @@
+.Logo {
+ @apply max-md:order-2 -mt-2;
+}

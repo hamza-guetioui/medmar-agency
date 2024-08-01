@@ -8,9 +8,9 @@ interface layoutProps {
 const Index: React.FC<layoutProps> = ({ children }) => {
   return (
     <>
-      {/* <Navgation /> */}
+      <Navgation />
       {children}
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

@@ -9,7 +9,7 @@ function ScrollButtons() {
   const { handleScroll } = useScroll();
 
   return (
-    <div className="flex justify-center items-center gap-2 mr-4">
+    <div className="flex justify-center items-center gap-2 mr-4 max-sm:hidden">
       <button
         onClick={() => handleScroll("left")}
         className=" relative w-12 h-12 rounded-full border-2 border-gray-800 text-2xl font-bold"

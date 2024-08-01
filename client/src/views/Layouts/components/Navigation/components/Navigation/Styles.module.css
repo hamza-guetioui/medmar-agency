@@ -1,7 +1,16 @@
+.NavContainer {
+  @apply max-md:order-1;
+}
+
 .Navigation {
-  @apply flex items-center gap-6 font-semibold;
+  @apply flex md:items-center gap-6 font-semibold;
+  @apply max-md:absolute top-full left-2 max-md:min-w-60 max-md:pl-4 max-md:gap-2
+    max-md:flex-col max-md:bg-slate-100 rounded-xl ;
   
   .Link {
     @apply py-4;
   }
+}
+.ToggleButton {
+  @apply text-2xl h-10 w-10 flex justify-center items-center rounded-full  md:hidden;
 }
