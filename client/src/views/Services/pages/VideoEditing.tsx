@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GraphicDesign = () => {
+const VideoEditing = () => {
   const sectionStyle = {
     padding: '40px',
     backgroundColor: '#f0f8ff',
@@ -95,4 +95,4 @@ const GraphicDesign = () => {
   );
 };
 
-export default GraphicDesign;
+export default VideoEditing;
