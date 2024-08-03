@@ -1,12 +1,16 @@
 import React from "react";
-import styles from "./Styles.module.css";
+
 import Button from "../Hero/InfoSection/Button";
 import VisiteLink from "./VisitLink";
+import styles from "./Styles.module.css";
+
 
 function Index() {
+
   return (
     <div className={styles.Container}>
-      <h1 className="font-extrabold mb-6 text-center" >
+ 
+      <h1 className="font-extrabold mb-6 text-center">
         <span className="text-6xl">Contact Us</span> <br />
         <span className="text-2xl">for Unmatched Excellence</span>
       </h1>

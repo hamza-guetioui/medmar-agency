@@ -1,5 +1,5 @@
 .Container {
-   @apply p-8 max-w-6xl ml-auto lg:m-auto;
+   @apply p-8 max-w-6xl ml-auto lg:m-auto lg:pt-20;
   }
 
   

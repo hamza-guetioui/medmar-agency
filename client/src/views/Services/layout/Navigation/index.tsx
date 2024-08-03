@@ -1,10 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
+
 import styles from "./Styles.module.css";
 import ToggleButton from "./ToggleButton";
 import Service from "./Service";
 import { services } from "../../data";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 interface ServiceTypes {
   id: number;
@@ -13,20 +15,12 @@ interface ServiceTypes {
 }
 
 function Navigation() {
+  const isMatch = useMediaQuery("(min-width: 768px)")
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)");
-    setIsOpen(mediaQuery.matches);
-    // Event listener => when screen size changes
-    const handleResize = () => {
-      setIsOpen(mediaQuery.matches);
-    };
-    mediaQuery.addEventListener("change", handleResize);
-
-    // Clean up the event listener
-    return () => mediaQuery.removeEventListener("change", handleResize);
-  }, []);
+  useEffect(()=>{
+    setIsOpen(isMatch)
+  },[isMatch])
 
   function handleToggle() {
     setIsOpen((isOpen) => !isOpen);

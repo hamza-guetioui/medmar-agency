@@ -4,23 +4,14 @@ import React, { useState , useEffect } from "react";
 
 import styles from "./Styles.module.css";
 import ToggleButton from "./ToggleButton";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 function Navigation() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  useEffect(() => {
-    
-    const mediaQuery = window.matchMedia("(min-width: 768px)"); 
-    setIsOpen(mediaQuery.matches);
-       // Event listener => when screen size changes
-       const handleResize = () => {
-        setIsOpen(mediaQuery.matches);
-      };
-      mediaQuery.addEventListener("change", handleResize);
-  
-      // Clean up the event listener 
-      return () => mediaQuery.removeEventListener("change", handleResize);
-  }, []);
+  const isMatch = useMediaQuery("(min-width: 768px)")
+  const [isOpen, setIsOpen] = useState<boolean>(isMatch);
+  useEffect(()=>{
+    setIsOpen(isMatch)
+  },[isMatch])
 
   function handleToggle() {
     setIsOpen(isOpen => !isOpen);

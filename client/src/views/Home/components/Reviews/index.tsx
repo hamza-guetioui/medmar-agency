@@ -7,7 +7,7 @@ import { ScrollProvider } from "./scrollContext";
 function index() {
   return (
     <ScrollProvider>
-      <div className={styles.Container}>
+      <div id="Reviews" className={styles.Container}>
         <div className="max-w-6xl mx-auto ">
           <Header />
           <Content />
