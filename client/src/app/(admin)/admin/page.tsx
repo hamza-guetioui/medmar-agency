@@ -1,7 +1,5 @@
-
+import Login from "@/views/Admin/pages/Login"
 function Home() {
-  return <div>
-    Admin
-  </div>;
+  return <Login/>;
 }
 export default Home;

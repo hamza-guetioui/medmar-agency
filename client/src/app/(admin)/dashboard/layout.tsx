@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.className} bg-slate-200`}>
-       {children}
+        <Layout>{children}</Layout>
       </body>
     </html>
   );
