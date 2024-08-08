@@ -6,27 +6,30 @@ import Client from "./Client";
 import styles from "./Styles.module.css";
 
 interface DataTypes {
-  id: number;
-  name: string;
-  work: string;
-  text: string;
-  stars: number;
-  picture: string;
+  _id:number;
+  name:string;
+  job:string;
+  comment:string;
+  rate:number;
+  imageSrc:string;
 }
+
 
 interface ReviewProps {
   data: DataTypes;
 }
 
 const Review: React.FC<ReviewProps> = ({ data }) => {
-  const { name, work, text, stars, picture } = data;
+  const { name, job, comment, rate,imageSrc
+
+   } = data;
 
   return (
     <div className={styles.Review}>
       <Icon />
-      <Stars number={stars} />
-      <Text>{text}</Text>
-      <Client name={name} picture={picture} work={work} />
+      <Stars number={rate} />
+      <Text>{comment}</Text>
+      <Client name={name} picture={imageSrc} work={job} />
     </div>
   );
 };

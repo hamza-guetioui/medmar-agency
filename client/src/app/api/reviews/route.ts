@@ -9,15 +9,24 @@ import Review from "@/model/review";
 //   comment: string;
 // }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const id = request.nextUrl.searchParams.get("id");
+
   try {
     await connectMongDb();
-    const reviews = await Review.find().exec();
-
-    return NextResponse.json(
-      { message: "Reviews fetched successfully", data: reviews },
-      { status: 200 }
-    );
+    if (id) {
+      const review = await Review.findById(id);
+      return NextResponse.json(
+        { message: "Reviews fetched successfully", data: review },
+        { status: 200 }
+      );
+    } else {
+      const reviews = await Review.find().sort({ createdAt: -1 });
+      return NextResponse.json(
+        { message: "Reviews fetched successfully", data: reviews },
+        { status: 200 }
+      );
+    }
   } catch (err) {
     console.error("Error fetching reviews:", err);
 
@@ -29,7 +38,13 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  const { name, job, rate, comment } = await request.json();
+  const formData = await request.formData();
+
+  const name = formData.get("name");
+  const job = formData.get("job");
+  const rate = formData.get("rate");
+  const comment = formData.get("comment");
+  const imageSrc = "heloo";
 
   if (!name || !job || rate === undefined || !comment) {
     return NextResponse.json(
@@ -40,7 +55,7 @@ export async function POST(request: NextRequest) {
 
   try {
     await connectMongDb();
-    const review = await Review.create({ name, job, rate, comment });
+    const review = await Review.create({ name, job, rate, comment, imageSrc });
 
     return NextResponse.json(
       { message: "Review Created successfully", data: review },
@@ -57,8 +72,13 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   const id = request.nextUrl.searchParams.get("id");
+  const formData = await request.formData();
 
-  const { name, job, rate, comment } = await request.json();
+  const name = formData.get("name");
+  const job = formData.get("job");
+  const rate = formData.get("rate");
+  const comment = formData.get("comment");
+  const imageSrc = "heloo";
 
   if (!name || !job || rate === undefined || !comment) {
     return NextResponse.json(

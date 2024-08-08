@@ -1,0 +1,8 @@
+.Container {
+  @apply min-h-screen min-w-full flex justify-center items-center;
+  background-image: url("/assets/Login_bg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background: rgb(73,197,246);
+background: linear-gradient(90deg, rgba(73,197,246,1) 0%, rgba(255,42,239,1) 100%); */
+}

@@ -2,6 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 interface IReview {
   name: string;
+  imageSrc:string;
   job: string;
   rate: number;
   comment: string;
@@ -21,7 +22,7 @@ const reviewSchema = new Schema<IReview>(
           `${value} is not a valid Name! It should only contain letters and spaces.`,
       },
     },
-
+    imageSrc: { type: String, required: [true, "Image Source is required"] },
     job: {
       type: String,
       required: [true, "Job is required"],
