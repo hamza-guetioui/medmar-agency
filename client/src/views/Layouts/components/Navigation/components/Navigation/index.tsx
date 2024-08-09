@@ -1,21 +1,50 @@
+"use client";
 import Link from "next/link";
-import React from "react";
+import React, { useState , useEffect } from "react";
 
-import styles from "./Styles.module.css"
+import styles from "./Styles.module.css";
+import ToggleButton from "./ToggleButton";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 function Navigation() {
+  const isMatch = useMediaQuery("(min-width: 768px)")
+  const [isOpen, setIsOpen] = useState<boolean>(isMatch);
+  useEffect(()=>{
+    setIsOpen(isMatch)
+  },[isMatch])
+
+  function handleToggle() {
+    setIsOpen(isOpen => !isOpen);
+  }
+
   return (
-    <nav className={styles.Navigation}>
-      <Link href="/" className={styles.Link}>Home</Link>
+    <div className={styles.NavContainer}>
+      <ToggleButton isOpen={isOpen} handleClick={handleToggle} />
 
-      <Link href="/services" className={styles.Link}>Services</Link>
+      {isOpen && (
+        <nav className={styles.Navigation}>
+          <Link href="/" className={styles.Link}>
+            Home
+          </Link>
 
-      <Link href="/about" className={styles.Link}>Who We Are ?</Link>
+          <Link href="/services" className={styles.Link}>
+            Services
+          </Link>
 
-      <Link href="/works" className={styles.Link}>Works</Link>
+          <Link href="/about" className={styles.Link}>
+            Who We Are ?
+          </Link>
 
-      <Link href="/blogs" className={styles.Link}>Blogs</Link>
-    </nav>
+          <Link href="/works" className={styles.Link}>
+            Works
+          </Link>
+
+          <Link href="/blogs" className={styles.Link}>
+            Blogs
+          </Link>
+        </nav>
+      )}
+    </div>
   );
 }
 

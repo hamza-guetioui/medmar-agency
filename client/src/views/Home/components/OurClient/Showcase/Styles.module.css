@@ -1,0 +1,43 @@
+.Slider {
+  @apply relative w-1/2 mx-auto max-sm:h-12 h-20;
+  &:first-child {
+    @apply md:-translate-x-16;
+  }
+  &:last-child {
+    @apply md:translate-x-16;
+  }
+}
+.SliderInner {
+  @apply absolute left-full w-full h-full flex justify-around  overflow-hidden;
+}
+
+.SliderItem {
+  @apply font-extrabold text-sm lg:text-xl text-center  flex justify-center items-center text-white;
+}
+
+
+
+.Slider:first-child > .SliderInner {
+  animation: slide 20s linear infinite;
+  &:last-child {
+    animation-delay: 10s;
+  }
+}
+.Slider .SliderInner {
+  animation: slide 20s linear infinite reverse;
+  &:last-child {
+    animation-delay: 10s;
+  }
+}
+.Slider:last-child .SliderInner {
+  animation: slide 20s linear infinite;
+  &:last-child {
+    animation-delay: 10s;
+  }
+}
+
+@keyframes slide {
+  to {
+    left: -100%;
+  }
+} 

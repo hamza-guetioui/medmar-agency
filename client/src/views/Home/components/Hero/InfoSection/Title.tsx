@@ -1,12 +1,15 @@
+"use client"
 import React from "react";
 import styles from "./Styles.module.css";
 
-function Index() {
+
+function Index() {  
   return (
     <h1 className={styles.Title}>
+      
       <span className={styles.SubTitle1}>Marketing</span>
       <span className={styles.SubTitle2}>
-        <span >Excellence</span>
+        <span>Excellence</span>
         {" Agency"}
       </span>
     </h1>

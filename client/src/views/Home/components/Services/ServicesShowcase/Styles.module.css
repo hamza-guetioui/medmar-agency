@@ -1,0 +1,21 @@
+.Container {
+  @apply flex flex-col min-w-full mb-8 relative ;
+  @apply lg:m-8 lg:min-h-[80vh] lg:rounded-lg lg:overflow-hidden lg:shadow-t-xl;
+
+}
+
+
+
+.Container::before{
+  content: "";
+  position: absolute;
+  top: 8rem;
+  min-height: 90%;
+  max-width: 80%;
+  min-width: 80%;
+  background-color: #ced3ed;
+  box-shadow: inset 0 0 0 1000px rgba(147, 215, 235, 0.767);
+  -webkit-filter: blur(5px);
+  z-index: -10;
+  filter: blur(122px);
+}

@@ -12,7 +12,7 @@ const WatchButton = () => {
   return (
     <button className={styles.PlayVideo} onClick={() => setShowVideo(true)}>
       <FontAwesomeIcon icon={faPlay} />
-      <span className="ml-2">Watch Video</span>{" "}
+      <span className="hidden font-bold sm:ml-2 sm:block">Watch Video</span>{" "}
     </button>
   );
 };

@@ -1,0 +1,11 @@
+
+.table__header {
+    @apply min-w-full text-xl font-bold bg-slate-500/40 px-8 py-6 flex justify-between items-center
+
+}
+
+
+
+.CreateNewButton {
+    @apply  bg-green-500 hover:opacity-75 py-2 px-3 text-lg font-bold flex items-center gap-2 text-white rounded-md;
+}

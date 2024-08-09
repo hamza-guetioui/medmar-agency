@@ -1,0 +1,16 @@
+.Container {
+  @apply md:col-span-4 lg:col-span-3 relative;
+}
+
+.ToggleButton {
+  @apply flex items-center justify-between  min-w-full bg-slate-100 py-4 px-8 rounded-xl text-2xl font-bold md:hidden;
+}
+
+.Navigation {
+  @apply bg-slate-100 min-w-full p-6 rounded-xl sticky h-fit md:mb-80 top-28 max-md:mt-2;
+  /* @apply max-md:absolute max-md:top-full max-md:left-0; */
+
+  .ServicesList {
+    @apply p-6 flex flex-col gap-6 font-bold whitespace-nowrap  z-20;
+  }
+}

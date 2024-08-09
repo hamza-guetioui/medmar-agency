@@ -1,0 +1,59 @@
+.Table{
+    @apply bg-slate-300/40 w-full overflow-hidden rounded-md;
+}
+.THead {
+    @apply bg-slate-400/60
+}
+
+.TRow:not(:last-child) {
+    @apply border-b-2 border-b-slate-400/30
+}
+.th , .td {
+    @apply  px-6 py-2
+}
+.Icon {
+    @apply pr-4 text-right
+}
+
+.Container {
+    @apply  min-h-screen rounded-md overflow-hidden;
+  }
+
+.table__header {
+    @apply min-w-full text-xl font-bold bg-slate-500/40 px-8 py-6 flex justify-between items-center
+
+}
+.table__body {
+    @apply p-4 rounded-b-md;
+    /* From https://css.glass */
+background: rgba(255, 255, 255, 0.096);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.Table{
+    @apply bg-slate-300/40 w-full overflow-hidden rounded-md;
+}
+
+
+.AddButton {
+    @apply  bg-green-500 hover:opacity-75 py-2 px-3 text-lg font-bold flex items-center gap-2 text-white rounded-md;
+}
+
+.OptionsList {
+    @apply rounded-md border-gray-500 border-spacing-2 gap-2 bg-slate-400 overflow-hidden ;
+    @apply absolute top-1/2 -translate-y-1/2 right-8;
+}
+
+.ToggleOptionsButton {
+    @apply flex items-center justify-center w-8 h-8 p-1 rounded-full hover:bg-slate-400/80;
+}
+
+.UDButton {
+    @apply flex items-center justify-between gap-2 px-4 py-2 text-white  w-full
+}
+
+.UButtonLink {
+    @apply flex items-center justify-between gap-2
+}

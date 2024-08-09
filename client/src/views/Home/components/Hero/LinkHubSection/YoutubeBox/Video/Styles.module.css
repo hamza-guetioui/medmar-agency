@@ -1,10 +1,10 @@
 .Container {
   /* Full-screen overlay */
-  @apply fixed inset-0 bg-slate-700/30 z-10;
+  @apply fixed inset-0 bg-slate-700/30 z-10 backdrop-blur-md;
 
   .VideoPlayer {
     /* Centered video player */
-    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-2xl;
     /* Styling and hidden by default */
     @apply rounded-3xl overflow-hidden w-8/12 h-5/6 bg-slate-300;
 

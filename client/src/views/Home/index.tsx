@@ -6,13 +6,15 @@ import WhyUs from "./components/WhyUs";
 import Reviews from "./components/Reviews";
 import OurClient from "./components/OurClient";
 import AboutUs from "./components/AboutUs";
+import Works from "./components/Works";
 
 function Index() {
   return (
     <main>
       <Hero />
       <Services />
-      <WhyUs />
+      <Works />
+      {/* <WhyUs /> */}
       <Reviews />
       <OurClient />
       <AboutUs />

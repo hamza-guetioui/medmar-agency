@@ -1,0 +1,19 @@
+.Container {
+  @apply grid max-w-6xl m-auto my-20 bg-slate-300 overflow-hidden;
+  @apply grid-cols-1 md:grid-cols-9 gap-8 lg:px-24;
+}
+
+.Intro {
+  @apply md:col-span-4 p-10  font-sans;
+}
+
+.ShowcaseWrapper {
+  @apply md:col-span-5 max-h-full max-w-full  flex justify-center items-center ;
+}
+
+.Showcase {
+  @apply min-w-[200%] bg-black/60 flex flex-col gap-4 ;
+  @apply   md:-rotate-[45deg] lg:-rotate-[40deg] opacity-70;
+  /* -webkit-mask: linear-gradient(90deg, transparent ,white 90% , transparent);
+  mask: linear-gradient(90deg, transparent ,white 90% , transparent) */
+}

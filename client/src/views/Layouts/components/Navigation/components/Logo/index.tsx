@@ -1,10 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import styles from './Styles.module.css'
 
 function Index() {
   return (
-    <div>
+    <div className={styles.Logo}>
       <Link href="/">
         <Image
           src="/assets/medmar.png"

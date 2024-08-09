@@ -1,0 +1,73 @@
+.ServiceBox {
+  @apply grid p-4 relative pb-20 flex-grow;
+  @apply lg:grid-cols-9 lg:pb-4;
+}
+
+.Info {
+  @apply p-4 pb-0;
+  @apply lg:col-span-5;
+
+  .Title {
+    @apply text-4xl font-extrabold mb-4   opacity-0;
+    @apply lg:text-6xl lg:mb-8;
+    animation: fadeIn 0.3s ease-in forwards;
+  }
+  .Paragraph {
+    @apply flex flex-col text-base  text-slate-800 mb-4 opacity-0;
+    @apply lg:text-xl  max-sm:px-2 ;
+    animation: fadeIn 0.3s ease-in forwards;
+    animation-delay: 250ms;
+  }
+
+  .Option {
+    @apply relative opacity-0 text-slate-800;
+    @apply lg:text-xl;
+    animation: fadeIn 0.3s ease-in forwards;
+    animation-delay: 500ms;
+
+    &::before {
+      @apply w-2 h-2 rounded-full bg-slate-800  absolute top-1/2 -left-6 -translate-y-1/2;
+      content: "";
+    }
+  }
+
+  .Button {
+    @apply max-sm:absolute max-sm:bottom-4 max-sm:left-1/2 max-sm:-translate-x-1/2 max-sm:min-w-[85%];
+    @apply py-3 px-6 rounded-full bg-secondary-color text-white opacity-0 z-20;
+    @apply lg:ml-6 lg:min-w-[30%] lg:mb-12;
+
+    animation: showIn 1s ease-in-out forwards;
+    animation-delay: 560ms;
+  }
+}
+
+.Media {
+  @apply p-4;
+  @apply lg:col-span-4;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-8px);
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes showIn {
+  0% {
+    opacity: 0;
+    /* transform: scale(0.8); */
+  }
+
+  100% {
+    opacity: 1;
+    /* transform: scale(1); */
+  }
+}

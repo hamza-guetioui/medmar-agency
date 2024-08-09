@@ -1,0 +1,19 @@
+.inputContainer {
+  @apply px-8 mb-3;
+}
+.Label {
+  @apply font-semibold text-lg w-full block tracking-wider;
+}
+
+.inputWrapper {
+  @apply relative;
+
+  .textAreaInput {
+    @apply w-full h-11 border-2 border-slate-600/80 rounded-lg bg-inherit p-2 pr-16 outline-none;
+    @apply resize-none h-36;
+  }
+
+  .textLengthCounter {
+    @apply absolute right-3 bottom-2;
+  }
+}

@@ -1,0 +1,3 @@
+.Form {
+  @apply relative rounded-lg bg-white max-w-full h-[80vh] overflow-y-auto;
+}

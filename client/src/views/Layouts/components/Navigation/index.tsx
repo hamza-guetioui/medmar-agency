@@ -7,11 +7,14 @@ import Styles from "./Styles.module.css";
 
 function Index() {
   return (
-    <header className={Styles.Container}>
-      <Logo />
-      <Navigation />
-      <Button />
-    </header>
+    <div className={Styles.Wrapper}>
+      {" "}
+      <header className={Styles.Container}>
+        <Logo />
+        <Navigation />
+        <Button />
+      </header>
+    </div>
   );
 }
 

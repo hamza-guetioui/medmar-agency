@@ -1,0 +1,3 @@
+.Container {
+    @apply grid md:grid-cols-12 gap-4 max-w-6xl m-auto min-h-screen px-8 max-md:pt-8;
+}

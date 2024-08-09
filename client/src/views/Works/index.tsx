@@ -1,8 +1,20 @@
 import React from 'react'
+import Box from './Box'
+import styles from './Styles.module.css'
 
 function Index() {
   return (
-    <main>Index</main>
+    <main className={styles.Container}>
+      <Box/>
+      <Box/>
+      <Box/>
+      <Box/>
+      <Box/>
+      <Box/>
+      <Box/>
+      <Box/>
+      <Box/>
+    </main>
   )
 }
 

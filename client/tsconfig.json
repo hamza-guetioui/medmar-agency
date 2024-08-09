@@ -21,6 +21,13 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/views/Home/components/Hero/LinkHubSection/YoutubeBox/context.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/views/Home/components/Hero/LinkHubSection/YoutubeBox/context.js",
+    "src/views/Home/components/WhyUs/LargeScreenContent/context/scrollContext.js"
+, "src/views/Services/layout/Content", "src/hooks/translations/index.js", "src/app/api/route.js"  ],
   "exclude": ["node_modules"]
 }

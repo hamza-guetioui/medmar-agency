@@ -8,7 +8,7 @@ function VisiteLink() {
   return (
     <Link
       href="#"
-      className="underline hover:text-primary-color hover:opacity-80 "
+      className="underline hover:text-primary-color hover:opacity-80  font-extrabold"
     >
       {"Our Channel "} <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
     </Link>

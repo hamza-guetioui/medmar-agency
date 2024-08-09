@@ -1,0 +1,3 @@
+.Container {
+  @apply flex flex-col gap-5 min-h-[73vh] max-w-[66rem] mx-auto mt-14;
+}

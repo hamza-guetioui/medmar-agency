@@ -1,0 +1,16 @@
+.Container {
+   @apply p-8 max-w-6xl ml-auto lg:m-auto lg:pt-20;
+  }
+
+  
+.Container::before{
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 90%;
+  background-color: #ced3ed;
+  box-shadow: inset 0 0 0 1000px rgba(224, 234, 236, 0.247);
+  -webkit-filter: blur(5px);
+  z-index: -10;
+  filter: blur(122px);
+}

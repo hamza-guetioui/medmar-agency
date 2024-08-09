@@ -1,0 +1,17 @@
+.inputContainer {
+  @apply  mb-3 min-w-full relative ;
+}
+
+.displayFile {
+  @apply  border-2 border-slate-600/80 min-h-44 overflow-hidden bg-slate-600
+    rounded-lg bg-inherit bg-center bg-no-repeat bg-contain;
+    background-position: right
+}
+
+.Label {
+  @apply font-semibold text-lg w-full block tracking-wider;
+}
+
+.inputFile{
+  @apply absolute bottom-3 left-3 text-sm;
+}

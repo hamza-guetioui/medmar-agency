@@ -1,0 +1,56 @@
+
+.Showcase {
+  @apply flex gap-4 p-1 overflow-x-auto cursor-grab scroll-smooth opacity-0;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.Showcase:last-child {
+  @apply flex-row-reverse;
+}
+
+.Showcase.Visible:first-child {
+  opacity: 1;
+  animation: rightSlideIn 1s ease-in forwards;
+}
+.Showcase.Visible:last-child {
+  opacity: 1;
+  animation: leftSlideIn 1s ease-in -.25s forwards;
+}
+
+.Showcase::-webkit-scrollbar {
+  display: none;
+}
+
+.Project {
+  @apply relative overflow-hidden min-w-52 h-40 rounded-xl brightness-90 hover:brightness-100  shadow-sm  ;
+}
+.Info {
+@apply   absolute min-w-full min-h-full  p-4 flex items-end text-black opacity-0 
+ cursor-pointer;
+}
+
+.Title {
+  @apply text-2xl font-bold ;
+}
+.Paragraph {
+  @apply text-xl ;
+}
+
+@keyframes rightSlideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes leftSlideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

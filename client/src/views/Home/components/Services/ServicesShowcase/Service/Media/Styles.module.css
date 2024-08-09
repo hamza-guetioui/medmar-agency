@@ -1,0 +1,51 @@
+.MediaContainer {
+  @apply min-h-full grid grid-cols-2 grid-rows-2 gap-4;
+  @apply lg:col-span-4 lg:flex lg:justify-center lg:items-center lg:relative;
+}
+
+.MainImage {
+  @apply object-cover  opacity-0 object-top rounded-xl w-full h-full;
+  @apply col-span-1 lg:grid-cols-2 lg:max-w-[55%] row-span-2;
+  animation: showIn 1s ease-in forwards;
+    animation-delay: 600ms;
+}
+.SideImage {
+  @apply object-cover  object-top rounded-xl w-full h-full opacity-0;
+  @apply col-span-1 row-span-1;
+  @apply lg:absolute lg:bottom-0 lg:right-5 lg:max-w-[40%] lg:max-h-[20%]  ;
+  animation: fadeIn 1.2s ease-in forwards;
+  animation-delay: 1.5s;
+
+}
+.Video {
+  @apply col-span-1 row-span-1 rounded-xl opacity-0 object-cover max-sm:h-full;
+  @apply lg:absolute lg:top-52 lg:left-2  lg:max-w-[45%];
+  animation: fadeIn .9s ease-in forwards;
+  animation-delay: 1.7s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-4px);
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes showIn {
+  0% {
+    opacity: 0;
+    /* transform: scale(0.8); */
+  }
+
+  100% {
+    opacity: 1;
+    /* transform: scale(1); */
+  }
+}

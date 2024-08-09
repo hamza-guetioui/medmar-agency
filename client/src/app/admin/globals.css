@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --primary-color :  #ff6000;
+--secondary-color : #00a6e2; */
+
+body {
+  margin: 0;
+}
+
+ :root {
+  --primary-color :  #ff3f0f;
+  --secondary-color : #0f9aff;
+  --black-color : #111318;
+  --white-color : #f0f0f0;
+
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+

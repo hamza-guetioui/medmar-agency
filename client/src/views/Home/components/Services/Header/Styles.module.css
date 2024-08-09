@@ -1,0 +1,43 @@
+.Header {
+  @apply flex justify-between items-center  p-4;
+}
+
+.Title {
+  @apply text-black-color font-extrabold ;
+  @apply text-5xl md:text-[3.6rem];
+}
+.Paragraph {
+  @apply text-gray-700 ml-6;
+  @apply max-sm:hidden md:text-lg;
+}
+
+.VisitButton {
+  @apply text-slate-500  font-bold  rounded-full  hover:text-primary-color;
+
+  @apply text-sm py-2 px-3  md:py-4 md:px-6 md:mr-2 md:text-lg ;
+
+  background: rgba(255, 255, 255, 0.37);
+  box-shadow: 0 4px 30px rgba(145, 145, 145, 0.1);
+  backdrop-filter: blur(12.1px);
+  -webkit-backdrop-filter: blur(12.1px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* .Header {
+  @apply flex justify-between items-center;
+  .Title {
+    @apply text-[3.6rem] text-black-color font-extrabold  ml-2;
+  }
+  .Paragraph {
+    @apply text-lg  text-gray-700 ml-3;
+  }
+  .VisitButton {
+    @apply  text-slate-500  mr-2 font-bold py-4 px-6 rounded-full  hover:text-primary-color;
+
+    background: rgba(255, 255, 255, 0.37);
+    box-shadow: 0 4px 30px rgba(145, 145, 145, 0.1);
+    backdrop-filter: blur(12.1px);
+    -webkit-backdrop-filter: blur(12.1px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+} */

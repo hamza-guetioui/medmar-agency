@@ -1,32 +1,32 @@
 /* Styles for the ReviewsBox container */
 .ReviewsBox {
-  @apply col-span-1 row-span-1 bg-cyan-400/30;
-  @apply flex flex-col items-start justify-between p-4 rounded-3xl overflow-hidden;
+  @apply  flex flex-col items-start justify-between p-4 rounded-3xl min-h-64 overflow-hidden bg-[#26798b82];
 
-  /* Head section inside ReviewsBox */
-  .Head {
-    @apply w-full flex justify-between items-center;
+  @apply sm:col-span-2 lg:col-span-1;
+}
 
-    /* LinkButton inside Head */
-    .LinkButton {
-      @apply bg-white text-gray-800 rounded-full p-2 w-12 h-12 flex justify-center items-center;
-      @apply hover:text-primary-color hover:opacity-80;
+/* Head section inside ReviewsBox */
+.Head {
+  @apply w-full flex justify-between items-center;
 
-    }
+  /* LinkButton inside Head */
+  .LinkButton {
+    @apply bg-white text-gray-800 rounded-full p-2 w-12 h-12 flex justify-center items-center;
+    @apply hover:text-primary-color hover:opacity-80;
+  }
+}
+
+/* Base section inside ReviewsBox */
+.Base {
+  @apply flex flex-col justify-start;
+
+  .BaseNumber {
+    @apply font-bold  font-sans;
+    @apply text-7xl;
   }
 
-  /* Base section inside ReviewsBox */
-  .Base {
-    @apply flex flex-col justify-start;
-
-    /* BaseNumber inside Base */
-    .BaseNumber {
-      @apply font-bold text-7xl font-sans ;
-    }
-
-    /* BaseText inside Base */
-    .BaseText {
-      @apply flex flex-col text-xl text-slate-600 pl-2;
-    }
+  .BaseText {
+    @apply flex flex-col text-2xl text-slate-600 pl-2;
+    @apply text-xl;
   }
 }

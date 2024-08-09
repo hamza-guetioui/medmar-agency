@@ -1,27 +1,28 @@
 .Container {
-  @apply max-w-5xl mx-auto py-10 grid grid-cols-9 gap-8;
+  @apply max-w-5xl mx-auto py-10 grid lg:gap-8;
+  grid-template-columns: repeat(auto-fit , minmax(210px,1fr));
+}
 
-  .Info {
-    @apply col-span-3 text-sm leading-5 pr-4;
 
-    .Logo {
-      @apply mb-4 bg-slate-400 w-fit p-3 rounded-lg;
-    }
-    .Text {
-      @apply line-clamp-3 leading-7;
-    }
+.Info {
+  @apply  text-sm leading-5 p-4;
+  .Logo {
+    @apply mb-4 bg-slate-400 w-fit p-3 rounded-lg;
   }
+  .Text {
+    @apply line-clamp-3 leading-7;
+  }
+}
 
-  .Services,
-  .Browser,
-  .Contact {
-    @apply col-span-2 mt-5;
+.Services,
+.Browser,
+.Contact {
+  @apply  lg:mt-5 p-4;
 
-    .title {
-      @apply font-bold text-lg pb-2;
-    }
-    .Item {
-      @apply text-sm pb-2;
-    }
+  .title {
+    @apply font-bold text-lg pb-2;
+  }
+  .Item {
+    @apply text-sm pb-2;
   }
 }

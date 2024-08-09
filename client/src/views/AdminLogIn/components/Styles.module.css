@@ -1,0 +1,28 @@
+.Form {
+  @apply p-4 flex flex-col  gap-6 max-w-[28rem] min-h-[28rem];
+  background: rgba(255, 255, 255, 0);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(13.1px);
+  -webkit-backdrop-filter: blur(13.1px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+}
+
+.Title {
+  @apply text-3xl font-extrabold text-center p-4;
+}
+
+.inputWrapper {
+  @apply flex flex-col;
+}
+
+.Label {
+  @apply pl-2 text-black text-lg font-extrabold mb-2;
+}
+.Input {
+  @apply w-full p-2  border border-gray-300/70  bg-slate-50/40 text-gray-900 font-bold rounded-lg;
+}
+
+.logIn {
+  @apply px-6 py-3 min-w-40 mb-8 mt-4  mx-auto  bg-purple-700/70 rounded-lg border border-gray-300/70;
+}
