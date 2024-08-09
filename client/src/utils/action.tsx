@@ -1,8 +1,52 @@
 "use server";
-
 const apiUrl = process.env.API_URL;
 
 import { revalidateTag } from "next/cache";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+
+export const logIn = async (formData: {
+  username: string;
+  password: string;
+}) => {
+  try {
+    const response = await fetch(`${apiUrl}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    if (!response.ok) {
+      console.error("Failed to log in:", response.statusText);
+      redirect("/admin");
+      return;
+    }
+    const {token} = await response.json()
+    cookies().set("session_id" , token)
+    redirect("/admin/dashboard");
+    return;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const logOut = async (formData: FormData) => {
+  try {
+    const response = await fetch(`${apiUrl}/auth/login`, {
+      method: "POST",
+      body: formData,
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to logIn, Status: ${response.status}`);
+    }
+    const { message } = await response.json();
+    return message;
+  } catch (error) {
+    throw error;
+  }
+};
 
 export const getReviews = async () => {
   "use server";

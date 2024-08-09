@@ -1,13 +1,23 @@
 import React from "react";
-import styles from './Styles.module.css'
+import styles from "./Styles.module.css";
 
-type Props = {};
+type Props = {
+  value: string;
+  onChange: (e: any) => void;
+};
 
-const InputText = (props: Props) => {
+const InputText = ({ value, onChange }: Props) => {
   return (
     <div className={styles.inputWrapper}>
       <label className={styles.Label}>username : </label>
-      <input type="text" name="username" className={styles.Input} placeholder="entry the username" />
+      <input
+        type="text"
+        onChange={onChange}
+        value={value}
+        name="username"
+        className={styles.Input}
+        placeholder="entry the username"
+      />
     </div>
   );
 };

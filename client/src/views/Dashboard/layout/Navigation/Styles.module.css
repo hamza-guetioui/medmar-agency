@@ -9,11 +9,11 @@
 }
 
 .Navigation {
-  @apply bg-slate-400/50 min-w-full p-6 rounded-md md:sticky h-fit md:mb-80 md:top-28 md:mt-12 ;
-  @apply max-md:absolute max-md:mt-2  max-md:left-0;
+  @apply bg-slate-300/70 min-w-full p-3 rounded-md md:sticky min-h-64 md:mb-80 md:top-28 md:mt-12 ;
+  @apply max-md:absolute max-md:mt-2  max-md:left-0 flex flex-col justify-between;
 
   .ServicesList {
-    @apply p-6 flex flex-col gap-6 font-bold whitespace-nowrap  z-20;
+    @apply p-5 flex flex-col gap-3 font-bold whitespace-nowrap  z-20;
     @apply max-md:p-4 max-md:font-semibold whitespace-nowrap  z-20;
   }
 }
