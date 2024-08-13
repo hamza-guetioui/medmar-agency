@@ -13,7 +13,7 @@ const roboto = Roboto_Slab({
 });
 
 import "./globals.css";
-import Layout from "@/views/Dashboard/layout";
+import Layout from "@/views/Admin/layout";
 
 export const metadata: Metadata = {
   title: "Medmar Agency",

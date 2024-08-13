@@ -1,0 +1,13 @@
+.Container {
+  @apply md:col-span-9;
+}
+.Content {
+  @apply min-w-full;
+}
+.Path {
+  @apply px-4 mb-4  flex gap-4 font-bold;
+}
+
+.pathLink {
+  @apply flex items-center gap-4 text-black/70  first-letter:uppercase;
+}

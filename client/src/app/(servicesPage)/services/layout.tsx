@@ -15,6 +15,7 @@ const roboto = Roboto_Slab({
 import "./globals.css";
 import Layout from "@/views/Layouts";
 import ServiceLayout from "@/views/Services/layout";
+import TranslationContext from "@/context/TranslationContext";
 
 export const metadata: Metadata = {
   title: "Medmar Agency",
@@ -30,9 +31,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.className} bg-slate-200`}>
+      <TranslationContext>
+
         <Layout>
           <ServiceLayout>{children}</ServiceLayout>
         </Layout>
+      </TranslationContext>
+
+        
       </body>
     </html>
   );

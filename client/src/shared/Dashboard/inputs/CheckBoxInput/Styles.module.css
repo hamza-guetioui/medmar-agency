@@ -1,0 +1,10 @@
+.Container {
+  @apply m-4 ml-3 mt-6 flex items-end gap-2;
+}
+.Label {
+  @apply font-semibold text-base block tracking-wider w-fit relative;
+}
+
+.Input {
+  @apply w-6 h-6 border-[1px] border-slate-700/40 rounded-[.20rem] bg-inherit p-2 pr-16 outline-none;
+}

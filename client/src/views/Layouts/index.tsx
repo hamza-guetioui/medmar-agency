@@ -9,7 +9,7 @@ interface layoutProps {
 const Index: React.FC<layoutProps> = ({ children }) => {
   return (
     <>
-    {/* <LanguageButton /> */}
+    <LanguageButton />
       <Navgation />
       {children}
       <Footer />

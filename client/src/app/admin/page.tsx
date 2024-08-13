@@ -1,5 +1,5 @@
-import AdminLogIn from "@/views/AdminLogIn"
+import AdminLogIn from "@/views/Admin/pages/AdminLogIn";
 function Home() {
-  return <AdminLogIn/>;
+  return <AdminLogIn />;
 }
 export default Home;

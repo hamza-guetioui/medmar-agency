@@ -1,0 +1,10 @@
+
+.Header {
+    @apply min-w-full min-h-4 text-base font-bold bg-slate-400/40 px-8 py-3 flex justify-between items-center;
+}
+
+
+
+.CreateNewButton {
+    @apply  bg-green-500/85  hover:opacity-75 py-1 px-2 font-bold flex items-center gap-1 text-white rounded-md;
+}

@@ -1,0 +1,6 @@
+.Container {
+  @apply m-4 mt-1;
+}
+.Label {
+  @apply mb-1 ml-1  font-semibold text-base w-full block tracking-wider;
+}

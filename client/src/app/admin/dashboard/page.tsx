@@ -1,6 +1,6 @@
-import DashboardPage from "@/views/Dashboard"
+import DashboardPage from "@/views/Admin/pages/DashboardPage";
 
 function Dashboard() {
-  return <DashboardPage/>;
+  return <DashboardPage />;
 }
 export default Dashboard;

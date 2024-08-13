@@ -45,7 +45,9 @@ export async function POST(request: NextRequest) {
       { status: 401 }
     );
   } catch (error) {
-    console.error("Error processing request:", error); // Log errors for debugging
+    // const { message, error } = handleError( "Failed to fetch members", err);
+    // return NextResponse.json({ message, error }, { status: 500 });
+
     return NextResponse.json(
       { message: "An error occurred while processing your request." },
       { status: 500 }

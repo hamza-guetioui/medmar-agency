@@ -1,5 +1,4 @@
-import CreateReviewPage from "@/views/Dashboard/pages/Reviews/pages/CreateNew";
-
+import CreateReviewPage from "@/views/Admin/pages/DashboardPage/pages/Reviews/pages/CreateNew";
 
 function CreateReview() {
   return (

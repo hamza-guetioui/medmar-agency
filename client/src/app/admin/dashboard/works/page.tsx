@@ -1,5 +1,5 @@
-import WorkPage from "@/views/Dashboard/pages/Works";
+import WorkPage from "@/views/Admin/pages/DashboardPage/pages/Works";
 function Work() {
-  return <WorkPage/>
+  return <WorkPage />;
 }
 export default Work;
