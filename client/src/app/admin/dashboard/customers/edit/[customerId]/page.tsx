@@ -1,15 +1,19 @@
 import EditForm from "@/views/Admin/pages/Customers/pages/edit";
 
-const generateStaticParams =()=>{
+const generateStaticParams = () => {};
 
-}
+type Props = {
+  params: {
+    customerId: string;
+  };
+};
 
-const page = () => {
+const Page = ({ params: { customerId } }: Props) => {
   return (
     <div>
-      <EditForm />
+      <EditForm customerId={customerId} />
     </div>
   );
 };
 
-export default page;
+export default Page;

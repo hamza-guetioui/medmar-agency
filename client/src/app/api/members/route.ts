@@ -5,7 +5,9 @@ import Member from "@/model/member";
 import { validateMemberData } from "@/utils/apiUtils/validateMemberData";
 import { handleError } from "@/utils/apiUtils/handleError";
 
+// Get All | by SearchParams
 export async function GET(request: NextRequest) {
+  // searchPrams
   try {
     await connectToMongoDb();
     const members = await Member.find().sort({ createdAt: -1 });
@@ -20,6 +22,7 @@ export async function GET(request: NextRequest) {
   }
 }
 
+// Insert New Member
 export async function POST(request: NextRequest) {
   const formData = await request.formData();
 

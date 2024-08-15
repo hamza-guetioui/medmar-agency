@@ -6,10 +6,11 @@ const customerSchema = new Schema<ICustomer>(
   {
     fullName: {
       type: String,
-      required: [true, "Customer Name is required"],
+      unique: true,
+      required: [true, "Customer fullName is required"],
       validate: {
         validator: function (v: string): boolean {
-          return /^[a-zA-Z\s]+$/.test(v);
+          return /^[a-zA-Z\s.,]+$/.test(v);
         },
         message: ({ value }: { value: string }) =>
           `${value} is not a valid Customer Name! It should only contain letters and spaces.`,
@@ -26,15 +27,36 @@ const customerSchema = new Schema<ICustomer>(
         message: ({ value }: { value: string }) =>
           `${value} is not a valid Job Title! It should only contain letters and spaces.`,
       },
+      trim: true,
     },
-    avatarUrl: {
+    avatar: {
       type: String,
+      required: [true, "Customer avatar is required"],
+    },
+    email: {
+      type: String,
+      unique: true,
+      required: [true, "Email is required"],
+      match: [
+        /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/,
+        "Please enter a valid email address",
+      ],
+    },
+    phone: {
+      type: String,
+      validate: {
+        validator: function (v) {
+          return /^(?:\+212|0)(?:\d{9})$|^(?:\+\d{2})(?:\d{8,14})$/.test(v);
+        },
+        message: (props) => `${props.value} is not a valid phone number!`,
+      },
+      required: [true, "User phone number required"],
     },
     testimonial: {
       type: String,
       trim: true,
     },
-    businessLogoUrl: {
+    businessLogo: {
       type: String,
     },
     rating: {

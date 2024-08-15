@@ -1,11 +1,14 @@
-import "server-only"
+import "server-only";
 import { NextResponse, type NextRequest } from "next/server";
 import connectToMongoDb from "@/libs/mongoDb";
 import Customer from "@/model/customer";
 import { validateCustomerData } from "@/utils/apiUtils/validateCustomerData";
 import { handleError } from "@/utils/apiUtils/handleError";
+import { removeFile } from "@/utils/apiUtils/handleFile";
 
-export async function GET(request: NextRequest) {
+// Get All Customer | filtered by SearchParams
+export async function GET() {
+  // searchParams
   try {
     await connectToMongoDb();
     const customers = await Customer.find().sort({ createdAt: -1 });
@@ -20,23 +23,29 @@ export async function GET(request: NextRequest) {
   }
 }
 
+// Insert New Customer
 export async function POST(request: NextRequest) {
   const formData = await request.formData();
-  const { error, data } = validateCustomerData(formData);
+  const { error, data } = await validateCustomerData(formData);
 
   if (error || !data) {
     return NextResponse.json({ message: error }, { status: 400 });
   }
 
+  console.log(data);
   try {
     await connectToMongoDb();
     await Customer.create(data);
 
     return NextResponse.json(
-      { message: "the New Customer Added successfully" },
+      { message: "A new customer has been successfully added." },
       { status: 201 }
     );
   } catch (err) {
+    removeFile(data?.avatar);
+    removeFile(data?.businessLogo);
+
+    console.log(err);
     const { message, error } = handleError("Failed to add new customer", err);
     return NextResponse.json({ message, error }, { status: 500 });
   }

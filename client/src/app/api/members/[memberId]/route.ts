@@ -3,12 +3,37 @@ import "server-only";
 import { NextResponse, type NextRequest } from "next/server";
 import mongoose from "mongoose";
 import connectToMongoDb from "@/libs/mongoDb";
-import Member from "@/model/members";
+import Member from "@/model/member";
 import { validateMemberData } from "@/utils/apiUtils/validateMemberData";
 import { handleError } from "@/utils/apiUtils/handleError";
 import { GetStaticPaths } from "next";
 
 
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { memberId: string } }
+) {
+  const { memberId } = params;
+
+  if (!mongoose.Types.ObjectId.isValid(memberId)) {
+    return NextResponse.json(
+      { message: "Invalid customer ID format" },
+      { status: 400 }
+    );
+  }
+  try {
+    await connectToMongoDb();
+    const member = await Member.findById(memberId);
+
+    return NextResponse.json(
+      { message: "Member fetched successfully", data: member },
+      { status: 200 }
+    );
+  } catch (err) {
+    const { message, error } = handleError("Error Fetching member", err);
+    return NextResponse.json({ message, error }, { status: 500 });
+  }
+}
 
 export async function PUT(
   request: NextRequest,

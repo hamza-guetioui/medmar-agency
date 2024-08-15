@@ -16,19 +16,7 @@ const Index = async () => {
   return (
     <tbody>
       {customers.map((customer, index) => {
-        return (
-          <TRow
-            key={customer._id}
-            index={index}
-            _id={customer._id}
-            fullName={customer.fullName}
-            jobTitle={customer.jobTitle}
-            avatarUrl={customer.avatarUrl}
-            testimonial={customer.testimonial}
-            rating={customer.rating}
-            published={customer.published}
-          ></TRow>
-        );
+        return <TRow key={customer._id} index={index} {...customer}></TRow>;
       })}
     </tbody>
   );

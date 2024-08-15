@@ -8,13 +8,14 @@ export const services = [
   { id: "4", title: "Photography" },
   { id: "5", title: "Web Development" },
 ];
+
 import Header from "@/shared/Dashboard/Form/Header";
 import Section from "@/shared/Dashboard/Form/Section";
 import Input from "@/shared/Dashboard/inputs/Input";
 import FileInput from "@/shared/Dashboard/inputs/FileInput";
 import SelectInput from "../shared/SelectInput";
 import Buttons from "@/shared/Dashboard/Form/Buttons";
-import { title } from "process";
+import Details from "../shared/Details";
 
 const Index = () => {
   return (
@@ -59,7 +60,7 @@ const Index = () => {
         </Section>
 
         <Section title={"Project Details"}>
-          <Input type="text" name="detail" label="LinkedIn" length={255} />
+          <Details />
         </Section>
 
         <Buttons />

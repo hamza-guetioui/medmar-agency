@@ -1,11 +1,19 @@
 import mongoose, { Schema } from "mongoose";
-import { IProject } from "@/Types";
+import { IProject, IProjectDetail, IProjectServices } from "@/Types";
 
-interface IProjectWithCustomerId extends IProject {
-  customerId: mongoose.Types.ObjectId; // Reference to Customer
-}
 
-const projectDetailSchema = new mongoose.Schema({
+
+const projectServicesSchema = new mongoose.Schema<IProjectServices>({
+  id: {
+    type: Number,
+    required:true
+  },
+  title: {
+    type: String,
+    required:true
+  },
+});
+const projectDetailSchema = new mongoose.Schema<IProjectDetail>({
   feature: {
     type: String,
     validate: {
@@ -22,7 +30,7 @@ const projectDetailSchema = new mongoose.Schema({
   },
 });
 
-const projectSchema = new Schema<IProjectWithCustomerId>(
+const projectSchema = new Schema<IProject>(
   {
     title: {
       type: String,
@@ -41,14 +49,11 @@ const projectSchema = new Schema<IProjectWithCustomerId>(
       required: [true, "Description is required"],
       trim: true,
     },
-    coverImageUrl: {
+    coverImage: {
       type: String,
       required: [true, "Image Source is required"],
     },
-    type: {
-      type: String,
-      required: [true, "Project Category is required"],
-    },
+    services: [projectServicesSchema],
     link: {
       type: String,
     },
@@ -67,6 +72,6 @@ const projectSchema = new Schema<IProjectWithCustomerId>(
 );
 
 const Project =
-  mongoose.models.Project || mongoose.model<IProjectWithCustomerId>("Project", projectSchema);
+  mongoose.models.Project || mongoose.model<IProject>("Project", projectSchema);
 
 export default Project;

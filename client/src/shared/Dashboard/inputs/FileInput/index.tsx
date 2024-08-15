@@ -8,8 +8,16 @@ interface FileInputProps {
   accept?: string;
   label?: string;
   name: string;
+  initialValue?: string;
+  required?: boolean;
 }
-function ImageDisplay({ name, label, accept }: FileInputProps) {
+function ImageDisplay({
+  name,
+  label,
+  accept,
+  required = false,
+  initialValue,
+}: FileInputProps) {
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const uploadedFileRef = useRef<HTMLDivElement>(null);
 
@@ -22,18 +30,34 @@ function ImageDisplay({ name, label, accept }: FileInputProps) {
         }
       };
       reader.readAsDataURL(uploadedImage);
+    } else if (uploadedFileRef.current) {
+      if (initialValue) {
+        const imageUrl = `/uploads/${initialValue}`;
+        uploadedFileRef.current.style.backgroundImage = `url("${imageUrl}")`;
+      }
     }
-  }, [uploadedImage]);
+  }, [uploadedImage, initialValue]);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
+    console.log(file);
     setUploadedImage(file || null); // Update uploadedImage state
   }
 
   return (
     <div key={name} className={styles.Container}>
       <h2 className={styles.Label}>{label || name}</h2>
-      <UploadButton accept={accept} name={name} onUpload={handleChange} />
+      <UploadButton>
+        <input
+          id="file"
+          className={styles.input}
+          type="file"
+          name={name}
+          accept={accept || ""}
+          onChange={handleChange}
+          required={required}
+        />
+      </UploadButton>
       <div className={styles.uploadedFileData}>
         <FileInfo
           name={uploadedImage?.name}

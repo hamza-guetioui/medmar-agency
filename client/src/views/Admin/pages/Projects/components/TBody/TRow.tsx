@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./Styles.module.css";
 import TD from "./TD";
 
+import { deleteProject } from "@/utils/actions/Projects";
+import UDOptions from "@/shared/Dashboard/UDOptions";
 import { IProject } from "@/Types";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,7 +15,8 @@ type Props = {
 };
 
 const TRow = ({ index, project }: Props) => {
-  const { title, description, coverImageUrl, type, link, details } = project;
+  const { _id, title, description, coverImageUrl, type, link, details } =
+    project;
 
   return (
     <tr className={styles.TRow}>
@@ -36,12 +39,12 @@ const TRow = ({ index, project }: Props) => {
       <TD>
         <ul className="list-[circle]">
           {details?.map((detail) => (
-          <li key={detail.feature}>
-            {detail.feature} 
-          </li>
-        ))}
+            <li key={detail.feature}>{detail.feature}</li>
+          ))}
         </ul>
-        
+      </TD>
+      <TD>
+        <UDOptions id={_id} deleteAction={deleteProject} />
       </TD>
     </tr>
   );

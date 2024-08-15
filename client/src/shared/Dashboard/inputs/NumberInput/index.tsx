@@ -10,22 +10,34 @@ interface InputProps {
   initialValue?: number;
   min?: number;
   max?: number;
+  required?: boolean;
 }
 
-function index({ name, label, min, max, initialValue = 0 }: InputProps) {
+function index({
+  name,
+  label,
+  min,
+  max,
+  required = false,
+  initialValue = 0,
+}: InputProps) {
   const [value, setValue] = useState(initialValue);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(Number.parseFloat(event.target.value));
   };
 
-  const increment = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const increment = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     event.preventDefault();
-    setValue(ps => ps + 0.1);
+    setValue((ps) => ps + 0.1);
   };
-  const decrement = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const decrement = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     event.preventDefault();
-    setValue(ps => ps - 0.1);
+    setValue((ps) => ps - 0.1);
   };
 
   return (
@@ -42,6 +54,7 @@ function index({ name, label, min, max, initialValue = 0 }: InputProps) {
           max={max}
           name={name}
           onChange={handleChange}
+          required={required}
         />
 
         <DigitAdjuster

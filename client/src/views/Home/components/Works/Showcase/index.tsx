@@ -42,24 +42,6 @@ const projects = [
     description: "Developing user-friendly mobile applications.",
     image: "project6.jpeg",
   },
-  {
-    id: 7,
-    title: "Video Production",
-    description: "Producing high-quality video content.",
-    image: "project7.jpeg",
-  },
-  {
-    id: 8,
-    title: "SEO Optimization",
-    description: "Improving search engine rankings.",
-    image: "project8.jpeg",
-  },
-  {
-    id: 9,
-    title: "Email Marketing",
-    description: "Creating effective email campaigns.",
-    image: "project9.jpeg",
-  },
 ];
 
 const Showcase: React.FC = () => {

@@ -3,9 +3,11 @@ import styles from "./Styles.module.css";
 import Image from "next/image";
 import TD from "./TD";
 
+import UDOptions from "@/shared/Dashboard/UDOptions";
+
 import { IMember } from "@/Types";
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { deleteMember } from "@/utils/actions/Members";
 
 type Props = {
   index: number;
@@ -14,6 +16,7 @@ type Props = {
 
 const TRow = ({ index, member }: Props) => {
   const {
+    _id,
     fullName,
     position,
     profileImage,
@@ -82,7 +85,10 @@ const TRow = ({ index, member }: Props) => {
           </ul>
         }
       </TD>
-      <TD>{""}</TD>
+      <TD>
+        {" "}
+        <UDOptions id={_id} deleteAction={deleteMember} />
+      </TD>
     </tr>
   );
 };

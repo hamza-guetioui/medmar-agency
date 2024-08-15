@@ -16,18 +16,19 @@ const Index = () => {
         paragraph="Please enter the member's details below and validate the information
           before submitting."
       ></Header>
+
       <form action={createMember} className="bg-white">
         <Section title={"Member Info"}>
           <Input type="text" name="fullName" label="Full Name" length={25} />
           <Input type="text" name="position" label="Position" length={25} />
           <FileInput
-            name="profileImage"
+            name="profile"
             label="Profile Image"
             accept="jpg,png,jpeg"
           />
         </Section>
         <Section title={"Member biography"}>
-          <TextArea name="bio" label="About Memeber" length={255} />
+          <TextArea name="bio" label="About The Memeber" length={255} />
         </Section>
         <Section title={"Sociel Media"}>
           <Input type="text" name="facebook" label="FaceBook" length={255} />

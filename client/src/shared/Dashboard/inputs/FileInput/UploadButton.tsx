@@ -4,24 +4,15 @@ import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 type Props = {
-  onUpload: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  accept: string | undefined;
-  name: string;
+  children: React.ReactNode;
 };
 
-const UploadButton = ({ accept, name, onUpload }: Props) => {
+const UploadButton = ({ children }: Props) => {
   return (
     <label htmlFor="file" className={styles.UploadButton}>
       upload file
       <FontAwesomeIcon icon={faUpload} />
-      <input
-        id="file"
-        className={styles.input}
-        type="file"
-        name={name}
-        accept={accept || ""}
-        onChange={onUpload}
-      />
+      {children}
     </label>
   );
 };

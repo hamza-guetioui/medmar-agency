@@ -1,10 +1,18 @@
 
-
 import EditForm from "@/views/Admin/pages/Members/pages/edit";
-const page = () => {
+
+
+type Props = {
+  params: {
+    memberId: string;
+  };
+}
+
+
+const page = ({ params: { memberId } }  : Props) => {
   return (
     <div>
-      <EditForm />
+      <EditForm memberId={memberId} />
     </div>
   );
 };

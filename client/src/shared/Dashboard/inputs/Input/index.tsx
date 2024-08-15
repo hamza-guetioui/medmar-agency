@@ -7,10 +7,20 @@ interface InputProps {
   label?: string;
   name: string;
   length: number;
+  required?: boolean;
   initialValue?: string;
+  pattern?: string;
 }
 
-function index({ type, name, label, length, initialValue = "" }: InputProps) {
+function index({
+  type,
+  name,
+  label,
+  length,
+  required = false,
+  pattern,
+  initialValue = "",
+}: InputProps) {
   const [value, setValue] = useState<string>("");
 
   useEffect(() => {
@@ -44,6 +54,8 @@ function index({ type, name, label, length, initialValue = "" }: InputProps) {
           name={name}
           onChange={handleChange}
           onKeyDown={handleKeydown}
+          required={required}
+          pattern={pattern}
         />
 
         <span className={styles.lengthCounter} style={style}>

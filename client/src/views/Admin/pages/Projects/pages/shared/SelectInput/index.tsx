@@ -4,6 +4,7 @@ import styles from "./Styles.module.css";
 import CheckBoxOption from "./CheckBoxOption";
 
 import useHandleCheck from "./hooks/useHandleCheck";
+import { IProjectServices } from "@/Types";
 
 interface Props {
   id: string;
@@ -15,10 +16,7 @@ interface Props {
     title: string;
   }>;
 
-  initialValue?: Array<{
-    id: string;
-    title: string;
-  }>;
+  initialValue?:[IProjectServices];
 }
 
 function Index({ type, name, label, data, initialValue = [] }: Props) {
