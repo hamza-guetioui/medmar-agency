@@ -6,8 +6,8 @@ import connectToMongoDb from "@/libs/mongoDb";
 import Member from "@/model/member";
 import { validateMemberData } from "@/utils/apiUtils/validateMemberData";
 import { handleError } from "@/utils/apiUtils/handleError";
-import { GetStaticPaths } from "next";
-
+import { removeFile } from "@/utils/apiUtils/handleFile";
+import { getMember } from "@/utils/actions/Members";
 
 export async function GET(
   request: NextRequest,
@@ -17,7 +17,7 @@ export async function GET(
 
   if (!mongoose.Types.ObjectId.isValid(memberId)) {
     return NextResponse.json(
-      { message: "Invalid customer ID format" },
+      { message: "Invalid member ID format" },
       { status: 400 }
     );
   }
@@ -48,28 +48,44 @@ export async function PUT(
   }
 
   const formData = await request.formData();
-  const { error, data } = validateMemberData(formData);
+  const { error, data } = await validateMemberData(formData , memberId);
   if (error || !data) {
     return NextResponse.json({ message: error, data: null }, { status: 400 });
   }
+  let member;
   try {
     await connectToMongoDb();
-    const member = await Member.findByIdAndUpdate(memberId, data, {
+    member = await getMember(memberId);
+    if (!member) {
+      if (data.profile) await removeFile(data.profile);
+      return NextResponse.json(
+        { message: "Failed to update, no member found!", data: null },
+        { status: 404 }
+      );
+    }
+    const updatedMember = await Member.findByIdAndUpdate(memberId, data, {
       new: true,
       runValidators: true,
     });
 
-    if (!member) {
-      return NextResponse.json(
-        { message: "Member not found" },
-        { status: 404 }
-      );
+    if (!updatedMember) {
+      throw new Error("something goes wrong");
+    }
+    if (updatedMember) {
+      if (member.profile && updatedMember.profile !== member.profile) {
+        await removeFile(member.profile);
+      }
     }
     return NextResponse.json(
-      { message: " Member Updated successfully", data: member },
+      { message: " Member Updated successfully", data: updatedMember },
       { status: 200 }
     );
   } catch (err) {
+    if (member) {
+      if (data.profile && member.profile !== data.profile) {
+        await removeFile(data.profile);
+      }
+    }
     const { message, error } = handleError("Failed to update member", err);
     return NextResponse.json({ message, error }, { status: 500 });
   }
@@ -97,6 +113,8 @@ export async function DELETE(
         { status: 404 }
       );
     }
+    if (member.profile) await removeFile(member.profile);
+
     return NextResponse.json(
       { message: "Member deleted successfully" },
       { status: 200 }

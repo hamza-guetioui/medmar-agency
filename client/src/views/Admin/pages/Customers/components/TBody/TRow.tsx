@@ -6,7 +6,7 @@ import { deleteCustomer } from "@/utils/actions/Customers";
 import { ICustomer } from "@/Types";
 import Image from "next/image";
 
-export interface ICustomerRowProps extends ICustomer {
+export interface Props extends ICustomer {
   index: number;
 }
 
@@ -19,7 +19,7 @@ const TRow = ({
   testimonial,
   rating,
   published,
-}: ICustomerRowProps) => {
+}: Props) => {
   return (
     <tr className={styles.TRow}>
       <TD>

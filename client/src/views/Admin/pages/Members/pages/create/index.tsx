@@ -12,19 +12,19 @@ const Index = () => {
   return (
     <div>
       <Header
-        title="Create New Member"
-        paragraph="Please enter the member's details below and validate the information
-          before submitting."
+        title="Add New Team Member"
+        paragraph="Fill in the member's details below and ensure the information is accurate before submitting."
       ></Header>
 
       <form action={createMember} className="bg-white">
         <Section title={"Member Info"}>
-          <Input type="text" name="fullName" label="Full Name" length={25} />
-          <Input type="text" name="position" label="Position" length={25} />
+          <Input type="text" name="fullName" label="Full Name" length={25} required={true}/>
+          <Input type="text" name="position" label="Position" length={25} required={true}/>
           <FileInput
             name="profile"
             label="Profile Image"
             accept="jpg,png,jpeg"
+            required={true}
           />
         </Section>
         <Section title={"Member biography"}>

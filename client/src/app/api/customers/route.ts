@@ -7,11 +7,16 @@ import { handleError } from "@/utils/apiUtils/handleError";
 import { removeFile } from "@/utils/apiUtils/handleFile";
 
 // Get All Customer | filtered by SearchParams
-export async function GET() {
-  // searchParams
+export async function GET(request: NextRequest) {
+  let searchParams = {};
+  const fullName = request.nextUrl.searchParams.get("customerFullName");
+  if (fullName) {
+    searchParams = { fullName: { $regex: `^${fullName}`, $options: "i" } }; // Case-insensitive match that starts with fullName
+  }
+
   try {
     await connectToMongoDb();
-    const customers = await Customer.find().sort({ createdAt: -1 });
+    const customers = await Customer.find(searchParams).sort({ createdAt: -1 });
 
     return NextResponse.json(
       { message: "Customers fetched successfully", data: customers },
@@ -32,20 +37,21 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: error }, { status: 400 });
   }
 
-  console.log(data);
   try {
     await connectToMongoDb();
-    await Customer.create(data);
+    const customer = await Customer.create(data);
 
     return NextResponse.json(
-      { message: "A new customer has been successfully added." },
+      {
+        message: "A new customer has been successfully added.",
+        data: customer,
+      },
       { status: 201 }
     );
   } catch (err) {
-    removeFile(data?.avatar);
-    removeFile(data?.businessLogo);
+    await removeFile(data?.avatar);
+    await removeFile(data?.businessLogo);
 
-    console.log(err);
     const { message, error } = handleError("Failed to add new customer", err);
     return NextResponse.json({ message, error }, { status: 500 });
   }

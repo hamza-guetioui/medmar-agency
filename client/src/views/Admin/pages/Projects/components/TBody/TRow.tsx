@@ -4,26 +4,39 @@ import TD from "./TD";
 
 import { deleteProject } from "@/utils/actions/Projects";
 import UDOptions from "@/shared/Dashboard/UDOptions";
-import { IProject } from "@/Types";
+import { IProjectData } from "@/Types";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import Image from "next/image";
 
-type Props = {
-  index: number;
-  project: IProject;
-};
 
-const TRow = ({ index, project }: Props) => {
-  const { _id, title, description, coverImageUrl, type, link, details } =
-    project;
-
+const TRow = ({
+  _id,
+  title,
+  description,
+  previewImage,
+  services,
+  customer,
+  link,
+  details,
+}: IProjectData) => {
   return (
     <tr className={styles.TRow}>
-      <TD>{index + 1}</TD>
+      <TD>
+        {" "}
+        <div className="rounded-lg w-24 h-24 overflow-hidden">
+          <Image
+            src={`/uploads/${previewImage}`}
+            width={50}
+            height={50}
+            alt=""
+            className={"w-full h-full object-cover"}
+          />
+        </div>
+      </TD>
       <TD>{title}</TD>
       <TD>{description}</TD>
-      <TD>{type}</TD>
       <TD>
         {link ? (
           <div className="flex gap-2 items-center">
@@ -36,10 +49,18 @@ const TRow = ({ index, project }: Props) => {
           ""
         )}
       </TD>
+      <TD>{customer.fullName}</TD>
       <TD>
         <ul className="list-[circle]">
-          {details?.map((detail) => (
-            <li key={detail.feature}>{detail.feature}</li>
+          {services?.map((s) => (
+            <li key={s._id}>{s.title}</li>
+          ))}
+        </ul>
+      </TD>
+      <TD>
+        <ul className="list-[circle]">
+          {details?.map((d) => (
+            <li key={d._id}>{d.feature}</li>
           ))}
         </ul>
       </TD>

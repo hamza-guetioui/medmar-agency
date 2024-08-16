@@ -7,28 +7,40 @@ import styles from "./Styles.module.css";
 
 type Props = {
   value: number;
-  increment: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  decrement: (event:React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  increment: () => void;
+  decrement: () => void;
 };
 
 function DigitAdjuster({ value, increment, decrement }: Props) {
   return (
     <div className={styles.DigitAdjuster}>
-      <button
-        onClick={(event) => decrement(event)}
+      <label
+        htmlFor="delBtn"
         className={`${styles.Btn} ${value <= 0 ? "opacity-30" : ""}`}
-        disabled={value <= 0}
       >
+        <input
+          id="delBtn"
+          type="button"
+          onClick={decrement}
+          disabled={value <= 0}
+          className="opacity-0 w-0 h-0"
+        />
         <FontAwesomeIcon icon={faMinus} />
-      </button>
+      </label>
 
-      <button
-        onClick={(event) => increment(event)}
+      <label
+        htmlFor="addBtn"
         className={`${styles.Btn} ${value === 5 ? "opacity-50" : ""}`}
-        disabled={value >= 5}
       >
+        <input
+          id="addBtn"
+          type="button"
+          onClick={increment}
+          disabled={value >= 5}
+          className="opacity-0 w-0 h-0"
+        />
         <FontAwesomeIcon icon={faPlus} />{" "}
-      </button>
+      </label>
     </div>
   );
 }

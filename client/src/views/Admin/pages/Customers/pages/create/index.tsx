@@ -60,6 +60,7 @@ const Index = () => {
             name="testimonial"
             label="Customer Testimonial"
             length={255}
+            required={true}
           />
           <NumberInput name="rating" label="Rating" min={0} max={5} />
           <CheckBoxInput name="published" label="Mark Review as Published" />

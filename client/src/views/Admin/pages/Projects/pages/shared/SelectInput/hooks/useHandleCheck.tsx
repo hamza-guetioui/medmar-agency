@@ -1,31 +1,36 @@
+import { IService } from "@/Types";
 import React, { useState } from "react";
 
-type InitialValueTypes = {
-  id: string;
-  title: string;
-};
-
-function useHandleCheck(initialValue: InitialValueTypes[]) {
-  const [value, setValue] = useState(initialValue);
+function useHandleCheck(initialValue: IService[] = []) {
+  const [serviceIds, setServiceIds] = useState(() => {
+    if (Array.isArray(initialValue)) {
+      return initialValue.map((service) => service._id);
+    }
+    return [];
+  });
 
   function handleCheckbox(event: React.ChangeEvent<HTMLInputElement>) {
     if (event.target.checked) {
-      const obj = { id: event.target.id, title: event.target.value };
-      setValue((value) => [...value, obj]);
+      const serviceId = event.target.id;
+      setServiceIds((currentserviceIds) => [...currentserviceIds, serviceId]);
     } else {
-      setValue((value) => value.filter((obj) => obj.id !== event.target.id));
+      setServiceIds((currentserviceIds) =>
+        currentserviceIds.filter((serviceId) => serviceId !== event.target.id)
+      );
     }
   }
 
   function handleRadio(event: React.ChangeEvent<HTMLInputElement>) {
     if (event.target.checked) {
-      const obj = { id: event.target.id, title: event.target.value };
-      setValue([obj]);
+      const serviceId = event.target.id;
+      setServiceIds([serviceId]);
     } else {
-      setValue((value) => value.filter((obj) => obj.id === event.target.id));
+      setServiceIds((currentserviceIds) =>
+        currentserviceIds.filter((serviceId) => serviceId === event.target.id)
+      );
     }
   }
-  return [value, handleCheckbox, handleRadio] as const;
+  return [serviceIds, handleCheckbox, handleRadio] as const;
 }
 
 export default useHandleCheck;

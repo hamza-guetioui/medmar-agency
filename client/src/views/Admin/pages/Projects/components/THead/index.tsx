@@ -9,8 +9,9 @@ const Index = () => {
         <TH>{""}</TH>
         <TH>Title</TH>
         <TH>Description</TH>
-        <TH>Type</TH>
         <TH>Link</TH>
+        <TH>Customer</TH>
+        <TH>Services</TH>
         <TH>Details</TH>
         <TH>{""}</TH>
       </tr>

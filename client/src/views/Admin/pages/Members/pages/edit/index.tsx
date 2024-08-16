@@ -20,9 +20,8 @@ const Index = async ({ memberId }: Props) => {
   return (
     <div>
       <Header
-        title="Update Member"
-        paragraph="Please enter the member's details below and validate the information
-          before submitting."
+        title="Edit Team Member"
+        paragraph="Update the member's details below and review the information before saving the changes."
       ></Header>
       <form action={updateWithMemberId} className="bg-white">
         <Section title={"Member Info"}>
@@ -31,6 +30,7 @@ const Index = async ({ memberId }: Props) => {
             name="fullName"
             label="Full Name"
             length={25}
+            required={true}
             initialValue={member.fullName}
           />
           <Input
@@ -38,10 +38,11 @@ const Index = async ({ memberId }: Props) => {
             name="position"
             label="Position"
             length={25}
+            required={true}
             initialValue={member.position}
           />
           <FileInput
-            name="profileImage"
+            name="profile"
             label="Profile Image"
             accept="jpg,png,jpeg"
             initialValue={member.profile}

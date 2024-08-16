@@ -8,7 +8,7 @@ import TBody from "./components/TBody";
 const Index = () => {
   return (
     <Container>
-      <Header title="Customers Data :" />
+      <Header title="Project Data :" />
       <Table>
         <THead />
         <TBody />

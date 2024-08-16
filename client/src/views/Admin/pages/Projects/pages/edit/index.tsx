@@ -1,13 +1,8 @@
 import React from "react";
-import { updateProject, getProject } from "@/utils/actions/Projects";
-
-export const services = [
-  { id: "1", title: "Graphic Design" },
-  { id: "2", title: "Digital Marketing" },
-  { id: "3", title: "Video Editing" },
-  { id: "4", title: "Photography" },
-  { id: "5", title: "Web Development" },
-];
+import {
+  getProject,
+  updateProject,
+} from "@/utils/actions/Projects";
 
 import Header from "@/shared/Dashboard/Form/Header";
 import Section from "@/shared/Dashboard/Form/Section";
@@ -15,48 +10,56 @@ import Input from "@/shared/Dashboard/inputs/Input";
 import FileInput from "@/shared/Dashboard/inputs/FileInput";
 import SelectInput from "../shared/SelectInput";
 import Buttons from "@/shared/Dashboard/Form/Buttons";
-import Details from "../shared/Details";
-import { IProject } from "@/Types";
-import { updateProject, getProject } from "@/utils/actions/Members";
+import IncDecInput from "../shared/IncDecInput";
+import SearchInput from "../shared/SearchInput";
+import { getServices } from "@/utils/actions/Services";
+import { IProjectData } from "@/Types";
 
-type Props = {
-  projectId: string;
-};
+const Index = async ({ projectId }: { projectId: string }) => {
+  const services = await getServices();
+  const updateProjectWithId = updateProject.bind(null, projectId);
+  const project: IProjectData = await getProject(projectId);
 
-const Index = async ({ projectId }: Props) => {
-  const updateWithProjectId = updateProject.bind(null, projectId);
-  const project: IProject = await getProject(projectId);
   return (
     <div>
       <Header
-        title="Edit Project"
+        title="Edit The Project"
         paragraph="Please enter the project's details below and validate the information
           before submitting."
       ></Header>
-      <form action={updateWithProjectId} className="bg-white">
+
+      <form action={updateProjectWithId} className="bg-white">
         <Section title={"Project Customer"}>
-          <Input
-            type="text"
+          <SearchInput
             name="customerId"
-            label="Customer Id"
+            label="Customer"
             length={25}
-            initialValue={project.customerId?.toString()}
+            initialValue={project.customer._id}
           />
         </Section>
         <Section title={"Project Info"}>
-          <Input type="text" name="title" label="Title" length={25} />
+          <Input
+            type="text"
+            name="title"
+            label="Title"
+            length={25}
+            required={true}
+            initialValue={project.title}
+          />
           <Input
             type="text"
             name="description"
             label="Description"
             length={25}
+            required={true}
             initialValue={project.description}
           />
           <FileInput
-            name="coverImage"
-            label="Cover Image"
+            name="previewImage"
+            label="Preview Image"
             accept="jpg,png,jpeg"
-            initialValue={project.coverImage}
+            required={true}
+            initialValue={project.previewImage}
           />
           <Input
             type="text"
@@ -66,6 +69,7 @@ const Index = async ({ projectId }: Props) => {
             initialValue={project?.link}
           />
         </Section>
+
         <Section title="Project Serices">
           <SelectInput
             id="services"
@@ -78,7 +82,7 @@ const Index = async ({ projectId }: Props) => {
         </Section>
 
         <Section title={"Project Details"}>
-          <Details initialValue={project.details} />
+          <IncDecInput initialValue={project.details} />
         </Section>
 
         <Buttons />

@@ -77,10 +77,10 @@ export async function PUT(
     }
     if (updatedCustomer) {
       if (customer.avatar && updatedCustomer.avatar !== customer.avatar) {
-        removeFile(customer.avatar);
+        await removeFile(customer.avatar);
       }
       if (customer.businessLogo && updatedCustomer.businessLogo !== customer.businessLogo) {
-        removeFile(customer.businessLogo);
+        await removeFile(customer.businessLogo);
       }
     }
 
@@ -91,10 +91,10 @@ export async function PUT(
   } catch (err) {
     if (customer) {
       if (data.avatar && customer.avatar !== data.avatar) {
-        removeFile(data.avatar);
+        await removeFile(data.avatar);
       }
       if (data.businessLogo && customer.businessLogo !== data.businessLogo) {
-        removeFile(data.businessLogo);
+        await removeFile(data.businessLogo);
       }
     }
     const { message, error } = handleError("Failed to update customer", err);

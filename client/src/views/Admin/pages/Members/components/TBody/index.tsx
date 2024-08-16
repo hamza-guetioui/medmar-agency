@@ -16,7 +16,7 @@ const Index = async () => {
   return (
     <tbody>
       {members.map((member, index) => {
-        return <TRow key={member._id} index={index} member={member}></TRow>;
+        return <TRow key={member._id} index={index} {...member}></TRow>;
       })}
     </tbody>
   );

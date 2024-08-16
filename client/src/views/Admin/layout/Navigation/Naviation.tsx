@@ -41,6 +41,11 @@ function Navigation() {
                 Members
               </Link>
             </li>
+            <li>
+              <Link rel="stylesheet" href="/admin/dashboard/services">
+                Services
+              </Link>
+            </li>
           </ul>
         </aside>
       )}

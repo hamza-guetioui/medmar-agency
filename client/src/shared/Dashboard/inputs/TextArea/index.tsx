@@ -1,15 +1,23 @@
 "use client";
 import React, { useState } from "react";
-import styles from './Styles.module.css'
+import styles from "./Styles.module.css";
 
 interface TextAriaProps {
   name: string;
   label?: string;
   length: number;
   initialValue?: string;
-};
+  required?: boolean;
+  rows?: number;
+}
 
-function index({ name, label, length, initialValue = "" }: TextAriaProps) {
+function index({
+  name,
+  label,
+  length,
+  required,
+  initialValue = "",
+}: TextAriaProps) {
   const [value, setValue] = useState(initialValue);
 
   const style = {
@@ -31,12 +39,13 @@ function index({ name, label, length, initialValue = "" }: TextAriaProps) {
       <label className={styles.Label}>{label || name}</label>
       <div className={styles.inputWrapper}>
         <textarea
-        className={styles.textAreaInput}
+          className={styles.textAreaInput}
           name={name}
           onChange={handleChange}
           value={value}
           onKeyDown={handleKeyDown}
           rows={4}
+          required={required}
         />
         <span className={styles.lengthCounter} style={style}>
           {value.length}/{length}

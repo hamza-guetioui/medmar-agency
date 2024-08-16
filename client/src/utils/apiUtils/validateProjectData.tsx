@@ -2,6 +2,9 @@ export const validateProjectData = (
   formData: FormData,
   customerId: string
 ): { error?: string; data?: any } => {
+
+
+
   const title = formData.get("title");
   const description = formData.get("description");
   const coverImageUrl = formData.get("coverImageUrl");

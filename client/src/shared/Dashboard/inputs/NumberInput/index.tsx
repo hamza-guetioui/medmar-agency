@@ -27,17 +27,12 @@ function index({
     setValue(Number.parseFloat(event.target.value));
   };
 
-  const increment = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    event.preventDefault();
-    setValue((ps) => ps + 0.1);
+  const increment = () => {
+    setValue((currentValue) => parseFloat((currentValue + 0.1).toFixed(1)));
   };
-  const decrement = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    event.preventDefault();
-    setValue((ps) => ps - 0.1);
+
+  const decrement = () => {
+    setValue((currentValue) => parseFloat((currentValue - 0.1).toFixed(1)));
   };
 
   return (

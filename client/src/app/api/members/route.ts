@@ -1,9 +1,10 @@
-import "server-only"
+import "server-only";
 import { NextResponse, type NextRequest } from "next/server";
 import connectToMongoDb from "@/libs/mongoDb";
 import Member from "@/model/member";
 import { validateMemberData } from "@/utils/apiUtils/validateMemberData";
 import { handleError } from "@/utils/apiUtils/handleError";
+import { removeFile } from "@/utils/apiUtils/handleFile";
 
 // Get All | by SearchParams
 export async function GET(request: NextRequest) {
@@ -17,7 +18,7 @@ export async function GET(request: NextRequest) {
       { status: 200 }
     );
   } catch (err) {
-    const { message, error } = handleError( "Failed to fetch members", err);
+    const { message, error } = handleError("Failed to fetch members", err);
     return NextResponse.json({ message, error }, { status: 500 });
   }
 }
@@ -26,7 +27,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   const formData = await request.formData();
 
-  const { error, data } = validateMemberData(formData);
+  const { error, data } =await validateMemberData(formData);
   if (error) {
     return NextResponse.json({ message: error, data: null }, { status: 400 });
   }
@@ -36,13 +37,12 @@ export async function POST(request: NextRequest) {
     const member = await Member.create(data);
 
     return NextResponse.json(
-      { message: "The new member was added successfully", data: member },
+      { message: "A new member has been successfully added.", data: member },
       { status: 201 }
     );
   } catch (err) {
-    const { message, error } = handleError( "Failed to add a new member", err);
+    removeFile(data.profile);
+    const { message, error } = handleError("Failed to add a new member", err);
     return NextResponse.json({ message, error }, { status: 500 });
-
-  
   }
 }

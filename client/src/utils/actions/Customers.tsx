@@ -1,21 +1,23 @@
 "use server";
 const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000";
 import { revalidateTag } from "next/cache";
-import { redirect } from "next/navigation";
 
 // Get All Customers
-export const getCustomers = async () => {
+export const getCustomers = async (searchParams: string = "") => {
   try {
-    const response = await fetch(`${baseUrl}/api/customers`, {
+    const response = await fetch(`${baseUrl}/api/customers/${searchParams} `, {
       next: { tags: ["Customers"] },
     });
     if (!response.ok) {
-      throw new Error(`Failed to fetch Customers. Status: ${response.status}`);
+      const { message } = await response.json();
+      console.error("Error fetching customers:", message);
+      return;
     }
     const { data } = await response.json();
     return data;
   } catch (error) {
-    redirect("/404");
+    console.error("Error fetching customers:", error);
+    throw error;
   }
 };
 
@@ -28,31 +30,32 @@ export async function createCustomer(formData: FormData) {
     });
     if (!response.ok) {
       const { message } = await response.json();
-      console.log(`Failed to create Customers.  ${message}`);
+      console.error(`Failed to create customer: ${message}`);
       return;
     }
-    console.log("Customer created succesfuly.");
+    console.log("Customer created successfully.");
     revalidateTag("Customers");
   } catch (error) {
-    console.error("Error creating Customer:", error);
+    console.error("Error creating customer:", error);
+    throw error;
   }
 }
 
-// Route /:customerId
 // Get One Customer
 export const getCustomer = async (customerId: string) => {
   try {
     const response = await fetch(`${baseUrl}/api/customers/${customerId}`, {
       cache: "no-store",
     });
-
     if (!response.ok) {
-      throw new Error(`Failed to fetch Customer. Status: ${response.status}`);
+      const { message } = await response.json();
+      console.error("Error fetching customer:", message);
+      return;
     }
     const { data } = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching Customer:", error);
+    console.error("Error fetching customer:", error);
     throw error;
   }
 };
@@ -61,38 +64,38 @@ export const getCustomer = async (customerId: string) => {
 export async function updateCustomer(customerId: string, formData: FormData) {
   try {
     const response = await fetch(`${baseUrl}/api/customers/${customerId}`, {
-      headers: {
-        "Contetnt-Type": "multipart/form-data",
-      },
       method: "PUT",
       body: formData,
     });
-
     if (!response.ok) {
-      throw new Error(`Failed update customer. Status: ${response.status}`);
+      const { message } = await response.json();
+      console.error(`Failed to update customer: ${message}`);
+      return;
     }
+    console.log("Customer updated successfully.");
     revalidateTag("Customers");
-    return;
   } catch (error) {
     console.error("Error updating customer:", error);
+    throw error;
   }
 }
+
 // Delete Customer
 export async function deleteCustomer(formData: FormData) {
-  const customerId = formData.get("id");
+  const customerId = formData.get("id") as string;
   try {
     const response = await fetch(`${baseUrl}/api/customers/${customerId}`, {
       method: "DELETE",
     });
-
     if (!response.ok) {
       const { message } = await response.json();
-      console.log(message);
+      console.error(`Failed to delete customer: ${message}`);
       return;
     }
-    console.log("Customer Deleted succesfuly.");
+    console.log("Customer deleted successfully.");
     revalidateTag("Customers");
   } catch (error) {
-    console.error("Error Deleting customer:", error);
+    console.error("Error deleting customer:", error);
+    throw error;
   }
 }

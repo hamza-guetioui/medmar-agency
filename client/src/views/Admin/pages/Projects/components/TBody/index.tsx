@@ -3,20 +3,20 @@ import TRow from "./TRow";
 
 // Fetch Projects
 import { getProjects } from "@/utils/actions/Projects";
-import { IProject } from "@/Types";
+import { IProjectData } from "@/Types";
 import NoResults from "@/shared/Dashboard/NoResults";
 
 const Index = async () => {
-  const projects: IProject[] = await getProjects();
+  const projects: IProjectData[] = await getProjects();
 
-  if (projects.length <= 0) {
+  if (!projects || projects.length <= 0) {
     return <NoResults />;
   }
 
   return (
     <tbody>
-      {projects.map((project, index) => {
-        return <TRow key={project._id} index={index} project={project} />;
+      {projects.map((project) => {
+        return <TRow key={project._id} {...project} />;
       })}
     </tbody>
   );

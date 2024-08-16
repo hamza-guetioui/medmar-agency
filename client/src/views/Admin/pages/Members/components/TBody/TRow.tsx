@@ -9,32 +9,33 @@ import { IMember } from "@/Types";
 import Link from "next/link";
 import { deleteMember } from "@/utils/actions/Members";
 
-type Props = {
+export interface Props extends IMember {
   index: number;
-  member: IMember;
-};
+}
 
-const TRow = ({ index, member }: Props) => {
-  const {
-    _id,
-    fullName,
-    position,
-    profileImage,
-    bio,
-    facebook,
-    instagram,
-    linkedin,
-  } = member;
+const TRow = ({
+  index,
+  _id,
+  fullName,
+  position,
+  profile,
+  bio,
+  facebook,
+  instagram,
+  linkedin,
+}: Props) => {
   return (
     <tr className={styles.TRow}>
       <TD>
-        <Image
-          src={`/images/${profileImage}`}
-          width={48}
-          height={48}
-          alt=""
-          className={"rounded-full object-cover"}
-        />
+        <div className="rounded-full w-12 h-12 overflow-hidden">
+          <Image
+            src={`/uploads/${profile}`}
+            width={50}
+            height={50}
+            alt=""
+            className={"w-full h-full object-cover"}
+          />
+        </div>
       </TD>
       <TD>{fullName}</TD>
       <TD>{position}</TD>

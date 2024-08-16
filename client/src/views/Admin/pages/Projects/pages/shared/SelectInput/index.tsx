@@ -1,41 +1,47 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./Styles.module.css";
 import CheckBoxOption from "./CheckBoxOption";
 
 import useHandleCheck from "./hooks/useHandleCheck";
-import { IProjectServices } from "@/Types";
+import { IService } from "@/Types";
 
 interface Props {
   id: string;
   type: "checkbox" | "radio";
   name: string;
   label?: string;
-  data: Array<{
-    id: string;
-    title: string;
-  }>;
-
-  initialValue?:[IProjectServices];
+  data: IService[];
+  initialValue?: IService[];
 }
 
-function Index({ type, name, label, data, initialValue = [] }: Props) {
-  const [value, handleCheckbox, handleRadio] = useHandleCheck(initialValue);
+function Index({ type, name, label, data: services, initialValue }: Props) {
+  const [serviceIds, handleCheckbox, handleRadio] =
+    useHandleCheck(initialValue);
+
 
   return (
     <div className={styles.Container}>
       <label className={styles.Label}>{label || name}</label>
-      <input type="hidden" name={name} value={JSON.stringify(value)} />
+      <input
+        type="hidden"
+        name={name}
+        value={JSON.stringify(serviceIds)}
+      />
 
       <div className={styles.checkboxWrapper}>
-        {data.map((item) => {
-          const checked = value.some((obj) => obj.id === item.id);
+        {services.map((service) => {
+          let checked = false;
+          if (serviceIds) {
+            checked = serviceIds.some((serviceId) => serviceId === service._id);
+          }
+
           return (
             <CheckBoxOption
-              type={type}
-              key={item.id}
-              id={item.id}
-              title={item.title}
+              type={type} // checkbox | radio
+              key={service._id}
+              id={service._id}
+              title={service.title}
               handleChange={type === "checkbox" ? handleCheckbox : handleRadio}
               checked={checked}
             />

@@ -15,6 +15,8 @@ const customerSchema = new Schema<ICustomer>(
         message: ({ value }: { value: string }) =>
           `${value} is not a valid Customer Name! It should only contain letters and spaces.`,
       },
+      minlength: [3, " Customer full name must be at least 3 characters long"],
+      maxlength: [25, " Customer full name cannot exceed 25 characters"],
       trim: true,
     },
     jobTitle: {
@@ -27,6 +29,8 @@ const customerSchema = new Schema<ICustomer>(
         message: ({ value }: { value: string }) =>
           `${value} is not a valid Job Title! It should only contain letters and spaces.`,
       },
+      minlength: [3, " Customer job title must be at least 3 characters long"],
+      maxlength: [25, " Customer job title cannot exceed 25 characters"],
       trim: true,
     },
     avatar: {
@@ -46,7 +50,9 @@ const customerSchema = new Schema<ICustomer>(
       type: String,
       validate: {
         validator: function (v) {
-          return /^(?:\+212|0)(?:\d{9})$|^(?:\+\d{2})(?:\d{8,14})$/.test(v);
+          return /^(?:\+212|0)(?:\d{9})$|^(?:\+\d{2})(?:\d{8,14})$/.test(
+            v.trim()
+          );
         },
         message: (props) => `${props.value} is not a valid phone number!`,
       },
@@ -54,6 +60,12 @@ const customerSchema = new Schema<ICustomer>(
     },
     testimonial: {
       type: String,
+      minlength: [
+        3,
+        " Customer testimonial must be at least 3 characters long",
+      ],
+      maxlength: [255, " Customer testimonial cannot exceed 255 characters"],
+
       trim: true,
     },
     businessLogo: {
@@ -63,6 +75,7 @@ const customerSchema = new Schema<ICustomer>(
       type: Number,
       min: [0, "Rating should be greater than or equal to 0"],
       max: [5, "Rating should be less than or equal to 5"],
+      default: 0,
     },
     published: {
       type: Boolean,

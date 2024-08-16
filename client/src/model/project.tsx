@@ -1,65 +1,79 @@
 import mongoose, { Schema } from "mongoose";
-import { IProject, IProjectDetail, IProjectServices } from "@/Types";
+import { IProject, IProjectDetail } from "@/Types";
 
-
-
-const projectServicesSchema = new mongoose.Schema<IProjectServices>({
-  id: {
-    type: Number,
-    required:true
-  },
-  title: {
-    type: String,
-    required:true
-  },
-});
+// Schema for ProjectDetail
 const projectDetailSchema = new mongoose.Schema<IProjectDetail>({
   feature: {
     type: String,
-    validate: {
-      validator: (value: string): boolean => value.length <= 20,
-      message: "Feature should be 20 characters or less",
-    },
+    required: [true, "Feature is required"],
+    minlength: [3, "Feature should be 3 characters or more"],
+    maxlength: [25, "Feature should be 25 characters or less"],
+    trim: true,
   },
   description: {
     type: String,
-    validate: {
-      validator: (value: string): boolean => value.length <= 255,
-      message: "Description should be 255 characters or less",
-    },
+    required: [true, "Description is required"],
+    minlength: [10, "Description should be at least 10 characters long"],
+    maxlength: [255, "Description should be 255 characters or less"],
+    trim: true,
   },
 });
 
+// Schema for Project
 const projectSchema = new Schema<IProject>(
   {
     title: {
       type: String,
-      required: [true, "Title is required"],
+      required: [true, "Project title is required"],
       unique: true,
+      minlength: [3, "Title should be at least 3 characters long"],
+      maxlength: [100, "Title should be 100 characters or less"],
       validate: {
         validator: function (v: string): boolean {
           return /^[a-zA-Z0-9\s.,\-:!#]+$/.test(v);
         },
         message: ({ value }: { value: string }) =>
-          `${value} is not a valid Title! It should only contain letters and spaces.`,
+          `${value} is not a valid title! It should only contain letters, numbers, and the following characters: spaces, commas, periods, hyphens, colons, exclamation marks, and hashes.`,
       },
     },
     description: {
       type: String,
-      required: [true, "Description is required"],
+      required: [true, "Project Description is required"],
+      minlength: [10, "Description should be at least 10 characters long"],
+      maxlength: [500, "Description should be 500 characters or less"],
       trim: true,
     },
-    coverImage: {
+    previewImage: {
       type: String,
-      required: [true, "Image Source is required"],
+      required: [true, "Preview image is required"],
     },
-    services: [projectServicesSchema],
+    serviceIds: {
+      type: [Schema.Types.ObjectId],
+      ref: "Service",
+      required: true,
+      validate: {
+        validator: function (v: mongoose.Types.ObjectId[]): boolean {
+          return v.length === 1; // Ensure the array contains exactly one ObjectId
+        },
+        message: "Project should have at least one service.",
+      },
+    },
     link: {
       type: String,
+      validate: {
+        validator: function (v: string): boolean {
+          return /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?(\?.*)?$/.test(
+            v
+          );
+        },
+        message: ({ value }: { value: string }) =>
+          `${value} is not a valid URL!`,
+      },
+      trim: true,
     },
     customerId: {
       type: Schema.Types.ObjectId,
-      ref: "Customer", // Reference to Customer model
+      ref: "Customer",
       required: true,
     },
     details: {
@@ -71,7 +85,7 @@ const projectSchema = new Schema<IProject>(
   }
 );
 
+// Create or get the Project model
 const Project =
   mongoose.models.Project || mongoose.model<IProject>("Project", projectSchema);
-
 export default Project;

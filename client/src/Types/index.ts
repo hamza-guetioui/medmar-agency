@@ -24,11 +24,21 @@ export interface IMember {
   linkedin?: string;
 }
 
-export interface IProjectServices {
-  id: number;
-  title: string;
+export interface IServiceDetail {
+  _id: string;
+  detail: string;
 }
+export interface IService {
+  _id: string;
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  details: IServiceDetail[];
+}
+
 export interface IProjectDetail {
+  _id: string;
   feature: string;
   description: string;
 }
@@ -37,9 +47,22 @@ export interface IProject {
   _id: string;
   title: string;
   description: string;
-  coverImage: string;
+  previewImage: string;
   customerId: mongoose.Types.ObjectId;
-  services: IProjectServices[];
+  serviceIds: mongoose.Types.ObjectId[];
+  link?: string;
+  details?: IProjectDetail[];
+}
+
+// response return
+export interface IProjectData {
+  index: number;
+  _id: string;
+  title: string;
+  description: string;
+  previewImage: string;
+  customer: ICustomer;
+  services: IService[];
   link?: string;
   details?: IProjectDetail[];
 }
