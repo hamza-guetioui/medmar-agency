@@ -52,7 +52,7 @@ const Index = () => {
           <DetailsInput name="details" label="Details" min={3} max={5} />
         </Section>
 
-        <Buttons />
+        <Buttons title="Create Service"/>
       </form>
     </div>
   );

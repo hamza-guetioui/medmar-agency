@@ -19,7 +19,7 @@ const Index = ({ id, deleteAction }: Props) => {
 
   const handleToggle = () => setIsOpen((ps) => !ps);
   return (
-    <div >
+    <div className="relative">
       <button
         onClick={handleToggle}
         className={`${styles.ToggleOptionsButton} ${

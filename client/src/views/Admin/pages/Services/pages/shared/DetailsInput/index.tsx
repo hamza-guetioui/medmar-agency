@@ -66,26 +66,34 @@ function Index({ label, name, min, max, initialValue }: Props) {
                 initialValue={item.detail}
                 handleC={handleTextInput}
               />
-              <input
-                type="button"
-                onClick={() => handleDelete(item._id)}
+              <label
+                htmlFor="del"
                 className="text-red-500/80 hover:text-red-500 flex justify-center items-center rounded-md self-end"
-                disabled={data.length <= min}
               >
+                <input
+                  id="del"
+                  type="button"
+                  onClick={() => handleDelete(item._id)}
+                  disabled={data.length <= min}
+                />
                 <FontAwesomeIcon icon={faSquareMinus} className="h-10 w-10" />
-              </input>
+              </label>
             </div>
           );
         })}
       </div>
-      <input
-        type="button"
-        onClick={handleAdd}
+      <label
+        htmlFor="add"
         className="bg-green-500 text-white py-2 px-4 rounded-md mr-4 self-end w-fit"
-        disabled={data.length >= max}
       >
+        <input
+          id="add"
+          type="button"
+          onClick={handleAdd}
+          disabled={data.length >= max}
+        />
         <FontAwesomeIcon icon={faPlus} />
-      </input>
+      </label>
     </div>
   );
 }

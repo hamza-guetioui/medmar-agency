@@ -1,11 +1,14 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useRef, useState, useEffect, useMemo } from "react";
 import styles from "./Styles.module.css";
 
 import { ICustomer } from "@/Types";
 import TextInput from "./TextInput";
-import { getCustomer, getCustomers } from "@/utils/actions/Customers";
-import Image from "next/image";
+import useFetch from "./hooks/useFetch";
+import Results from "./Results";
+import Customer from "./Results/Customer";
+import Message from "./Results/Message";
+import { getCustomer } from "@/utils/actions/Customers";
 
 interface Props {
   name: string;
@@ -15,118 +18,79 @@ interface Props {
 }
 
 function Index({ name, label, length, initialValue }: Props) {
-  const [customerId, setCustomerId] = useState<string>(initialValue || "");
+  const [customerId, setCustomerId] = useState<string>("");
   const [inputValue, setInputValue] = useState<string>("");
-  const [data, setData] = useState<ICustomer[] | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [loading, error, data] = useFetch(inputValue);
 
-  const [customerResutlsIsDisplay, setCustomerResutlsIsDisplay] =
-    useState(false);
-
-  useEffect(() => {
-    const fetchCustomers = async () => {
-      try {
-        const customer: ICustomer = await getCustomer(customerId || "");
-        return customer.fullName;
-      } catch {
-        return "";
+  const resultsData = useMemo(() => {
+    if (Array.isArray(data)) {
+      if (customerId) {
+        return data.filter(
+          (item: ICustomer) => item._id === customerId
+        );
+      } else {
+        return data;
       }
-    };
-    fetchCustomers();
-  }, [customerId]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(false);
-
-      try {
-        const result = await getCustomers(`?customerFullName=${inputValue}`);
-        setData(result);
-
-        setCustomerResutlsIsDisplay(true);
-      } catch (err) {
-        setError(true);
-      } finally {
-        setLoading(false);
-        if (inputValue === "") {
-          setCustomerResutlsIsDisplay(true);
-        }
-      }
-    };
-    if (inputValue) {
-      fetchData();
-    } else {
-      setData(null);
     }
-  }, [inputValue]);
+    return null; // Return an empty array if data is undefined or null
+  }, [data, customerId]);
+
+  useEffect(() => {
+    if (!initialValue) return;
+    const fetchData = async () => {
+      try {
+        const customer: ICustomer = await getCustomer(initialValue);
+        if (inputRef.current) {
+          inputRef.current.value = customer.fullName;
+          setInputValue(customer.fullName);
+          setCustomerId(customer._id);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchData();
+  }, [initialValue]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
+    setCustomerId("");
   };
 
-  const handleClick = (customer: ICustomer) => {
-    setCustomerId(customer._id);
+  const handleClick = (_id: string, fullName: string) => {
+    if (inputRef.current) {
+      inputRef.current.value = fullName;
+      setCustomerId(_id);
+    }
   };
+
   return (
     <div className={styles.Container}>
       <label className={styles.Label}>{label || name}</label>
       <input type="hidden" name="customerId" value={customerId} />
+      <TextInput
+        inputRef={inputRef}
+        length={length}
+        onChange={handleInputChange}
+        v={inputValue}
+      />
 
-      <TextInput length={length} handleC={handleInputChange} v={inputValue} />
-
-      <div
-        className={`${styles.ResultsWrapper} ${
-          customerResutlsIsDisplay ? "" : ""
-        }`}
-      >
-        <div className={styles.ResultsWrapper}>
-          {data === null ? (
-            ""
-          ) : loading ? (
-            <p className="w-full text-center py-3 text-slate-600 font-bold">
-              Loading...
-            </p>
-          ) : error ? (
-            <p className="w-full text-center py-3 text-red-600 font-bold">
-              Error loading data
-            </p>
-          ) : !data.length ? (
-            <p className="w-full text-center py-3 text-slate-600 font-bold">
-              No Match!
-            </p>
-          ) : (
-            <ul className="w-full">
-              {data.map((customer) => (
-                <li key={customer._id}>
-                  <label
-                    htmlFor={`result-${customer._id}`}
-                    className="relative w-full px-2 py-1 text-sm flex items-center justify-start gap-4 cursor-pointer"
-                  >
-                    <input
-                      id={`result-${customer._id}`}
-                      type="button"
-                      className="absolute inset-0 opacity-0"
-                      onClick={() => handleClick(customer)}
-                    />
-                    <div className="rounded-full w-8 h-8 overflow-hidden">
-                      <Image
-                        src={`/uploads/${customer.avatar}`}
-                        width={50}
-                        height={50}
-                        alt={customer.fullName}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <span>{customer.fullName}</span>
-                  </label>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      </div>
+      <Results>
+        {loading ? (
+          <Message>{"Loading..."}</Message>
+        ) : error ? (
+          <Message>{"Error fetching customers"}</Message>
+        ) : !Array.isArray(resultsData) ? (
+          ""
+        ) : resultsData.length === 0 ? (
+          <Message>{"No matches"}</Message>
+        ) : (
+          resultsData.map((customer: ICustomer) => (
+            <Customer key={customer._id} {...customer} onClick={handleClick} />
+          ))
+        )}
+      </Results>
     </div>
   );
 }

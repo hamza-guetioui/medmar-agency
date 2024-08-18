@@ -72,7 +72,7 @@ const Index = () => {
             accept="jpg,png,jpeg"
           />
         </Section>
-        <Buttons />
+        <Buttons title="Create Customer"/>
       </form>
     </div>
   );

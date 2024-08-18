@@ -53,7 +53,7 @@ const projectSchema = new Schema<IProject>(
       required: true,
       validate: {
         validator: function (v: mongoose.Types.ObjectId[]): boolean {
-          return v.length === 1; // Ensure the array contains exactly one ObjectId
+          return v.length > 0; // Ensure the array contains at least one ObjectId
         },
         message: "Project should have at least one service.",
       },
@@ -85,6 +85,11 @@ const projectSchema = new Schema<IProject>(
   }
 );
 
+projectSchema.statics.findByCustomer = function (
+  customerId: mongoose.Types.ObjectId
+) {
+  return this.find({ customerId });
+};
 // Create or get the Project model
 const Project =
   mongoose.models.Project || mongoose.model<IProject>("Project", projectSchema);

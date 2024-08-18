@@ -56,7 +56,6 @@ export interface IProject {
 
 // response return
 export interface IProjectData {
-  index: number;
   _id: string;
   title: string;
   description: string;

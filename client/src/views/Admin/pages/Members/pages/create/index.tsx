@@ -38,7 +38,7 @@ const Index = () => {
           <Input type="text" name="linkedin" label="LinkedIn" length={255} />
         </Section>
 
-        <Buttons />
+        <Buttons title="Create Member"/>
       </form>
     </div>
   );

@@ -19,15 +19,10 @@ function Index({ type, name, label, data: services, initialValue }: Props) {
   const [serviceIds, handleCheckbox, handleRadio] =
     useHandleCheck(initialValue);
 
-
   return (
     <div className={styles.Container}>
       <label className={styles.Label}>{label || name}</label>
-      <input
-        type="hidden"
-        name={name}
-        value={JSON.stringify(serviceIds)}
-      />
+      <input type="hidden" name={name} value={JSON.stringify(serviceIds)} />
 
       <div className={styles.checkboxWrapper}>
         {services.map((service) => {

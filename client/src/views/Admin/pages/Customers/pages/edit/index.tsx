@@ -97,7 +97,7 @@ const Index = async ({ customerId }: Props) => {
             initialValue={customer.businessLogo}
           />
         </Section>
-        <Buttons />
+        <Buttons title="Save Changes" />
       </form>
     </div>
   );

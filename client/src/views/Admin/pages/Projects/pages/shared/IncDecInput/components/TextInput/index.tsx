@@ -7,16 +7,14 @@ interface InputProps {
   v: string;
   handleC: (event: React.ChangeEvent<HTMLInputElement>) => void;
   length: number;
-
-  initialValue?: string;
 }
 
-function index({ id, length, v, handleC, initialValue = "" }: InputProps) {
+function index({ id, length, v, handleC }: InputProps) {
   const [value, setValue] = useState<string>(v);
 
-  useEffect(() => {
-    setValue(initialValue);
-  }, [initialValue]);
+  // useEffect(() => {
+  //   setValue(initialValue);
+  // }, [initialValue]);
 
   const style = {
     color: value.length === length ? " #e2e8f0" : " #64748b",

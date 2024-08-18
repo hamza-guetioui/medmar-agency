@@ -1,3 +1,4 @@
+import "server-only";
 import { NextResponse, NextRequest } from "next/server";
 import jwt from "jsonwebtoken";
 // import connectMongoDb from "@/libs/mongoDb";

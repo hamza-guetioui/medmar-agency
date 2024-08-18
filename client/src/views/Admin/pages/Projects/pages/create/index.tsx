@@ -4,6 +4,7 @@ import { createProject } from "@/utils/actions/Projects";
 import Header from "@/shared/Dashboard/Form/Header";
 import Section from "@/shared/Dashboard/Form/Section";
 import Input from "@/shared/Dashboard/inputs/Input";
+import TextArea from "@/shared/Dashboard/inputs/TextArea";
 import FileInput from "@/shared/Dashboard/inputs/FileInput";
 import SelectInput from "../shared/SelectInput";
 import Buttons from "@/shared/Dashboard/Form/Buttons";
@@ -34,11 +35,10 @@ const Index = async () => {
             length={25}
             required={true}
           />
-          <Input
-            type="text"
+          <TextArea
             name="description"
             label="Description"
-            length={25}
+            length={500}
             required={true}
           />
           <FileInput
@@ -50,7 +50,7 @@ const Index = async () => {
           <Input type="text" name="link" label="Link" length={255} />
         </Section>
 
-        <Section title="Project Serices">
+        <Section title="Project Services">
           <SelectInput
             id="services"
             type="checkbox"
@@ -64,7 +64,7 @@ const Index = async () => {
           <IncDecInput />
         </Section>
 
-        <Buttons />
+        <Buttons title="Create Project"  />
       </form>
     </div>
   );

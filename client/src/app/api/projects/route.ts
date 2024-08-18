@@ -1,31 +1,43 @@
 import "server-only";
 import { NextResponse, type NextRequest } from "next/server";
-import mongoose from "mongoose";
 import connectToMongoDb from "@/libs/mongoDb";
 import Project from "@/model/project";
 import Customer from "@/model/customer";
 import { validateProjectData } from "@/utils/apiUtils/validateProjectData";
 import { handleError } from "@/utils/apiUtils/handleError";
 import Service from "@/model/service";
+import { removeFile } from "@/utils/apiUtils/handleFile";
 
-// Get All Projects | by SerachParams
+// Get All Projects | by SearchParams
 export async function GET(request: NextRequest) {
-  // SearchParams
+  // searchParams
   try {
     await connectToMongoDb();
+
+    // Retrieve projects and populate customer and service details
     let projects = await Project.find()
-      .sort({ createdAt: -1 })
+      .sort({ createdAt: -1 }) // Sort by creation date, descending
       .populate({
         path: "customerId",
-        model: Customer, // Customer Model
+        model: Customer,
+        select: "_id profile fullName jobTitle", // Select specific fields for Customer
       })
       .populate({
         path: "serviceIds",
-        model: Service, // Service Model
+        model: Service,
+        select: "title _id", // Select specific fields for Service
       });
 
-     // Rename customerId to customer and serviceIds to services in a single map operation
-     projects = projects.map((project) => {
+    // Handle case where no projects are found
+    if (!projects || projects.length === 0) {
+      return NextResponse.json(
+        { message: "No Projects Results" },
+        { status: 404 }
+      );
+    }
+
+    // Reshape the project data to include customer and services as separate fields
+    projects = projects.map((project) => {
       const { customerId, serviceIds, ...rest } = project.toObject();
       return {
         ...rest,
@@ -39,55 +51,42 @@ export async function GET(request: NextRequest) {
       { status: 200 }
     );
   } catch (err) {
+    // Log and handle errors during the fetch
     console.log(err);
     const { message, error } = handleError("Error fetching projects:", err);
     return NextResponse.json({ message, error }, { status: 500 });
   }
 }
 
+// Create Project
 export async function POST(request: NextRequest) {
-
+  // Extract form data from the request
   const formData = await request.formData();
-  console.log(formData);
 
-  const { message, customerId } = validateCustomerId(id);
-  if (message || customerId == null) {
-    return NextResponse.json({ message }, { status: 400 });
-  }
+  // Validate and extract project data from the form
+  const { error, data } = await validateProjectData(formData);
 
-
-  const { error, data } = validateProjectData(formData, customerId);
-
+  // Handle validation errors
   if (error || !data) {
-    return NextResponse.json(
-      {
-        message: error,
-      },
-      { status: 400 }
-    );
+    return NextResponse.json({ message: error }, { status: 400 });
   }
 
   try {
     await connectToMongoDb();
-    await Project.create(data);
+
+    // Create a new project in the database
+    const project = await Project.create(data);
 
     return NextResponse.json(
-      { message: "Project Added successfully" },
+      { message: "Project Added successfully", data: project },
       { status: 201 }
     );
   } catch (err) {
+    // handle file remove if creation field
+    if (data.previewImage) {
+      await removeFile(data.previewImage);
+    }
     const { message, error } = handleError("Error adding Project", err);
     return NextResponse.json({ message, error }, { status: 500 });
   }
 }
-
-const validateCustomerId = (customerId: string | null) => {
-  if (!customerId) {
-    return { message: "Customer ID is required", customerId: null };
-  }
-
-  if (!mongoose.Types.ObjectId.isValid(customerId)) {
-    return { message: "Invalid customer ID format" };
-  }
-  return { message: null, customerId };
-};

@@ -1,12 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Styles.module.css";
 import { IProjectDetail } from "@/Types";
 
 import TextArea from "./components/TextArea";
 import TextInput from "./components/TextInput";
-import { faPlus, faSquareMinus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import DelBtn from "./components/DelBtn";
+import AddBtn from "./components/AddBtn";
 
 interface Props {
   initialValue?: IProjectDetail[];
@@ -17,9 +17,13 @@ function Index({ initialValue }: Props) {
     if (initialValue) {
       return initialValue;
     }
-    let arr: IProjectDetail[] = [{ _id: "1", feature: "", description: "" }];
+
+    let arr: IProjectDetail[] = [
+      { _id: generateRandomId(), feature: "", description: "" },
+    ];
     return arr;
   });
+
 
   const handleTextInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setData((currentData) =>
@@ -63,32 +67,20 @@ function Index({ initialValue }: Props) {
       <div className={styles.Wrapper}>
         {data.map((item, index) => {
           return (
-            <div key={item.feature}>
-              <div>
+            <div key={item._id}>
+              <div className="flex justify-between items-center pr-4">
                 <h3 className={styles.Label}>{`detail-${index + 1}`}</h3>
-                <label
-                  htmlFor="delDetail"
-                  className="relative bg-red-500/80 hover:bg-red-500 text-white w-6 h-6 flex justify-center items-center rounded-md mr-4 self-end"
-                >
-                  <input
-                    id="delDetail"
-                    type="button"
-                    className="absolute opacity-0"
-                    onClick={() => handleDelete(item._id)}
-                  />
-
-                  <FontAwesomeIcon icon={faSquareMinus} className="h-6 w-6" />
-                </label>
+                <DelBtn handleDelete={() => handleDelete(item._id)} />
               </div>
 
               <TextInput
-                id={item.feature}
+                id={item._id}
                 v={item.feature}
                 length={20}
                 handleC={handleTextInput}
               />
               <TextArea
-                id={item.feature}
+                id={item._id}
                 v={item.description}
                 length={255}
                 handleC={handleTextArea}
@@ -98,18 +90,7 @@ function Index({ initialValue }: Props) {
         })}
       </div>
 
-      <label
-        htmlFor="addDetail"
-        className="bg-green-500 text-white py-2 px-4 flex gap-2 items-center rounded-md mr-4 self-end w-fit"
-      >
-        <input
-          id="addDetail"
-          type="button"
-          onClick={handleAdd}
-          className="absolute opacity-0"
-        />
-        add <FontAwesomeIcon icon={faPlus} />
-      </label>
+      <AddBtn handleAdd={handleAdd} />
     </div>
   );
 }

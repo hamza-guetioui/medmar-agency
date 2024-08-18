@@ -14,3 +14,10 @@
 .Input {
   @apply w-6 h-6 border-[1px] border-slate-700/40 rounded-[.20rem] bg-inherit p-2 pr-16 outline-none;
 }
+
+.CustomerLable {
+  @apply relative w-full px-2 py-1 text-sm flex items-center justify-start gap-4 cursor-pointer;
+}
+.InputBtn {
+  @apply absolute inset-0 opacity-0;
+}

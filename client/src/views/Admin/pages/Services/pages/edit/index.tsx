@@ -69,7 +69,7 @@ const Index = async ({ serviceId }: Props) => {
           />
         </Section>
 
-        <Buttons />
+        <Buttons title="Save Changes"/>
       </form>
     </div>
   );

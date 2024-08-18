@@ -38,6 +38,7 @@ export const getProject = async (id: string) => {
 };
 
 export async function createProject(formData: FormData) {
+
   try {
     const response = await fetch(`${baseUrl}/api/projects`, {
       method: "POST",

@@ -8,8 +8,8 @@ type Props = {
 
 const DeleteForm = ({ id, action, handleToggle }: Props) => {
   return (
-    <div className="min-h-28 f p-4 bg-slate-300 flex flex-col items-center justify-between shadow-2xl ">
-      <p className="text-bold font-bold ">
+    <div className=" min-h-24 f p-4 bg-slate-300 flex flex-col items-center justify-between shadow-2xl ">
+      <p className="text-bold text-sm font-bold ">
         are you sure you want to delete the record ?
       </p>
 

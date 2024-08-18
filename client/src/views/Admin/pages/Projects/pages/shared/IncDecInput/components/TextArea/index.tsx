@@ -7,11 +7,10 @@ interface TextAriaProps {
   v: string;
   handleC: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   length: number;
-  initialValue?: string;
 }
 
-function index({ id, handleC, length, initialValue = "" }: TextAriaProps) {
-  const [value, setValue] = useState(initialValue);
+function index({ id, v, handleC, length }: TextAriaProps) {
+  const [value, setValue] = useState(v);
 
   const style = {
     color: value.length === length ? " #e2e8f0" : " #64748b",
@@ -34,7 +33,6 @@ function index({ id, handleC, length, initialValue = "" }: TextAriaProps) {
         <textarea
           id={id}
           placeholder="Add feature description"
-
           className={styles.textAreaInput}
           onChange={handleChange}
           value={value}

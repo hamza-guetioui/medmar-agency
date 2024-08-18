@@ -1,12 +1,10 @@
 import React from "react";
-import {
-  getProject,
-  updateProject,
-} from "@/utils/actions/Projects";
+import { getProject, updateProject } from "@/utils/actions/Projects";
 
 import Header from "@/shared/Dashboard/Form/Header";
 import Section from "@/shared/Dashboard/Form/Section";
 import Input from "@/shared/Dashboard/inputs/Input";
+import TextArea from "@/shared/Dashboard/inputs/TextArea";
 import FileInput from "@/shared/Dashboard/inputs/FileInput";
 import SelectInput from "../shared/SelectInput";
 import Buttons from "@/shared/Dashboard/Form/Buttons";
@@ -46,11 +44,10 @@ const Index = async ({ projectId }: { projectId: string }) => {
             required={true}
             initialValue={project.title}
           />
-          <Input
-            type="text"
+          <TextArea
             name="description"
             label="Description"
-            length={25}
+            length={500}
             required={true}
             initialValue={project.description}
           />
@@ -58,7 +55,6 @@ const Index = async ({ projectId }: { projectId: string }) => {
             name="previewImage"
             label="Preview Image"
             accept="jpg,png,jpeg"
-            required={true}
             initialValue={project.previewImage}
           />
           <Input
@@ -70,7 +66,7 @@ const Index = async ({ projectId }: { projectId: string }) => {
           />
         </Section>
 
-        <Section title="Project Serices">
+        <Section title="Project Services">
           <SelectInput
             id="services"
             type="checkbox"
@@ -85,7 +81,7 @@ const Index = async ({ projectId }: { projectId: string }) => {
           <IncDecInput initialValue={project.details} />
         </Section>
 
-        <Buttons />
+        <Buttons title="Save Changes"/>
       </form>
     </div>
   );

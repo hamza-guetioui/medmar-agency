@@ -1,17 +1,13 @@
-
 .TRow:not(:last-child) {
-    @apply border-b-2 border-b-slate-400/30
+  @apply border-b-2 border-b-slate-400/30;
 }
-.TH , .TD {
-    @apply  px-3 py-2
+.TH,
+.TD {
+  @apply px-3 py-2;
 }
 .Icon {
-    @apply pr-4 text-right
+  @apply pr-4 text-right;
 }
-
-
-
-
 
 /* .Table{
     @apply bg-slate-300/40 w-full overflow-hidden rounded-md;

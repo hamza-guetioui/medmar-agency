@@ -1,6 +1,14 @@
+import { ICustomer } from "@/Types";
+import { getCustomers } from "@/utils/actions/Customers";
 import EditForm from "@/views/Admin/pages/Customers/pages/edit";
 
-const generateStaticParams = () => {};
+export async function generateStaticParams() {
+  const customers: ICustomer[] = await getCustomers();
+
+  return customers.map((customer) => ({
+    customerId: customer._id,
+  }));
+}
 
 type Props = {
   params: {
