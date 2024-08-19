@@ -1,0 +1,28 @@
+
+.TRow:not(:last-child) {
+    @apply border-b-2 border-b-slate-400/30
+}
+.TH , .TD {
+    @apply  px-3 py-2
+}
+.Icon {
+    @apply pr-4 text-right
+}
+
+
+/* .OptionsList {
+    @apply rounded-md border-gray-500 border-spacing-2 gap-2 bg-slate-400 overflow-hidden ;
+    @apply absolute top-1/2 -translate-y-1/2 right-8;
+}
+
+.ToggleOptionsButton {
+    @apply flex items-center justify-center w-8 h-8 p-1 rounded-full hover:bg-slate-400/80;
+}
+
+.UDButton {
+    @apply flex items-center justify-between gap-2 px-4 py-2 text-white  w-full
+}
+
+.UButtonLink {
+    @apply flex items-center justify-between gap-2
+} */

@@ -28,6 +28,6 @@
     ".next/types/**/*.ts",
     "src/views/Home/components/Hero/LinkHubSection/YoutubeBox/context.js",
     "src/views/Home/components/WhyUs/LargeScreenContent/context/scrollContext.js"
-, "src/views/Services/layout/Content", "src/hooks/translations/index.js", "src/app/api/route.js"  ],
+, "src/views/Services/layout/Content", "src/hooks/translations/index.js", "src/app/api/route.js", "src/views/Admin/pages/Services/pages/shared/DetailsInput"  ],
   "exclude": ["node_modules"]
 }

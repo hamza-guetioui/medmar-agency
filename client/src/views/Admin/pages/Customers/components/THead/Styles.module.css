@@ -1,0 +1,13 @@
+
+.THead {
+    @apply bg-slate-400/60 
+}
+
+.TH {
+    @apply text-slate-900 text-left
+}
+.TH , .TD {
+    @apply  px-3 py-2
+}
+
+

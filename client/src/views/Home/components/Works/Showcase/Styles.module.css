@@ -23,10 +23,11 @@
 }
 
 .Project {
-  @apply relative overflow-hidden min-w-52 h-40 rounded-xl brightness-90 hover:brightness-100  shadow-sm  ;
+  @apply relative overflow-hidden w-52 h-36 rounded-xl brightness-90 hover:brightness-100  shadow-sm  ;
 }
+
 .Info {
-@apply   absolute min-w-full min-h-full  p-4 flex items-end text-black opacity-0 
+@apply absolute min-w-full min-h-full p-4 flex items-end text-slate-900 opacity-0 
  cursor-pointer;
 }
 

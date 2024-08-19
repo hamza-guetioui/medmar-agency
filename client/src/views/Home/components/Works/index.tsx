@@ -1,17 +1,15 @@
 import React from "react";
-import Header from "./Header"
-import Showcase from "./Showcase";
-import styles from './Styles.module.css'
+import Header from "./Header";
+import styles from "./Styles.module.css";
+import { getProjects } from "@/utils/actions/Projects";
+import Container from "./Container";
 
-
-function Index() {
+async function Index() {
+  const projects = await getProjects() || [];
   return (
     <div className={styles.Container}>
       <Header />
-      <div className=" rotate-3 my-8 ">
-        <Showcase />
-        <Showcase />
-      </div>
+      <Container projects={projects} />
     </div>
   );
 }

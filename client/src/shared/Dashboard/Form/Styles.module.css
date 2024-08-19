@@ -1,0 +1,62 @@
+.Form {
+  @apply w-full bg-white;
+}
+
+.Header {
+  @apply px-6 py-3 bg-slate-300/40 rounded-md text-slate-700;
+  .Title {
+    @apply text-3xl font-extrabold;
+  }
+  .Paragraph {
+    @apply font-bold;
+  }
+}
+
+.Section {
+  @apply grid grid-cols-8 p-4 pr-16 relative;
+  &::after{
+    content: "";
+    @apply absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] rounded-full w-[96%] bg-slate-400/40;
+  }
+}
+.sectionTitle {
+  @apply col-span-3 text-xl font-bold text-slate-700/80;
+}
+.sectionFields {
+  @apply col-span-5;
+}
+.buttonsWrapper {
+  @apply flex items-center justify-end gap-4 px-8 py-4 rounded-xl w-full h-fit;
+
+}
+
+.Button {
+  @apply min-w-36 px-6 py-2 text-xl font-bold rounded-lg border-2 hover:brightness-110;
+
+  &.Submit {
+    @apply bg-green-500  border-green-500 text-white ;
+  }
+  &.Cancel {
+    @apply border-zinc-400 bg-zinc-400 text-white;
+  }
+
+  &:active {
+    @apply brightness-90;
+  }
+}
+
+/* scrollbar style */
+/* .Form::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  background-color: #e2e8f0;
+}
+
+.Form::-webkit-scrollbar {
+  @apply rounded-md w-2 bg-slate-300/70;
+}
+
+.Form::-webkit-scrollbar-thumb {
+  @apply rounded-md bg-slate-500/70;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+} */

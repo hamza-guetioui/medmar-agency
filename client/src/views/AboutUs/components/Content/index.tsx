@@ -68,7 +68,7 @@ function Index() {
           </div>
           
           <p className="text-lg leading-relaxed">
-            Let Innovate Agency be the catalyst for your brand's success. Contact us today to explore how we can elevate your marketing efforts and transform your vision into reality. Together, we can create something extraordinary and propel your brand to new heights.
+            Let Innovate Agency be the catalyst for your brand&rsquo;s success. Contact us today to explore how we can elevate your marketing efforts and transform your vision into reality. Together, we can create something extraordinary and propel your brand to new heights.
           </p>
         </div>
       );

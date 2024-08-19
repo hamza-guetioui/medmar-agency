@@ -1,3 +1,4 @@
+import "server-only";
 import { NextResponse, type NextRequest } from "next/server";
 
 
@@ -13,6 +14,9 @@ export async function POST(request: NextRequest) {
     return response;
 
   } catch (error) {
+    // const { message, error } = handleError( "Failed to fetch members", err);
+    // return NextResponse.json({ message, error }, { status: 500 });
+
     return NextResponse.json(
       { message: "An error occurred while processing your request." },
       { status: 500 }

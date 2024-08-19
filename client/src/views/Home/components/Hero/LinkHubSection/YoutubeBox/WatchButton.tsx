@@ -8,11 +8,13 @@ import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { useHandleClick } from "./context";
 
 const WatchButton = () => {
-  const {setShowVideo} = useHandleClick();
+  const { setShowVideo } = useHandleClick();
   return (
     <button className={styles.PlayVideo} onClick={() => setShowVideo(true)}>
       <FontAwesomeIcon icon={faPlay} />
-      <span className="hidden font-bold sm:ml-2 sm:block">Watch Video</span>{" "}
+      <span className="hidden font-bold sm:ml-2 sm:block">
+        Watch Video
+      </span>{" "}
     </button>
   );
 };

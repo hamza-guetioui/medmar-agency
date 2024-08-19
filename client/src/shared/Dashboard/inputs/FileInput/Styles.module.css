@@ -1,0 +1,21 @@
+.Container {
+  @apply m-4 mt-1 relative;
+}
+.Label {
+  @apply mb-1 ml-1  font-semibold text-base w-full block tracking-wider;
+}
+.UploadButton {
+  @apply absolute bottom-4 right-4 flex items-center hover:cursor-pointer text-xs font-bold gap-2 w-fit hover:bg-sky-400 py-2 px-4 bg-slate-400/80 rounded-full overflow-hidden;
+}
+.input {
+  /* hidden the inpost using display:hidden => Bug! */
+  @apply opacity-0 absolute;
+}
+
+.uploadedFileData {
+  @apply flex justify-between  gap-2 w-full border-[1px] min-h-44 border-slate-700/40 rounded-[.20rem] bg-inherit p-2;
+}
+
+.uploadedFile {
+  @apply w-1/2 border-[1px]  rounded-[1px] overflow-hidden  bg-slate-300/70 bg-center bg-no-repeat bg-contain;
+}

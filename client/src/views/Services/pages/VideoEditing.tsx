@@ -88,7 +88,7 @@ const VideoEditing = () => {
         <h3>Conclusion</h3>
         <p>
           Discover the advantages of choosing our graphic design services to
-          enhance your brand's visual impact. Contact us today to get started!
+          enhance your brand&rsquo;s visual impact. Contact us today to get started!
         </p>
       </div>
     </section>

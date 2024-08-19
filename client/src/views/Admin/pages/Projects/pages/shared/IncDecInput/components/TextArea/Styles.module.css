@@ -1,0 +1,16 @@
+.Container {
+  @apply m-4 mb-2 mt-1;
+}
+
+
+.inputWrapper {
+  @apply relative;
+}
+.textAreaInput {
+  @apply w-full h-11 border-[1px] border-slate-700/40   rounded-[.20rem] bg-inherit p-2 pr-16 outline-none;
+  @apply resize-none h-36;
+}
+
+.lengthCounter {
+  @apply absolute right-3 bottom-2;
+}

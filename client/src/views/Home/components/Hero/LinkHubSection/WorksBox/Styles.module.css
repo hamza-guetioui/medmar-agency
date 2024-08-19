@@ -1,6 +1,6 @@
 /* Styles for the WorksBox container */
 .WorksBox {
-  @apply flex flex-col items-start justify-between rounded-3xl p-4 min-h-64 overflow-hidden  bg-orange-400/90;
+  @apply flex flex-col items-start justify-between rounded-3xl p-4 min-h-64 overflow-hidden  bg-orange-600/80;
   @apply sm:col-span-2 lg:col-span-1;
 
   /* Head section inside WorksBox */

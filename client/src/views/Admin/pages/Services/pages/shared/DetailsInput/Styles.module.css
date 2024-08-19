@@ -1,0 +1,21 @@
+.Container {
+  @apply m-4 mt-1;
+}
+
+.Label {
+  @apply mb-1 ml-1  font-semibold text-base w-full block tracking-wider;
+}
+
+.inputWrapper {
+  @apply relative;
+}
+.Input {
+  @apply w-full h-10 border-[1px] border-slate-700/40 rounded-[.20rem] bg-inherit p-2 pr-16 outline-none;
+}
+.lengthCounter {
+  @apply absolute right-3 bottom-1;
+}
+.Input:-webkit-autofill,
+.Input:-webkit-autofill:focus {
+  transition: background-color 0s 600000s, color 0s 600000s !important;
+}
