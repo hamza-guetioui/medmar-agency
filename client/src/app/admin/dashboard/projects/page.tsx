@@ -1,10 +1,10 @@
 import ProjectsPage from "@/views/Admin/pages/Projects";
 
-function Projects() {
+function Page() {
   return (
     <div>
       <ProjectsPage />
     </div>
   );
 }
-export default Projects;
+export default Page;

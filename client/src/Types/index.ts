@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
 
 export interface ICustomer {
-  _id: string;
+  _id: Types.ObjectId;
   fullName: string;
   jobTitle: string;
   email: string;
@@ -14,7 +14,7 @@ export interface ICustomer {
 }
 
 export interface IMember {
-  _id: string;
+  _id: Types.ObjectId;
   fullName: string;
   position: string;
   profile: string;
@@ -25,11 +25,11 @@ export interface IMember {
 }
 
 export interface IServiceDetail {
-  _id: string;
+  _id: Types.ObjectId;
   detail: string;
 }
 export interface IService {
-  _id: string;
+  _id: Types.ObjectId;
   title: string;
   description: string;
   image: string;
@@ -38,13 +38,13 @@ export interface IService {
 }
 
 export interface IProjectDetail {
-  _id: string;
+  _id: Types.ObjectId;
   feature: string;
   description: string;
 }
 
 export interface IProject {
-  _id: string;
+  _id: Types.ObjectId;
   title: string;
   description: string;
   previewImage: string;
@@ -56,7 +56,7 @@ export interface IProject {
 
 // response return
 export interface IProjectData {
-  _id: string;
+  _id: Types.ObjectId;
   title: string;
   description: string;
   previewImage: string;

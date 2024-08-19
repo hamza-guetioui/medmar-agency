@@ -15,7 +15,7 @@ function Index() {
       <Services />
       <Works />
       <WhyUs />
-      {/* <Reviews /> */}
+      <Reviews />
       <OurClient />
       <AboutUs />
     </main>

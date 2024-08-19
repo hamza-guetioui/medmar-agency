@@ -13,7 +13,7 @@ import SearchInput from "../shared/SearchInput";
 import { getServices } from "@/utils/actions/Services";
 
 const Index = async () => {
-  const services = await getServices();
+  const services = await getServices() || [];
 
   return (
     <div>

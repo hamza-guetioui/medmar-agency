@@ -4,47 +4,13 @@ import React, { useEffect, useState } from "react";
 import styles from "./Styles.module.css";
 import Project from "./Project";
 import useMouseHandler from "../hooks/useMouseHandler";
+import {  IProjectData } from "@/Types";
 
-const projects = [
-  {
-    id: 1,
-    title: "Logo Design",
-    description: "Crafting unique brand identities.",
-    image: "project1.jpeg",
-  },
-  {
-    id: 2,
-    title: "Website Redesign",
-    description: "Revamping websites for modern appeal.",
-    image: "project2.jpeg",
-  },
-  {
-    id: 3,
-    title: "Social Media Campaign",
-    description: "Boosting engagement on social platforms.",
-    image: "project3.jpeg",
-  },
-  {
-    id: 4,
-    title: "E-commerce Platform",
-    description: "Building robust online stores.",
-    image: "project4.jpeg",
-  },
-  {
-    id: 5,
-    title: "Brochure Design",
-    description: "Creating informative print materials.",
-    image: "project5.jpeg",
-  },
-  {
-    id: 6,
-    title: "Mobile App Development",
-    description: "Developing user-friendly mobile applications.",
-    image: "project6.jpeg",
-  },
-];
+type Props = {
+  projects: IProjectData[];
+};
 
-const Showcase: React.FC = () => {
+const Showcase = ({ projects }: Props) => {
   const [isVisible, setIsVisible] = useState(false);
 
   const {
@@ -78,7 +44,7 @@ const Showcase: React.FC = () => {
         }
       };
     }
-  }, []);
+  }, [showcaseRef]);
 
   return (
     <div
@@ -89,12 +55,12 @@ const Showcase: React.FC = () => {
       onMouseUp={handleMouseUp}
       onMouseMove={handleMouseMove}
     >
-      {projects.map(({ id, title, description, image }) => (
+      {projects.map(({ _id, title, description, previewImage }) => (
         <Project
-          key={id}
+          key={_id.toString()}
           title={title}
           description={description}
-          image={image}
+          image={previewImage}
         />
       ))}
     </div>

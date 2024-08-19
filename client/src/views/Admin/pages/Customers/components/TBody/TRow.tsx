@@ -46,7 +46,7 @@ const TRow = ({
       <TD>{rating}</TD>
       <TD>{published ? "Yes" : "No"}</TD>
       <TD>
-        <UDOptions id={_id} deleteAction={deleteCustomer} />
+        <UDOptions id={_id.toString()} deleteAction={deleteCustomer} />
       </TD>
     </tr>
   );

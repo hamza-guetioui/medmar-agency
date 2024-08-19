@@ -9,7 +9,7 @@ interface InputProps {
   length: number;
 }
 
-function index({ id, length, v, handleC }: InputProps) {
+function Index({ id, length, v, handleC }: InputProps) {
   const [value, setValue] = useState<string>(v);
 
   // useEffect(() => {
@@ -54,4 +54,4 @@ function index({ id, length, v, handleC }: InputProps) {
   );
 }
 
-export default index;
+export default Index;

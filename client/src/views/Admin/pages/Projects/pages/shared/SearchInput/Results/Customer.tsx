@@ -19,7 +19,7 @@ const Customer = ({
 }: CustomerProps) => {
   return (
     <div  className={styles.Container}>
-      <div className={styles.Customer} onClick={() => onClick(_id, fullName)}>
+      <div className={styles.Customer} onClick={() => onClick(_id.toString(), fullName)}>
         <div className="rounded-full w-9 h-9 overflow-hidden">
           <Image
             src={`/uploads/${avatar}`}

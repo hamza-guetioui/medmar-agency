@@ -1,41 +1,63 @@
 "use server";
 const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000";
+import connectToMongoDb from "@/libs/mongoDb";
+import Service from "@/model/service";
+import { IService } from "@/Types";
 import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
+import { validate_Id } from "../apiUtils/validate_Id";
 
 // Get All Services
 export const getServices = async () => {
   try {
-    const response = await fetch(`${baseUrl}/api/services`, {
-      next: { tags: ["Services"] },
-    });
-    if (!response.ok) {
-      const { message } = await response.json();
-      console.error("Error fetching services:", message);
-      throw new Error(message); // Ensure that errors are propagated
-    }
-    const { data } = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching services:", error);
-    throw error; // Ensure that errors are propagated
+    // Connect to MongoDB
+    await connectToMongoDb();
+
+    // Fetch all services, sorted by creation date in descending order
+    const services = await Service.find().sort({ createdAt: -1 }).lean();
+
+    // Respond with the list of services
+    return services.map((service: any) => ({
+      _id: service._id,
+      title: service.title,
+      description: service.description,
+      image: service.image,
+      link: service.link,
+      details: service.details.map((detail: any) => ({
+        _id: detail._id,
+        detail: detail.detail,
+      })),
+    })) as IService[];
+  } catch (err) {
+    console.log(err);
   }
 };
 
 // Get One Service
-export const getService = async (id: string) => {
+export const getService = async (serviceId: string) => {
+  // Validate the service ID format
+  if (!validate_Id(serviceId)) {
+    throw new Error("Invalid service ID format");
+  }
+
   try {
-    const response = await fetch(`${baseUrl}/api/services/${id}`);
-    if (!response.ok) {
-      const { message } = await response.json();
-      console.error("Error fetching service:", message);
-      throw new Error(message); // Ensure that errors are propagated
-    }
-    const { data } = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching service:", error);
-    throw error; // Ensure that errors are propagated
+    await connectToMongoDb();
+
+    // Fetch the service by ID
+    const service = await Service.findById(serviceId);
+
+    // // Handle case where service is not found
+    // if (!service) {
+    //   return NextResponse.json(
+    //     { message: "Service not found" },
+    //     { status: 404 }
+    //   );
+    // }
+
+    return service;
+  } catch (err) {
+    // Handle any errors during fetch
+    console.log(err);
   }
 };
 
@@ -49,7 +71,7 @@ export async function createService(formData: FormData) {
     if (!response.ok) {
       const { message } = await response.json();
       console.error(`Failed to create service: ${message}`);
-      return
+      return;
     }
     console.log("Service created successfully");
     revalidateTag("Services");
@@ -117,4 +139,3 @@ export async function deleteService(formData: FormData) {
 //     throw error; // Ensure that errors are propagated
 //   }
 // }
-

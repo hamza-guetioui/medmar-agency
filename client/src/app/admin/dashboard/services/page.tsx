@@ -1,10 +1,10 @@
 import ServicesPage from "@/views/Admin/pages/Services";
 
-function Members() {
+function Page() {
   return (
     <div>
       <ServicesPage />
     </div>
   );
 }
-export default Members;
+export default Page;

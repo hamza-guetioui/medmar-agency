@@ -39,7 +39,7 @@ const TRow = ({
         {
           <ul className="flex flex-col gap-2 text-sm">
             {details.map((item) => (
-              <li key={item._id}>
+              <li key={item._id.toString()}>
                 {" "}
                 {"-"} {item.detail}
               </li>
@@ -49,7 +49,7 @@ const TRow = ({
       </TD>
       <TD>
         {" "}
-        <UDOptions id={_id} deleteAction={deleteService} />
+        <UDOptions id={_id.toString()} deleteAction={deleteService} />
       </TD>
     </tr>
   );

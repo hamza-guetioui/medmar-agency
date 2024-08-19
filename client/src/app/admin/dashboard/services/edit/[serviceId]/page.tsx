@@ -1,12 +1,14 @@
+import connectToMongoDb from "@/libs/mongoDb";
+import Service from "@/model/service";
 import { IService } from "@/Types";
-import {  getServices } from "@/utils/actions/Services";
 import EditForm from "@/views/Admin/pages/Services/pages/edit";
 
 export async function generateStaticParams() {
-  const services: IService[] = await getServices();
+  await connectToMongoDb()
+  const services: IService[] = await Service.find();
 
   return services.map((service) => ({
-    serviceId: service._id,
+    serviceId: service._id.toString(),
   }));
 }
 type Props = {
@@ -15,7 +17,7 @@ type Props = {
   };
 };
 
-const page = ({ params: { serviceId } }: Props) => {
+const Page = ({ params: { serviceId } }: Props) => {
   return (
     <div>
       <EditForm serviceId={serviceId} />
@@ -23,4 +25,4 @@ const page = ({ params: { serviceId } }: Props) => {
   );
 };
 
-export default page;
+export default Page;

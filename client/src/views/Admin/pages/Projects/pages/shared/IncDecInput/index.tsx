@@ -1,5 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+
+import mongoose from "mongoose";
+
 import styles from "./Styles.module.css";
 import { IProjectDetail } from "@/Types";
 
@@ -19,16 +22,15 @@ function Index({ initialValue }: Props) {
     }
 
     let arr: IProjectDetail[] = [
-      { _id: generateRandomId(), feature: "", description: "" },
+      { _id: generateObjectId(), feature: "", description: "" },
     ];
     return arr;
   });
 
-
   const handleTextInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setData((currentData) =>
       currentData.map((item) => {
-        if (item._id === event.target.id) {
+        if (item._id.toString() === event.target.id) {
           return { ...item, feature: event.target.value };
         }
         return item;
@@ -39,7 +41,7 @@ function Index({ initialValue }: Props) {
   const handleTextArea = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setData((currentData) =>
       currentData.map((item) => {
-        if (item._id === event.target.id) {
+        if (item._id.toString() === event.target.id) {
           return { ...item, description: event.target.value };
         }
         return item;
@@ -51,13 +53,15 @@ function Index({ initialValue }: Props) {
     if (data.length >= 5) return;
     setData((currentData) => [
       ...currentData,
-      { _id: generateRandomId(), feature: "", description: "" },
+      { _id: generateObjectId(), feature: "", description: "" },
     ]);
   };
 
   const handleDelete = (_id: string) => {
     if (data.length <= 0) return;
-    setData((currentData) => currentData.filter((item) => item._id !== _id));
+    setData((currentData) =>
+      currentData.filter((item) => item._id.toString() !== _id)
+    );
   };
 
   return (
@@ -67,20 +71,22 @@ function Index({ initialValue }: Props) {
       <div className={styles.Wrapper}>
         {data.map((item, index) => {
           return (
-            <div key={item._id}>
+            <div key={item._id.toString()}>
               <div className="flex justify-between items-center pr-4">
                 <h3 className={styles.Label}>{`detail-${index + 1}`}</h3>
-                <DelBtn handleDelete={() => handleDelete(item._id)} />
+                <DelBtn
+                  handleDelete={() => handleDelete(item._id.toString())}
+                />
               </div>
 
               <TextInput
-                id={item._id}
+                id={item._id.toString()}
                 v={item.feature}
                 length={20}
                 handleC={handleTextInput}
               />
               <TextArea
-                id={item._id}
+                id={item._id.toString()}
                 v={item.description}
                 length={255}
                 handleC={handleTextArea}
@@ -97,6 +103,6 @@ function Index({ initialValue }: Props) {
 
 export default Index;
 
-function generateRandomId() {
-  return Math.floor(Math.random() * 1000000000).toString(); // Generates a random number between 0 and 999,999,999
+function generateObjectId(): mongoose.Types.ObjectId {
+  return new mongoose.Types.ObjectId();
 }

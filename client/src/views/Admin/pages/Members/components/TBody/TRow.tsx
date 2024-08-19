@@ -88,7 +88,7 @@ const TRow = ({
       </TD>
       <TD>
         {" "}
-        <UDOptions id={_id} deleteAction={deleteMember} />
+        <UDOptions id={_id.toString()} deleteAction={deleteMember} />
       </TD>
     </tr>
   );

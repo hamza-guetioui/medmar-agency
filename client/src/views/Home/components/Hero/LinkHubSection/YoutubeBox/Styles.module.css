@@ -1,5 +1,5 @@
 .YoutubeBox {
-  @apply flex flex-col items-start justify-between p-4  bg-sky-600/30 min-h-64
+  @apply flex flex-col items-start justify-between p-4 bg-blue-900/70  min-h-64
       rounded-3xl overflow-hidden;
   @apply sm:col-span-4 lg:col-span-2;
 
@@ -16,7 +16,7 @@
 
   .WatchVideo {
     /* Flex container for button alignment */
-    @apply min-w-full flex justify-between items-center;
+    @apply min-w-full flex justify-between items-center z-50;
 
     .BaseParagraph {
       /* Styles for the paragraph in the video section */

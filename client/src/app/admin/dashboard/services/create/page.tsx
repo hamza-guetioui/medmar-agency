@@ -1,5 +1,5 @@
 import CreateForm from "@/views/Admin/pages/Services/pages/create";
-const page = () => {
+const Page = () => {
   return (
     <div>
       <CreateForm />
@@ -7,4 +7,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

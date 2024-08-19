@@ -1,12 +1,14 @@
+import connectToMongoDb from "@/libs/mongoDb";
+import Member from "@/model/member";
 import { IMember } from "@/Types";
-import { getMembers } from "@/utils/actions/Members";
 import EditForm from "@/views/Admin/pages/Members/pages/edit";
 
 export async function generateStaticParams() {
-  const members: IMember[] = await getMembers();
+  await connectToMongoDb();
+  const members: IMember[] = await Member.find();
 
   return members.map((member) => ({
-    memberId: member._id,
+    memberId: member._id.toString(),
   }));
 }
 
@@ -16,7 +18,7 @@ type Props = {
   };
 };
 
-const page = ({ params: { memberId } }: Props) => {
+const Page = ({ params: { memberId } }: Props) => {
   return (
     <div>
       <EditForm memberId={memberId} />
@@ -24,4 +26,4 @@ const page = ({ params: { memberId } }: Props) => {
   );
 };
 
-export default page;
+export default Page;

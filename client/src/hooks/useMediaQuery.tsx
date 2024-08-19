@@ -18,7 +18,7 @@ const useMediaQuery = ( mq : string) => {
 
     // Clean up the event listener
     return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
+  }, [mq]);
 
   return isMatch;
 };

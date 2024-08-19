@@ -27,7 +27,7 @@ function Index({ name, label, length, initialValue }: Props) {
     if (Array.isArray(data)) {
       if (customerId) {
         return data.filter(
-          (item: ICustomer) => item._id === customerId
+          (item: ICustomer) => item._id.toString() === customerId
         );
       } else {
         return data;
@@ -44,7 +44,7 @@ function Index({ name, label, length, initialValue }: Props) {
         if (inputRef.current) {
           inputRef.current.value = customer.fullName;
           setInputValue(customer.fullName);
-          setCustomerId(customer._id);
+          setCustomerId(customer._id.toString());
         }
       } catch (err) {
         console.error(err);
@@ -87,7 +87,7 @@ function Index({ name, label, length, initialValue }: Props) {
           <Message>{"No matches"}</Message>
         ) : (
           resultsData.map((customer: ICustomer) => (
-            <Customer key={customer._id} {...customer} onClick={handleClick} />
+            <Customer key={customer._id.toString()} {...customer} onClick={handleClick} />
           ))
         )}
       </Results>

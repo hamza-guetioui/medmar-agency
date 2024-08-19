@@ -1,13 +1,16 @@
+import connectToMongoDb from "@/libs/mongoDb";
+import Project from "@/model/project";
 import { IProject } from "@/Types";
 import { getProjects } from "@/utils/actions/Projects";
 import EditForm from "@/views/Admin/pages/Projects/pages/edit";
 
 
 export async function generateStaticParams() {
-  const project: IProject[] = await getProjects();
+  await connectToMongoDb()
+  const project: IProject[] = await Project.find();
 
   return project.map((project) => ({
-    projectId: project._id,
+    projectId: project._id.toString(),
   }));
 }
 
@@ -17,7 +20,7 @@ type Props = {
   };
 };
 
-const page = ({ params: { projectId } }: Props) => {
+const Page = ({ params: { projectId } }: Props) => {
   return (
     <div>
       <EditForm projectId={projectId} />
@@ -25,4 +28,4 @@ const page = ({ params: { projectId } }: Props) => {
   );
 };
 
-export default page;
+export default Page;

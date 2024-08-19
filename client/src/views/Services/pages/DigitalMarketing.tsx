@@ -37,7 +37,7 @@ const DigitalMarketing = () => {
         <h3>Types of Digital Marketing Services</h3>
         <p>
           We offer a range of services including SEO, social media marketing,
-          content marketing, and email campaigns to boost your brand's visibility.
+          content marketing, and email campaigns to boost your brand&rsquo;s visibility.
         </p>
       </div>
       <div style={paragraphStyle}>
@@ -58,7 +58,7 @@ const DigitalMarketing = () => {
       <div style={paragraphStyle}>
         <h3>Case Studies and Success Stories</h3>
         <p>
-          Learn about our successful marketing campaigns and how we've helped
+          Learn about our successful marketing campaigns and how we&rsquo;ve helped
           businesses grow their online presence and increase conversions.
         </p>
       </div>
@@ -87,7 +87,7 @@ const DigitalMarketing = () => {
         <h3>Conclusion</h3>
         <p>
           Discover the benefits of partnering with our digital marketing
-          experts to elevate your brand's online presence. Get in touch today!
+          experts to elevate your brand&rsquo;s online presence. Get in touch today!
         </p>
       </div>
     </section>

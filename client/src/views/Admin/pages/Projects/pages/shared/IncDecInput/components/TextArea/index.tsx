@@ -9,7 +9,7 @@ interface TextAriaProps {
   length: number;
 }
 
-function index({ id, v, handleC, length }: TextAriaProps) {
+function Index({ id, v, handleC, length }: TextAriaProps) {
   const [value, setValue] = useState(v);
 
   const style = {
@@ -47,4 +47,4 @@ function index({ id, v, handleC, length }: TextAriaProps) {
   );
 }
 
-export default index;
+export default Index;

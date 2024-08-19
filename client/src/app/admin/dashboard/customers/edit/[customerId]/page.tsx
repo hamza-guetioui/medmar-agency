@@ -1,12 +1,15 @@
+import connectToMongoDb from "@/libs/mongoDb";
+import Customer from "@/model/customer";
 import { ICustomer } from "@/Types";
-import { getCustomers } from "@/utils/actions/Customers";
 import EditForm from "@/views/Admin/pages/Customers/pages/edit";
 
 export async function generateStaticParams() {
-  const customers: ICustomer[] = await getCustomers();
+  await connectToMongoDb()
+  const customers: ICustomer[] = await Customer.find();
+
 
   return customers.map((customer) => ({
-    customerId: customer._id,
+    customerId: customer._id.toString(),
   }));
 }
 

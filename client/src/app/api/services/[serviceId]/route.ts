@@ -7,6 +7,8 @@ import Service from "@/model/service";
 import { getService } from "@/utils/actions/Services";
 import { validateServiceData } from "@/utils/apiUtils/validateServiceData";
 import { validate_Id } from "@/utils/apiUtils/validate_Id";
+import { IService } from "@/Types";
+
 
 // Get a Service by ID
 export async function GET(

@@ -13,7 +13,7 @@ interface InputProps {
   required?: boolean;
 }
 
-function index({
+function Index({
   name,
   label,
   min,
@@ -62,4 +62,4 @@ function index({
   );
 }
 
-export default index;
+export default Index;

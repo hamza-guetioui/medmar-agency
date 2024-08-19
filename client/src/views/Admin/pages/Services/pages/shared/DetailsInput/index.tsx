@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import styles from "./Styles.module.css";
 
+import mongoose from "mongoose";
 import TextInput from "./TextInput";
 import { IServiceDetail } from "@/Types";
 import { faPlus, faSquareMinus } from "@fortawesome/free-solid-svg-icons";
@@ -22,7 +23,7 @@ function Index({ label, name, min, max, initialValue }: Props) {
     }
     let arr: IServiceDetail[] = [];
     for (let i = 1; i <= min; i++) {
-      arr = [...arr, { _id: i.toString(), detail: "" }];
+      arr = [...arr, { _id: generateObjectId(), detail: "" }];
     }
     return arr;
   });
@@ -30,7 +31,7 @@ function Index({ label, name, min, max, initialValue }: Props) {
   const handleTextInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setData((pData) =>
       pData.map((d) => {
-        if (d._id === event.target.id) {
+        if (d._id.toString() === event.target.id) {
           return { ...d, detail: event.target.value };
         }
         return d;
@@ -40,14 +41,11 @@ function Index({ label, name, min, max, initialValue }: Props) {
 
   const handleAdd = () => {
     if (data.length >= max) return;
-    setData((pData) => [
-      ...pData,
-      { _id: (pData.length + 1).toString(), detail: "" },
-    ]);
+    setData((pData) => [...pData, { _id: generateObjectId(), detail: "" }]);
   };
   const handleDelete = (id: string) => {
     if (data.length <= min) return;
-    setData((pData) => pData.filter((d) => d._id !== id));
+    setData((pData) => pData.filter((d) => d._id.toString() !== id));
   };
 
   return (
@@ -58,9 +56,12 @@ function Index({ label, name, min, max, initialValue }: Props) {
       <div className={styles.Wrapper}>
         {data.map((item) => {
           return (
-            <div key={item._id} className="flex gap-2 items-center w-full mb-3">
+            <div
+              key={item._id.toString()}
+              className="flex gap-2 items-center w-full mb-3"
+            >
               <TextInput
-                id={item._id}
+                id={item._id.toString()}
                 v={item.detail}
                 length={20}
                 initialValue={item.detail}
@@ -73,7 +74,7 @@ function Index({ label, name, min, max, initialValue }: Props) {
                 <input
                   id="del"
                   type="button"
-                  onClick={() => handleDelete(item._id)}
+                  onClick={() => handleDelete(item._id.toString())}
                   disabled={data.length <= min}
                 />
                 <FontAwesomeIcon icon={faSquareMinus} className="h-10 w-10" />
@@ -99,3 +100,7 @@ function Index({ label, name, min, max, initialValue }: Props) {
 }
 
 export default Index;
+
+function generateObjectId(): mongoose.Types.ObjectId {
+  return new mongoose.Types.ObjectId();
+}

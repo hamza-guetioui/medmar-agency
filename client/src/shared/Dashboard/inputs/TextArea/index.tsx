@@ -11,7 +11,7 @@ interface TextAriaProps {
   rows?: number;
 }
 
-function index({
+function Index({
   name,
   label,
   length,
@@ -55,4 +55,4 @@ function index({
   );
 }
 
-export default index;
+export default Index;

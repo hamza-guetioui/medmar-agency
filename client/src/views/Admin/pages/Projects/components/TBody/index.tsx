@@ -7,7 +7,7 @@ import { IProjectData } from "@/Types";
 import NoResults from "@/shared/Dashboard/NoResults";
 
 const Index = async () => {
-  const projects: IProjectData[] = await getProjects();
+  const projects: IProjectData[] = await getProjects() || [];
 
   if (!projects || projects.length <= 0) {
     return <NoResults />;
@@ -16,7 +16,7 @@ const Index = async () => {
   return (
     <tbody>
       {projects.map((project) => {
-        return <TRow key={project._id} {...project} />;
+        return <TRow key={project._id.toString()} {...project} />;
       })}
     </tbody>
   );

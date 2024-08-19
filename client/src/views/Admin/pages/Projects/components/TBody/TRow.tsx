@@ -53,19 +53,19 @@ const TRow = ({
       <TD>
         <ul className="list-[circle]">
           {services?.map((s) => (
-            <li key={s._id}>{s.title}</li>
+            <li key={s._id.toString()}>{s.title}</li>
           ))}
         </ul>
       </TD>
       <TD>
         <ul className="list-[circle]">
           {details?.map((d) => (
-            <li key={d._id}>{d.feature}</li>
+            <li key={d._id.toString()}>{d.feature}</li>
           ))}
         </ul>
       </TD>
       <TD>
-        <UDOptions id={_id} deleteAction={deleteProject} />
+        <UDOptions id={_id.toString()} deleteAction={deleteProject} />
       </TD>
     </tr>
   );

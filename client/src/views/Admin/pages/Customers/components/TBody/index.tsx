@@ -7,7 +7,7 @@ import { ICustomer } from "@/Types";
 import NoResults from "@/shared/Dashboard/NoResults";
 
 const Index = async () => {
-  const customers: ICustomer[] = await getCustomers();
+  const customers: ICustomer[] = await getCustomers() || [];
 
   if (customers.length <= 0) {
     return <NoResults />;
@@ -16,7 +16,13 @@ const Index = async () => {
   return (
     <tbody>
       {customers.map((customer, index) => {
-        return <TRow key={customer._id} index={index} {...customer}></TRow>;
+        return (
+          <TRow
+            key={customer._id.toString()}
+            index={index}
+            {...customer}
+          ></TRow>
+        );
       })}
     </tbody>
   );

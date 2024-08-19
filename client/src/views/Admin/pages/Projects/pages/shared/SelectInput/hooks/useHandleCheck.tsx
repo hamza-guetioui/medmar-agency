@@ -4,7 +4,7 @@ import React, { useState } from "react";
 function useHandleCheck(initialValue: IService[] = []) {
   const [serviceIds, setServiceIds] = useState(() => {
     if (Array.isArray(initialValue)) {
-      return initialValue.map((service) => service._id);
+      return initialValue.map((service) => service._id.toString());
     }
     return [];
   });

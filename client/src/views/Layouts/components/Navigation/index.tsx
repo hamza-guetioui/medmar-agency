@@ -9,6 +9,7 @@ import LanguageButton from "../languageButton";
 function Index() {
   return (
     <div className={Styles.Wrapper}>
+      <LanguageButton />
       <header className={Styles.Container}>
         <Logo />
         <Navigation />

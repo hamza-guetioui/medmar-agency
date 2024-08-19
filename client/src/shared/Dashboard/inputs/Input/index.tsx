@@ -12,7 +12,7 @@ interface InputProps {
   pattern?: string;
 }
 
-function index({
+function Index({
   type,
   name,
   label,
@@ -66,4 +66,4 @@ function index({
   );
 }
 
-export default index;
+export default Index;

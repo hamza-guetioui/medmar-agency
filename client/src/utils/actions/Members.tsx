@@ -1,40 +1,51 @@
 "use server";
 const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000";
+import connectToMongoDb from "@/libs/mongoDb";
+import Member from "@/model/member";
+import { IMember } from "@/Types";
 import { revalidateTag } from "next/cache";
+import { validate_Id } from "../apiUtils/validate_Id";
+import { error } from "console";
 
 // Get All Members
 export const getMembers = async () => {
   try {
-    const response = await fetch(`${baseUrl}/api/members`, {
-      next: { tags: ["Members"] },
-    });
-    if (!response.ok) {
-      const { message } = await response.json();
-      console.error("Error fetching members:", message);
-      return;
-    }
-    const { data } = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching members:", error);
-    throw error;
+    await connectToMongoDb();
+    const members = await Member.find().sort({ createdAt: -1 }).lean();
+
+    // Map and type the results to IMember
+    return members.map((member: any) => ({
+      _id: member._id,
+      fullName: member.fullName,
+      position: member.position,
+      profile: member.profile,
+      bio: member.bio,
+      facebook: member.facebook,
+      instagram: member.instagram,
+      linkedin: member.linkedin,
+    })) as IMember[];
+  } catch (err) {
+    console.error(err);
   }
 };
 
 // Get One Member
-export const getMember = async (id: string) => {
+export const getMember = async (memberId: string) => {
+  if (!validate_Id(memberId)) {
+    throw new Error("Invalid member ID format");
+  }
+
   try {
-    const response = await fetch(`${baseUrl}/api/members/${id}`);
-    if (!response.ok) {
-      const { message } = await response.json();
-      console.error("Error fetching member:", message);
-      return;
-    }
-    const { data } = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching member:", error);
-    throw error;
+    // Connect to MongoDB
+    await connectToMongoDb();
+
+    // Find the member by ID
+    const member = await Member.findById(memberId);
+
+    // Return the member data if found
+    return member;
+  } catch (err) {
+    console.log(err);
   }
 };
 
@@ -60,7 +71,6 @@ export async function createMember(formData: FormData) {
 
 // Update Member
 export async function updateMember(memberId: string, formData: FormData) {
-
   try {
     const response = await fetch(`${baseUrl}/api/members/${memberId}`, {
       method: "PUT",

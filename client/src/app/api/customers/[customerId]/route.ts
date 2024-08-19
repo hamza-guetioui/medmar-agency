@@ -7,40 +7,42 @@ import { validateCustomerData } from "@/utils/apiUtils/validateCustomerData";
 import { handleError } from "@/utils/apiUtils/handleError";
 import { removeFile } from "@/utils/apiUtils/handleFile";
 import { validate_Id } from "@/utils/apiUtils/validate_Id";
+import { ICustomer } from "@/Types";
 
-// Get Customer
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { customerId: string } }
-) {
-  const { customerId } = params;
 
-  // Validate the customer ID format
-  if (!validate_Id(customerId)) {
-    return NextResponse.json(
-      { message: "Invalid customer ID format" },
-      { status: 400 }
-    );
-  }
+// // Get Customer
+// export async function GET(
+//   request: NextRequest,
+//   { params }: { params: { customerId: string } }
+// ) {
+//   const { customerId } = params;
 
-  try {
-    // Connect to MongoDB
-    await connectToMongoDb();
+//   // Validate the customer ID format
+//   if (!validate_Id(customerId)) {
+//     return NextResponse.json(
+//       { message: "Invalid customer ID format" },
+//       { status: 400 }
+//     );
+//   }
 
-    // Find the customer by ID
-    const customer = await Customer.findById(customerId);
+//   try {
+//     // Connect to MongoDB
+//     await connectToMongoDb();
 
-    // Return the customer data if found
-    return NextResponse.json(
-      { message: "Customer fetched successfully", data: customer },
-      { status: 200 }
-    );
-  } catch (err) {
-    // Handle any errors that occur during the fetch operation
-    const { message, error } = handleError("Error Fetching Customer", err);
-    return NextResponse.json({ message, error }, { status: 500 });
-  }
-}
+//     // Find the customer by ID
+//     const customer = await Customer.findById(customerId);
+
+//     // Return the customer data if found
+//     return NextResponse.json(
+//       { message: "Customer fetched successfully", data: customer },
+//       { status: 200 }
+//     );
+//   } catch (err) {
+//     // Handle any errors that occur during the fetch operation
+//     const { message, error } = handleError("Error Fetching Customer", err);
+//     return NextResponse.json({ message, error }, { status: 500 });
+//   }
+// }
 
 // Edit Customer
 export async function PUT(

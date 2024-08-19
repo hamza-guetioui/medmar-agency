@@ -10,6 +10,7 @@ import { handleError } from "@/utils/apiUtils/handleError";
 import { validate_Id } from "@/utils/apiUtils/validate_Id";
 import { getProject } from "@/utils/actions/Projects";
 import { removeFile } from "@/utils/apiUtils/handleFile";
+import { IProject } from "@/Types";
 
 // Get a Project by ID
 export async function GET(

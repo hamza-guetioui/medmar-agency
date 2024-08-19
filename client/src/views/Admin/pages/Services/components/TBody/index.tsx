@@ -7,7 +7,7 @@ import { IService } from "@/Types";
 import NoResults from "@/shared/Dashboard/NoResults";
 
 const Index = async () => {
-  const services: IService[] = await getServices();
+  const services: IService[] = await getServices() || [];
 
   if (!services || services.length <= 0) {
     return <NoResults />;
@@ -16,7 +16,7 @@ const Index = async () => {
   return (
     <tbody>
       {services.map((service, index) => {
-        return <TRow key={service._id} index={index} {...service}></TRow>;
+        return <TRow key={service._id.toString()} index={index} {...service}></TRow>;
       })}
     </tbody>
   );

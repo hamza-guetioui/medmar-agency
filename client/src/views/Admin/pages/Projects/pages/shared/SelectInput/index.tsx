@@ -28,14 +28,14 @@ function Index({ type, name, label, data: services, initialValue }: Props) {
         {services.map((service) => {
           let checked = false;
           if (serviceIds) {
-            checked = serviceIds.some((serviceId) => serviceId === service._id);
+            checked = serviceIds.some((serviceId) => serviceId === service._id.toString());
           }
 
           return (
             <CheckBoxOption
               type={type} // checkbox | radio
-              key={service._id}
-              id={service._id}
+              key={service._id.toString()}
+              id={service._id.toString()}
               title={service.title}
               handleChange={type === "checkbox" ? handleCheckbox : handleRadio}
               checked={checked}

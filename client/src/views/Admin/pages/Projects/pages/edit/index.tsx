@@ -14,7 +14,7 @@ import { getServices } from "@/utils/actions/Services";
 import { IProjectData } from "@/Types";
 
 const Index = async ({ projectId }: { projectId: string }) => {
-  const services = await getServices();
+  const services = await getServices() || [];
   const updateProjectWithId = updateProject.bind(null, projectId);
   const project: IProjectData = await getProject(projectId);
 
@@ -32,7 +32,7 @@ const Index = async ({ projectId }: { projectId: string }) => {
             name="customerId"
             label="Customer"
             length={25}
-            initialValue={project.customer._id}
+            initialValue={project.customer._id.toString()}
           />
         </Section>
         <Section title={"Project Info"}>

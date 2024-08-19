@@ -1,10 +1,10 @@
 import CustomersPage from "@/views/Admin/pages/Customers";
 
-function Customers() {
+function Page() {
   return (
     <div>
       <CustomersPage />
     </div>
   );
 }
-export default Customers;
+export default Page;

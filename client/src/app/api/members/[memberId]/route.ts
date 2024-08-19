@@ -8,40 +8,42 @@ import { handleError } from "@/utils/apiUtils/handleError";
 import { removeFile } from "@/utils/apiUtils/handleFile";
 import { getMember } from "@/utils/actions/Members";
 import { validate_Id } from "@/utils/apiUtils/validate_Id";
+import { IMember } from "@/Types";
+
 
 // Get Member
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { memberId: string } }
-) {
-  const { memberId } = params;
+// export async function GET(
+//   request: NextRequest,
+//   { params }: { params: { memberId: string } }
+// ) {
+//   const { memberId } = params;
 
-  // Validate the member ID format
-  if (!validate_Id(memberId)) {
-    return NextResponse.json(
-      { message: "Invalid member ID format" },
-      { status: 400 }
-    );
-  }
+//   // Validate the member ID format
+//   if (!validate_Id(memberId)) {
+//     return NextResponse.json(
+//       { message: "Invalid member ID format" },
+//       { status: 400 }
+//     );
+//   }
 
-  try {
-    // Connect to MongoDB
-    await connectToMongoDb();
+//   try {
+//     // Connect to MongoDB
+//     await connectToMongoDb();
 
-    // Find the member by ID
-    const member = await Member.findById(memberId);
+//     // Find the member by ID
+//     const member = await Member.findById(memberId);
 
-    // Return the member data if found
-    return NextResponse.json(
-      { message: "Member fetched successfully", data: member },
-      { status: 200 }
-    );
-  } catch (err) {
-    // Handle any errors that occur during the fetch operation
-    const { message, error } = handleError("Error Fetching member", err);
-    return NextResponse.json({ message, error }, { status: 500 });
-  }
-}
+//     // Return the member data if found
+//     return NextResponse.json(
+//       { message: "Member fetched successfully", data: member },
+//       { status: 200 }
+//     );
+//   } catch (err) {
+//     // Handle any errors that occur during the fetch operation
+//     const { message, error } = handleError("Error Fetching member", err);
+//     return NextResponse.json({ message, error }, { status: 500 });
+//   }
+// }
 
 // Edit Member
 export async function PUT(
