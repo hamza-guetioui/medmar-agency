@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef, useState, useEffect, useMemo } from "react";
 import styles from "./Styles.module.css";
+import { redirect } from 'next/navigation'
 
 import { ICustomer } from "@/Types";
 import TextInput from "./TextInput";
@@ -40,14 +41,17 @@ function Index({ name, label, length, initialValue }: Props) {
     if (!initialValue) return;
     const fetchData = async () => {
       try {
-        const customer: ICustomer = await getCustomer(initialValue);
+        const customer = await getCustomer(initialValue) ;
+        if(!customer){
+          throw new Error ("faild to get form data")
+        }
         if (inputRef.current) {
           inputRef.current.value = customer.fullName;
           setInputValue(customer.fullName);
           setCustomerId(customer._id.toString());
         }
       } catch (err) {
-        console.error(err);
+        redirect('/admin/dashboard/projects')
       }
     };
     fetchData();

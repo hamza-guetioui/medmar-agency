@@ -49,7 +49,12 @@ const TRow = ({
       </TD>
       <TD>
         {" "}
-        <UDOptions id={_id.toString()} deleteAction={deleteService} />
+        <UDOptions id={_id.toString()}>
+          <form action={deleteService} method="post">
+            <input type="hidden" value={_id.toString()} name="id" />
+            <button className="rounded-md px-4 py-1 bg-red-400">Delete</button>
+          </form>
+        </UDOptions>{" "}
       </TD>
     </tr>
   );

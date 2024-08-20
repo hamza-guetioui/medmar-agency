@@ -1,0 +1,3 @@
+.Container {
+  @apply flex flex-nowrap p-4 overflow-y-hidden  gap-4  overflow-x-auto;
+}

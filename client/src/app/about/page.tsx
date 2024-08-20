@@ -1,8 +1,8 @@
 import React from "react";
-import AboutUs from "@/views/AboutUs";
+import About from "@/views/About";
 
 function Page() {
-  return <AboutUs />;
+  return <About />;
 }
 
 export default Page;

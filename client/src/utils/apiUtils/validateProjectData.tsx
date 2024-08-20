@@ -34,8 +34,10 @@ export const validateProjectData = async (
       try {
         // Fetch existing project details by ID
         const project = await getProject(projectId);
-        // Use the existing preview image if available
-        previewImage = project.previewImage;
+        if (project) {
+          // Use the existing preview image if available
+          previewImage = project.previewImage;
+        }
       } catch (error) {
         // Return an error if project details cannot be fetched
         return {

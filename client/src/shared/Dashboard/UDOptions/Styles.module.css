@@ -51,7 +51,7 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .UDButton {
-    @apply flex items-center justify-between gap-2 px-4 py-2 text-white  w-full
+    @apply flex items-center justify-between hover:bg-slate-300/30 gap-2 px-4 py-2 text-white  w-full
 }
 
 .UButtonLink {

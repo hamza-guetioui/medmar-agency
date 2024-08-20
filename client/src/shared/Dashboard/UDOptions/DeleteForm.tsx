@@ -1,12 +1,11 @@
 import React from "react";
 
 type Props = {
-  id: string;
-  action: (formData: FormData) => Promise<void>;
   handleToggle: () => void;
+  children: React.ReactNode;
 };
 
-const DeleteForm = ({ id, action, handleToggle }: Props) => {
+const DeleteForm = ({ handleToggle, children }: Props) => {
   return (
     <div className=" min-h-24 f p-4 bg-slate-300 flex flex-col items-center justify-between shadow-2xl ">
       <p className="text-bold text-sm font-bold ">
@@ -14,11 +13,7 @@ const DeleteForm = ({ id, action, handleToggle }: Props) => {
       </p>
 
       <div className="flex justify-end gap-4 w-full px-5 text-white">
-        <form action={action}>
-          <input type="hidden" value={id} name="id" />
-          <button className="rounded-md px-4 py-1 bg-red-400">Delete</button>
-        </form>
-
+        {children}
         <button
           className="rounded-md px-4 py-1 bg-slate-400"
           onClick={handleToggle}

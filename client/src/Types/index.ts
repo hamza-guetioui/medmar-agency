@@ -1,7 +1,7 @@
 import mongoose, { Types } from "mongoose";
 
 export interface ICustomer {
-  _id: Types.ObjectId;
+  _id: string;
   fullName: string;
   jobTitle: string;
   email: string;
@@ -25,11 +25,11 @@ export interface IMember {
 }
 
 export interface IServiceDetail {
-  _id: Types.ObjectId;
+  _id: string;
   detail: string;
 }
 export interface IService {
-  _id: Types.ObjectId;
+  _id: string;
   title: string;
   description: string;
   image: string;

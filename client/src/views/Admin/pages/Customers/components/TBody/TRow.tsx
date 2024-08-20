@@ -1,3 +1,4 @@
+"use server"
 import React from "react";
 import styles from "./Styles.module.css";
 import TD from "./TD";
@@ -46,7 +47,12 @@ const TRow = ({
       <TD>{rating}</TD>
       <TD>{published ? "Yes" : "No"}</TD>
       <TD>
-        <UDOptions id={_id.toString()} deleteAction={deleteCustomer} />
+        <UDOptions id={_id.toString()}>
+          <form action={deleteCustomer} method="post">
+            <input type="hidden" value={_id.toString()} name="id" />
+            <button className="rounded-md px-4 py-1 bg-red-400">Delete</button>
+          </form>
+        </UDOptions>
       </TD>
     </tr>
   );

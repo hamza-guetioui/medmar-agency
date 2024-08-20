@@ -11,10 +11,10 @@ import styles from "./Styles.module.css";
 
 type Props = {
   id: string;
-  deleteAction: (formData: FormData) => Promise<void>;
+  children: React.ReactNode;
 };
 
-const Index = ({ id, deleteAction }: Props) => {
+const Index = ({ id, children }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => setIsOpen((ps) => !ps);
@@ -38,7 +38,9 @@ const Index = ({ id, deleteAction }: Props) => {
           <EditButton id={id} />
         </li>
         <li className="group hover:bg-slate-300/30">
-          <DeleteButton id={id} action={deleteAction} />
+          <DeleteButton id={id} >
+            {children}
+          </DeleteButton>
         </li>
       </ul>
     </div>

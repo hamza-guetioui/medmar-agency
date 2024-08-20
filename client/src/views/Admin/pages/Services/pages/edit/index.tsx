@@ -1,10 +1,9 @@
 import React from "react";
-import { IService } from "@/Types";
 
 import Header from "@/shared/Dashboard/Form/Header";
 import Section from "@/shared/Dashboard/Form/Section";
 import Input from "@/shared/Dashboard/inputs/Input";
-import TextArea from "@/shared/Dashboard/inputs/TextArea"
+import TextArea from "@/shared/Dashboard/inputs/TextArea";
 import FileInput from "@/shared/Dashboard/inputs/FileInput";
 import Buttons from "@/shared/Dashboard/Form/Buttons";
 import { getService, updateService } from "@/utils/actions/Services";
@@ -16,15 +15,18 @@ type Props = {
 
 const Index = async ({ serviceId }: Props) => {
   const updateWithServiceId = updateService.bind(null, serviceId);
-  const service: IService = await getService(serviceId);
+  const service = await getService(serviceId);
 
+  if (!service) {
+    return <div>Service not found</div>;
+  }
 
   return (
     <div>
       <Header
         title="Edit Team Service"
         paragraph="Update the service's details below and review the information before saving the changes."
-      ></Header>
+      />
       <form action={updateWithServiceId} className="bg-white">
         <Section title={"Service Info"}>
           <Input
@@ -69,7 +71,7 @@ const Index = async ({ serviceId }: Props) => {
           />
         </Section>
 
-        <Buttons title="Save Changes"/>
+        <Buttons title="Save Changes" />
       </form>
     </div>
   );

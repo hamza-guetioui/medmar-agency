@@ -11,9 +11,11 @@ import Buttons from "@/shared/Dashboard/Form/Buttons";
 import IncDecInput from "../shared/IncDecInput";
 import SearchInput from "../shared/SearchInput";
 import { getServices } from "@/utils/actions/Services";
+import { IService } from "@/Types";
 
 const Index = async () => {
-  const services = await getServices() || [];
+  const services : IService[] = await getServices() || [];
+
 
   return (
     <div>
@@ -49,6 +51,7 @@ const Index = async () => {
           />
           <Input type="text" name="link" label="Link" length={255} />
         </Section>
+
 
         <Section title="Project Services">
           <SelectInput

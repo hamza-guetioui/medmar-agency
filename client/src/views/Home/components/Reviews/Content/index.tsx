@@ -1,16 +1,6 @@
 import React from "react";
 import Review from "./Review";
-import styles from "./Styles.module.css";
 
-
-interface DataTypes {
-  _id:number;
-  name:string;
-  job:string;
-  comment:string;
-  rate:number;
-  imageSrc:string;
-}
 
 
 import ShowCase from "./ShowCase";
