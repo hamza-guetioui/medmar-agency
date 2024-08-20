@@ -9,7 +9,6 @@ import FileInput from "@/shared/Dashboard/inputs/FileInput";
 import TextArea from "@/shared/Dashboard/inputs/TextArea";
 import CheckBoxInput from "@/shared/Dashboard/inputs/CheckBoxInput";
 import Buttons from "@/shared/Dashboard/Form/Buttons";
-import { ICustomer } from "@/Types";
 
 type Props = {
   customerId: string;
@@ -17,7 +16,11 @@ type Props = {
 
 const Index = async ({ customerId }: Props) => {
   const updateWithCustomerId = updateCustomer.bind(null, customerId);
-  const customer: ICustomer = await getCustomer(customerId);
+  const customer = await getCustomer(customerId);
+
+  if (!customer) {
+    return <div>Customer not found</div>;
+  }
 
   return (
     <div>
@@ -58,7 +61,6 @@ const Index = async ({ customerId }: Props) => {
             name="phone"
             label="Phone Number"
             length={255}
-        
             initialValue={customer.phone}
             required={true}
           />

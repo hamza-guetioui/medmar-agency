@@ -6,10 +6,10 @@ import DeleteForm from "./DeleteForm";
 
 type Props = {
   id: string;
-  action: (formData: FormData) => Promise<void>;
+  children :React.ReactNode
 };
 
-function DeleteButton({ id, action }: Props) {
+function DeleteButton({ id, children }: Props) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const handleToggle = () => {
     setIsOpen((isOpen) => !isOpen);
@@ -25,7 +25,9 @@ function DeleteButton({ id, action }: Props) {
       </button>
 
       {isOpen && (
-        <DeleteForm handleToggle={handleToggle} action={action} id={id} />
+        <DeleteForm handleToggle={handleToggle}  >
+          {children}
+        </DeleteForm>
       )}
     </>
   );

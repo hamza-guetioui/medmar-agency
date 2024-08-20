@@ -23,7 +23,7 @@ function Index({ label, name, min, max, initialValue }: Props) {
     }
     let arr: IServiceDetail[] = [];
     for (let i = 1; i <= min; i++) {
-      arr = [...arr, { _id: generateObjectId(), detail: "" }];
+      arr = [...arr, { _id: generateObjectId().toString(), detail: "" }];
     }
     return arr;
   });
@@ -41,7 +41,7 @@ function Index({ label, name, min, max, initialValue }: Props) {
 
   const handleAdd = () => {
     if (data.length >= max) return;
-    setData((pData) => [...pData, { _id: generateObjectId(), detail: "" }]);
+    setData((pData) => [...pData, { _id: generateObjectId().toString(), detail: "" }]);
   };
   const handleDelete = (id: string) => {
     if (data.length <= min) return;

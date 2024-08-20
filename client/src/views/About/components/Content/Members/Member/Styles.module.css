@@ -1,0 +1,5 @@
+.Member {
+  @apply w-52 p-4 bg-slate-100 border-2 flex flex-col justify-between
+    shadow-2xl rounded-xl  overflow-hidden relative;
+}
+

@@ -2,32 +2,31 @@
   @apply flex flex-col items-start justify-between p-4 bg-blue-900/70  min-h-64
       rounded-3xl overflow-hidden;
   @apply sm:col-span-4 lg:col-span-2;
+}
 
-  .Head {
-    /* Flex container for header alignment */
-    @apply flex items-center justify-between;
+.Head {
+  /* Flex container for header alignment */
+  @apply flex items-center justify-between;
+}
+.Paragraph {
+  /* Styles for the title paragraph */
+  @apply text-white font-semibold;
+  @apply text-xl sm:text-3xl lg:text-2xl;
+}
 
-    .Paragraph {
-      /* Styles for the title paragraph */
-      @apply  text-white font-semibold;
-      @apply text-xl sm:text-3xl lg:text-2xl
-    }
-  }
+.WatchVideo {
+  /* Flex container for button alignment */
+  @apply min-w-full flex justify-between items-center z-50;
+}
 
-  .WatchVideo {
-    /* Flex container for button alignment */
-    @apply min-w-full flex justify-between items-center z-50;
+.BaseParagraph {
+  /* Styles for the paragraph in the video section */
+  @apply text-slate-200 flex flex-col;
+  @apply text-sm lg:text-base;
+}
 
-    .BaseParagraph {
-      /* Styles for the paragraph in the video section */
-      @apply text-slate-200 flex flex-col ;
-      @apply text-sm lg:text-base;
-    }
-
-    .PlayVideo {
-      @apply bg-white text-gray-800 rounded-full min-w-12 min-h-12 w-fit flex justify-center items-center;
-      @apply hover:text-primary-color hover:brightness-110;
-      @apply p-2 lg:p-4;
-    }
-  }
+.PlayVideo {
+  @apply bg-white text-gray-800 rounded-full min-w-12 min-h-12 w-fit flex justify-center items-center;
+  @apply hover:text-primary-color hover:brightness-110;
+  @apply p-2 lg:p-4;
 }

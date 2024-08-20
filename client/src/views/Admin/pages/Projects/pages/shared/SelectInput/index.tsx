@@ -34,8 +34,8 @@ function Index({ type, name, label, data: services, initialValue }: Props) {
           return (
             <CheckBoxOption
               type={type} // checkbox | radio
-              key={service._id.toString()}
-              id={service._id.toString()}
+              key={service._id}
+              id={service._id}
               title={service.title}
               handleChange={type === "checkbox" ? handleCheckbox : handleRadio}
               checked={checked}

@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import Image from "next/image";
 
-
 const TRow = ({
   _id,
   title,
@@ -65,7 +64,12 @@ const TRow = ({
         </ul>
       </TD>
       <TD>
-        <UDOptions id={_id.toString()} deleteAction={deleteProject} />
+        <UDOptions id={_id.toString()}>
+          <form action={deleteProject} method="post">
+            <input type="hidden" value={_id.toString()} name="projectId" />
+            <button className="rounded-md px-4 py-1 bg-red-400">Delete</button>
+          </form>
+        </UDOptions>{" "}
       </TD>
     </tr>
   );

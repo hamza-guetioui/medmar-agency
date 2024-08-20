@@ -27,9 +27,10 @@ export const validateServiceData = async (
       try {
         // Fetch existing service details by ID
         const service = await getService(serviceId);
-
-        // Use the existing image if available
-        image = service.image || null;
+        if (service) {
+          // Use the existing image if available
+          image = service.image || null;
+        }
       } catch (error) {
         // Return an error if service details cannot be fetched
         return {

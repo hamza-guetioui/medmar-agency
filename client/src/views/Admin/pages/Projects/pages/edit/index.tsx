@@ -11,12 +11,15 @@ import Buttons from "@/shared/Dashboard/Form/Buttons";
 import IncDecInput from "../shared/IncDecInput";
 import SearchInput from "../shared/SearchInput";
 import { getServices } from "@/utils/actions/Services";
-import { IProjectData } from "@/Types";
 
 const Index = async ({ projectId }: { projectId: string }) => {
   const services = await getServices() || [];
   const updateProjectWithId = updateProject.bind(null, projectId);
-  const project: IProjectData = await getProject(projectId);
+  const project = await getProject(projectId);
+
+  if(!project){
+    return <div>Project not found</div>
+  }
 
   return (
     <div>

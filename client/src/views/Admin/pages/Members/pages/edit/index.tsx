@@ -1,7 +1,5 @@
 import React from "react";
 import { updateMember, getMember } from "@/utils/actions/Members";
-import { IMember } from "@/Types";
-
 import Header from "@/shared/Dashboard/Form/Header";
 import Section from "@/shared/Dashboard/Form/Section";
 import Input from "@/shared/Dashboard/inputs/Input";
@@ -15,7 +13,11 @@ type Props = {
 
 const Index = async ({ memberId }: Props) => {
   const updateWithMemberId = updateMember.bind(null, memberId);
-  const member: IMember = await getMember(memberId);
+  const member = await getMember(memberId);
+
+  if(!member){
+    return <div>Member not found</div>;
+  }
 
   return (
     <div>

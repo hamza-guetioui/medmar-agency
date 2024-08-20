@@ -1,14 +1,15 @@
 "use server";
-const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000";
 import connectToMongoDb from "@/libs/mongoDb";
 import Service from "@/model/service";
 import { IService } from "@/Types";
 import { revalidateTag } from "next/cache";
-import { redirect } from "next/navigation";
 import { validate_Id } from "../apiUtils/validate_Id";
+import { validateServiceData } from "../apiUtils/validateServiceData";
+import { removeFile } from "../apiUtils/handleFile";
 
 // Get All Services
 export const getServices = async () => {
+  "use server";
   try {
     // Connect to MongoDB
     await connectToMongoDb();
@@ -16,25 +17,28 @@ export const getServices = async () => {
     // Fetch all services, sorted by creation date in descending order
     const services = await Service.find().sort({ createdAt: -1 }).lean();
 
-    // Respond with the list of services
+    // Convert the data into plain objects
     return services.map((service: any) => ({
-      _id: service._id,
+      _id: service._id.toString(), // Convert ObjectId to string
       title: service.title,
       description: service.description,
       image: service.image,
       link: service.link,
       details: service.details.map((detail: any) => ({
-        _id: detail._id,
+        _id: detail._id.toString(), // Convert ObjectId to string
         detail: detail.detail,
       })),
     })) as IService[];
   } catch (err) {
     console.log(err);
+    throw new Error('Failed to fetch services');
   }
 };
 
 // Get One Service
 export const getService = async (serviceId: string) => {
+  "use server";
+
   // Validate the service ID format
   if (!validate_Id(serviceId)) {
     throw new Error("Invalid service ID format");
@@ -54,7 +58,17 @@ export const getService = async (serviceId: string) => {
     //   );
     // }
 
-    return service;
+    return {
+      _id: service._id,
+      title: service.title,
+      description: service.description,
+      image: service.image,
+      link: service.link,
+      details: service.details.map((detail: any) => ({
+        _id: detail._id.toString(),
+        detail: detail.detail,
+      })),
+    } as IService;
   } catch (err) {
     // Handle any errors during fetch
     console.log(err);
@@ -63,79 +77,118 @@ export const getService = async (serviceId: string) => {
 
 // Create New Service
 export async function createService(formData: FormData) {
+  "use server";
+  // Validate the service data
+  const { error, data } = await validateServiceData(formData);
+  if (error) {
+    return { message: error };
+  }
+
   try {
-    const response = await fetch(`${baseUrl}/api/services`, {
-      method: "POST",
-      body: formData,
-    });
-    if (!response.ok) {
-      const { message } = await response.json();
-      console.error(`Failed to create service: ${message}`);
-      return;
-    }
-    console.log("Service created successfully");
+    // Connect to MongoDB
+    await connectToMongoDb();
+    console.log("created");
+    // Create a new service
+    Service.create(data);
     revalidateTag("Services");
-  } catch (error) {
-    console.error("Error creating service:", error);
-    throw error; // Ensure that errors are propagated
+    // Respond with the newly created service
+    return { message: "A new service has been successfully added." };
+  } catch (err) {
+    // Remove the image file if there was an error
+    if (data.image) {
+      await removeFile(data.image);
+    }
+    console.log(err);
+
+    // Handle any errors during creation
+    return { message: "Failed to add a new service" };
   }
 }
 
 // Update Service
 export async function updateService(serviceId: string, formData: FormData) {
+  "use server";
+  // Validate the service ID format
+  if (!validate_Id(serviceId)) {
+    return { message: "Invalid Service ID format" };
+  }
+
+  // Extract and validate form data
+  const { error, data } = await validateServiceData(formData, serviceId);
+
+  // Handle validation errors
+  if (error || !data) {
+    return { message: error };
+  }
+
+  let service;
   try {
-    const response = await fetch(`${baseUrl}/api/services/${serviceId}`, {
-      method: "PUT",
-      body: formData,
-    });
-    if (!response.ok) {
-      const { message } = await response.json();
-      console.error(`Failed to update service: ${message}`);
-      throw new Error(message); // Ensure that errors are propagated
+    await connectToMongoDb();
+
+    // Fetch the existing service
+    service = await getService(serviceId);
+
+    // Handle case where service does not exist
+    if (!service) {
+      if (data.image) await removeFile(data.image); // Remove image if provided
+      return { message: "Failed to update, no service found!" };
     }
-    console.log("Service updated successfully");
+
+    // Update the service
+    const updatedService = await Service.findByIdAndUpdate(serviceId, data, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!updatedService) {
+      return { message: "Something went wrong" };
+    }
+
+    // Handle file removal if the image has changed
+    if (updatedService.image && service.image !== updatedService.image) {
+      await removeFile(service.image);
+    }
+
     revalidateTag("Services");
-  } catch (error) {
-    console.error("Error updating service:", error);
-    throw error; // Ensure that errors are propagated
+    return { message: "Service Updated successfully" };
+  } catch (err) {
+    // Handle errors during update, including file removal if needed
+    if (service) {
+      if (data.image && service.image !== data.image) {
+        await removeFile(data.image);
+      }
+    }
+    return { message: "Failed to update service" };
   }
 }
 
 // Delete Member
 export async function deleteService(formData: FormData) {
+  "use server";
+
   const serviceId = formData.get("id") as string;
+  // Validate the service ID format
+  if (!validate_Id(serviceId)) {
+    return { message: "Invalid Service ID format" };
+  }
+
   try {
-    const response = await fetch(`${baseUrl}/api/services/${serviceId}`, {
-      method: "DELETE",
-    });
-    if (!response.ok) {
-      const { message } = await response.json();
-      console.error(`Failed to delete member: ${message}`);
-      return;
+    await connectToMongoDb();
+
+    // Delete the service by ID
+    const service = await Service.findByIdAndDelete(serviceId);
+
+    // Handle case where service is not found
+    if (!service) {
+      return { message: "Service not found" };
     }
-    console.log("Service deleted successfully");
+
+    // Remove the service's image if it exists
+    if (service.image) await removeFile(service.image);
     revalidateTag("Services");
-  } catch (error) {
-    console.error("Error deleting service:", error);
-    throw error;
+    return { message: "Service deleted successfully" };
+  } catch (err) {
+    // Handle errors during deletion
+    return { message: "Failed to delete service" };
   }
 }
-
-// Delete Service
-// export async function deleteService(serviceId: string) {
-//   try {
-//     const response = await fetch(`${baseUrl}/api/services/${serviceId}`, {
-//       method: "DELETE",
-//     });
-//     if (!response.ok) {
-//       const { message } = await response.json();
-//       console.error(`Failed to delete service: ${message}`);
-//       throw new Error(message); // Ensure that errors are propagated
-//     }
-//     console.log("Service deleted successfully");
-//     revalidateTag("Services");
-//   } catch (error) {
-//     console.error("Error deleting service:", error);
-//     throw error; // Ensure that errors are propagated
-//   }
-// }
