@@ -12,7 +12,7 @@ const Index: React.FC<layoutProps> = ({ children }) => {
   return (
     <>
 
-      {!pathname.startsWith("/admin") && <Navgation />}
+      {!pathname.startsWith("/mm-admin") && <Navgation />}
 
       {children}
       <Footer />

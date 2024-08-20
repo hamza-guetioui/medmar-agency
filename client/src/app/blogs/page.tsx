@@ -3,6 +3,9 @@ import React from "react";
 function Page() {
   return (
     <div className="p-8">
+      <h1 className="text-3xl font-bold mb-4 text-red-500">
+        This is a demo page. Not functional.
+      </h1>
       <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg mb-8">
         <div className="bg-gray-300 h-48 rounded-t-lg flex items-center justify-center">
           <span className="text-xl font-semibold">Cover Image Placeholder</span>
