@@ -5,15 +5,13 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import React from "react";
 
-const apiUrl = process.env.API_URL;
 
 async function logOut() {
   "use server";
   try {
 
     cookies().delete("session_id")
-    redirect("/admin");
-    return;
+    redirect("/mm-admin");
   } catch (err) {
     console.log(err);
   }
