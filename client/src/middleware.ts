@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // If the request is exactly for /admin, skip authentication (e.g., show login form)
-  if (pathname === "/admin") {
+  if (pathname === "/mm-admin") {
     return NextResponse.next();
   }
 
@@ -15,7 +15,7 @@ export function middleware(request: NextRequest) {
 
   if (!token) {
     // Redirect to login if not authenticated
-    return NextResponse.redirect(new URL("/admin", request.url));
+    return NextResponse.redirect(new URL("/mm-admin", request.url));
   }
 
   return NextResponse.next();

@@ -6,7 +6,7 @@ import { logIn } from "@/utils/actions/LogIn";
 const Index = () => {
   return (
     <div className={styles.Container}>
-      <form className={styles.Form} action={logIn} method="POST">
+      <form className={styles.Form} action={logIn} >
          <FormInputs />
       </form>
      
