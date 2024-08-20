@@ -2,15 +2,15 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import jwt from "jsonwebtoken";
-// import connectMongoDb from "@/libs/mongoDb";
 
-const secretKey = "JWT test"; // Use environment variable for secret key
+const secretKey = process.env.SECRET_KEY || "TOkEn1234"; // Use environment variable for secret key
 const user = {
   username: "medlog",
-  password: "med!23", // Use hashed passwords in production
+  password: "med!23", 
 };
 
 export const logIn = async (formData: FormData) => {
+  "use server"
   const username = formData.get("username");
   const password = formData.get("password");
 
@@ -39,7 +39,7 @@ export const logIn = async (formData: FormData) => {
       });
   
       // Redirect to the dashboard after successful login
-      redirect("/admin/dashboard");
+      redirect("/mm-admin/dashboard");
   } catch (error) {
     return { message: "An error occurred while processing your request." };
   }
