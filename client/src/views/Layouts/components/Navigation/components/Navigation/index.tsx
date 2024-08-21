@@ -35,8 +35,8 @@ function Navigation() {
             Who We Are ?
           </Link>
 
-          <Link href="/works" className={styles.Link}>
-            Works
+          <Link href="/projects" className={styles.Link}>
+            projects
           </Link>
 
           <Link href="/blogs" className={styles.Link}>
