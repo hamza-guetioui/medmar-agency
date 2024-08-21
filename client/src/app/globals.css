@@ -5,11 +5,10 @@
 /* --primary-color :  #ff6000;
 --secondary-color : #00a6e2; */
 
-/* --primary-color :  #ff3f0f;
---secondary-color : #0f9aff; */
+
  :root {
-  --primary-color :  #971e00;
-  --secondary-color : #0862a3;
+  --primary-color :  #ff3f0f;
+--secondary-color : #0f9aff;
   --black-color : #111318;
   --white-color : #f0f0f0;
 
